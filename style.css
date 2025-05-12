@@ -1,0 +1,171 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.title-bar {
+    font-size: x-large;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 7rem; 
+    background: white; 
+    z-index: 1000; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+
+.search-bar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding-top: 1.75rem;
+    padding-right: 2.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar input {
+    border-radius: 5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    width: 250px;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    border: 1px solid #ccc;
+}
+.search-bar input:hover, #user button:hover, #bookmark button:hover, .upload-section input:hover{
+    transform: translateY(-2px);  
+    background: rgba(255, 255, 255, 0.893);
+}
+
+.left-panel {
+    position: fixed;
+    top: 15rem;
+    left: 5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-panel a {
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+.feed {
+    margin-top: 6rem ;
+    margin-left: 220px;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.featured-section {
+    display: flex;
+    overflow-x: auto;
+    gap: 2rem;
+    padding-bottom: 1rem;
+}
+
+.featured-section::-webkit-scrollbar {
+    display: none;
+}
+
+.featured-section {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;    /* Firefox */
+}
+
+.featured-item {
+    flex: 0 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 0.5rem;
+    text-align: center;
+    position: relative;
+    width: 250px;
+}
+
+.featured-item img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+#user {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+}
+
+#user button {
+    border: none;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+
+}
+
+#bookmark {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#bookmark button {
+    border: none;
+    background: url('bookmark.png') no-repeat center;
+    background-size: contain;
+    width: 24px;
+    height: 24px;
+}
+
+#recipe-name p {
+    margin: 0.75rem 0 0;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.upload-section {
+    width: 10rem;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.upload-section input {
+    flex: 0 1 auto;
+    padding: 0.75rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.mode-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.mode-section select {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
