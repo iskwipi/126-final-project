@@ -52,7 +52,7 @@ h2 {
     color: #aaa;
     pointer-events: none;
 }
-.search-bar input:hover, #user a:hover, .bookmark button:hover, .upload-section input:hover{
+.search-bar input:hover, #user a:hover, .bookmark button:hover, .upload-section input:hover, .ratings button:hover, .nav-button:hover{
     transform: translateY(-1px);  
     background: rgba(255, 255, 255, 0.893);
 }
@@ -74,7 +74,7 @@ h2 {
     align-items: center;
     gap: 0.7rem;
     text-decoration: none;
-    color: rgba(44, 44, 44, 0.893);;
+    color: rgba(44, 44, 44, 0.893);
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
@@ -88,6 +88,7 @@ h2 {
     color:black
 }
 
+
 .feed {
     margin-top: 6rem ;
     margin-left: 220px;
@@ -95,10 +96,14 @@ h2 {
     min-height: 100vh;
 }
 
-.featured-section {
+.image {
+    position: relative;
+}
+
+.featured-section, .saved-section {
     display: flex;
     overflow-x: auto;
-    gap: 2rem;
+    gap: 1.2rem;
     padding-bottom: 1rem;
 }
 
@@ -111,19 +116,51 @@ h2 {
     scrollbar-width: none;    /* Firefox */
 }
 
-.featured-item {
+.left-button {
+    left: -20px;
+}
+
+.right-button {
+    right: -20px;
+}
+
+.left-button, .right-button {
+    border-radius: 10px;
+    border-color: rgb(43, 43, 43);
+}
+
+.featured-item, .posts-section{
     flex: 0 0 auto;
     background: #fff;
     border-radius: 8px;
-    padding: 0.5rem;
     text-align: center;
     position: relative;
-    width: 250px;
 }
 
-.featured-item img {
+.featured-item {
+    width: 238px;
+}
+
+.featured-item img, .posts-section img, .saved-section img{
     width: 100%;
     border-radius: 8px;
+}
+
+.recipe-posts {
+    width: 300px;
+}
+
+.recipe-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.posts-section {
+    display: flex;
+    overflow-y:auto;
+    gap: 1.3rem;
+    padding-bottom: 1rem;
 }
 
 #user {
@@ -131,6 +168,7 @@ h2 {
     top: 1rem;
     left: 0.8rem;
     display: flex;
+    z-index:1;
 }
 
 #user a {
@@ -143,9 +181,7 @@ h2 {
     font-size: 0.9rem;
     font-weight: bold;
     transition: box-shadow 0.3s ease, transform 0.2s ease;
-
 }
-
 
 
 /* di pa polished bookmarks */
@@ -153,6 +189,7 @@ h2 {
     position: absolute;
     top: 1.1rem;
     right: 0rem;
+    z-index:1;
 }
 
 .bookmark button {
@@ -176,28 +213,37 @@ h2 {
     pointer-events: none;
 }
 
-/* .bookmark .regular-icon {
-    display: block;
-} */
-
-.bookmark .solid-icon {
-    display: none;
-}
-
-
-
-
-/* #bookmark button {
-    border: none;
-    background: url('bookmark.png') no-repeat center;
-    background-size: contain;
-    width: 24px;
-    height: 24px;
-} */
 
 #recipe-name p {
-    margin: 0.75rem 0 0;
+    text-align:left;
     font-weight: bold;
+}
+
+.ratings {
+    justify-content: flex-start; 
+    display: flex;
+    gap: 0.1rem; 
+    top:1rem;
+}
+
+.ratings button {
+    font-size: 1rem;
+    border: none;
+    background: transparent;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    padding: 0;
+    margin: 0;
+    width: 1rem;
+}
+
+.ratings p {
+    font-size: 1rem;
+    margin: 0 0 0 0.5rem; 
+}
+
+#tags p {
+    text-align: left;
+    cursor: pointer;
 }
 
 .container {
@@ -228,10 +274,6 @@ h2 {
     font-size: 2rem;
     margin-left: 1rem;
 }
-/* 
-.container i {
-    gap: 1rem;
-} */
 
 .upload-section button {
     border: none;
