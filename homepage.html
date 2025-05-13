@@ -1,105 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
         <title> Platemate Homepage </title>
+        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
         <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
     </head>
     <body>
 
         <div class="title-bar">
-            <h1>Platemate</h1>
+            <h1>PlateMate</h1>
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
+                <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>    
         </div>
 
         <div class="left-panel">
-            <a href = "homepage.html"> <img src="image-removebg-preview.png" alt="recipe image" width="55px" height="50px">Home</a><br>
-            <a href = "profile.html"><img src="image-removebg-preview.png" alt="recipe image" width="55px" height="50px">Profile</a><br>
-            <a href = "cookbook.html"> <img src="image-removebg-preview.png" alt="recipe image" width="55px" height="50px">Cookbook</a><br>
-            <a href = "deepsearch.html"> <img src="image-removebg-preview.png" alt="recipe image" width="55px" height="50px">Deep Search</a>
+            <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
+            <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
+            <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
         </div>
+        
 
         <div class="feed">
             <div class="featured-section">
+                <button class="nav-button left-button">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
                 <div class="featured-item"> 
-                    <div id="image">
-                        <div id="bookmark">
-                            <button type="button"></button>
+                    <div class="image">
+                        <div class="bookmark">
+                            <button type="button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
                         </div>
                         <div id="user">
-                            <button type="button">Sir Nikko</button>
+                            <a href="profile.html">Sir Nikko</a>
                         </div>
-                        <img src="img.png" alt="recipe image" width="250px" height="250px">
+                        <img src="img.png" alt="recipe image">
                     </div>
                     <div id="recipe-name"> 
                         <p>Adobong Manok</p>
                     </div>
                 </div>
+
                 <div class="featured-item"> 
-                    <div id="image">
-                        <div id="bookmark">
-                            <button type="button"></button>
+                    <div class="image">
+                        <div class="bookmark">
+                            <button class="bookmark-button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
                         </div>
                         <div id="user">
-                            <button type="button">Sir Nikko</button>
+                            <a href="profile.html">Sir Nikko</a>
                         </div>
-                        <img src="img.png" alt="recipe image" width="250px" height="250px">
+                        <img src="img.png" alt="recipe image">
                     </div>
             
                     <div id="recipe-name"> 
                         <p>Adobong Manok</p>
                     </div>
                 </div>
+
                 <div class="featured-item"> 
-                    <div id="image">
-                        <div id="bookmark">
-                            <button type="button"></button>
+                    <div class="image">
+                        <div class="bookmark">
+                           <button class="bookmark-button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
                         </div>
                         <div id="user">
-                            <button type="button">Sir Nikko</button>
+                            <a href="profile.html">Sir Nikko</a>
                         </div>
-                        <img src="img.png" alt="recipe image" width="250px" height="250px">
+                        <img src="img.png" alt="recipe image">
                     </div>
                     <div id="recipe-name"> 
                         <p>Adobong Manok</p>
                     </div>
                 </div>
+
                 <div class="featured-item"> 
-                    <div id="image">
+                    <div class="image">
                         <div id="user">
-                            <button type="button">Sir Nikko</button>
+                            <a href="profile.html">Sir Nikko</a>
                         </div>
-                        <div id="bookmark">
-                            <button type="button"></button>
+                        <div class="bookmark">
+                            <button class="bookmark-button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
                         </div>
-                        <img src="img.png" alt="recipe image" width="250px" height="250px">
-        
+                        <img src="img.png" alt="recipe image">
                     </div>
+                    <div id="recipe-name"> 
+                        <p>Adobong Manok</p>
+                    </div>
+                </div>   
+
+                <div class="featured-item"> 
+                    <div class="image">
+                        <div class="bookmark">
+                            <button type="button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
+                        </div>
+                        <div id="user">
+                            <a href="profile.html">Sir Nikko</a>
+                        </div>
+                        <img src="img.png" alt="recipe image">
+                    </div>
+            
                     <div id="recipe-name"> 
                         <p>Adobong Manok</p>
                     </div>
                 </div>
-                <!-- <div class="featured-item"> 
-                    <div id="image">
-                        <img src="img.png" alt="recipe image" width="250px" height="250px">
-                        <div id="bookmark">
-                            <button type="button">Bookmark</button>
-                        </div>
-                        <div id="user">
-                            <p><strong>Sir Nikko</strong></p>
-                        </div>
-                    </div>
-                    <div id="recipe-name"> 
-                        <p>Adobong Manok</p>
-                    </div>
-                </div> -->
-                  
+
+                <button class="nav-button right-button">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
             </div>
+
             <div class="container">
+                <!-- <i class="fa-solid fa-user"></i> -->
                 <div class="upload-section">
-                    <input type="text" id="uploadRecipe" placeholder="New recipe idea?">
+                    <button type="button">
+                    <input type="text" id="uploadRecipe" placeholder="New recipe idea?                   ">
+                    <i class="fa-regular fa-image"></i> </button>
                 </div>
 
                 <div class="mode-section">
@@ -110,17 +145,204 @@
                     </select>
                 </div>
             </div>
-            <div class="recipe-row">
 
-                <div id="image"> 
-                    <img src="img.png" alt="recipe image" width="250px" height="250px">
+            <div class="posts-section">
+                <div class="recipe-posts"> 
+                    <div class="image">
+                        <div class="bookmark">
+                            <button type="button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
+                        </div>
+                        <div id="user">
+                            <a href="profile.html">Sir Nikko</a>
+                        </div>
+                        <img src="img.png" alt="recipe image">
+                    </div>
+                    <div id="recipe-name"> 
+                        <p>Adobong Manok</p>
+                    </div>
+                    <div id="tags">
+                        <p>#adobo #chicken #stew</p>
+                    </div>
+                    <div class="ratings">
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button> 
+                        <p>(50 ratings)</p>
+                    </div>
                 </div>
-                <div id="avatar"></div>
-                <div id="bookmark">
-                    <!-- <button type="button">Bookmark</button> -->
+
+                <div class="recipe-posts">
+                    <div class="image">
+                        <div class="bookmark">
+                            <button type="button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
+                        </div>
+                        <div id="user">
+                            <a href="profile.html">Sir Nikko</a>
+                        </div>
+                        <img src="img.png" alt="recipe image">
+                    </div>
+                    <div id="recipe-name"> 
+                        <p>Adobong Manok</p>
+                    </div>
+                    <div id="tags">
+                        <p>#adobo #chicken #stew</p>
+                    </div>
+                    <div class="ratings">
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button> 
+                        <p>(50 ratings)</p>
+                    </div>
+                </div>
+
+                <div class="recipe-posts">
+                    <div class="image">
+                        <div class="bookmark">
+                            <button type="button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
+                        </div>
+                        <div id="user">
+                            <a href="profile.html">Sir Nikko</a>
+                        </div>
+                        <img src="img.png" alt="recipe image">
+                    </div>
+                    <div id="recipe-name"> 
+                        <p>Adobong Manok</p>
+                    </div>
+                    <div id="tags">
+                        <p>#adobo #chicken #stew</p>
+                    </div>
+                    <div class="ratings">
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button> 
+                        <p>(50 ratings)</p>
+                    </div>
+                </div>
+
+                <div class="recipe-posts"> 
+                    <div class="image">
+                        <div class="bookmark">
+                            <button type="button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
+                        </div>
+                        <div id="user">
+                            <a href="profile.html">Sir Nikko</a>
+                        </div>
+                        <img src="img.png" alt="recipe image">
+                    </div>
+                    <div id="recipe-name"> 
+                        <p>Adobong Manok</p>
+                    </div>
+                    <div id="tags">
+                        <p>#adobo #chicken #stew</p>
+                    </div>
+                    <div class="ratings">
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>        
+                        <p>(50 ratings)</p>
+                    </div>
+                </div>
+
+                <div class="recipe-posts">
+                    <div class="image">
+                        <div class="bookmark">
+                            <button type="button">
+                                <i class="fa-regular fa-bookmark"></i>
+                                <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            </button>
+                        </div>
+                        <div id="user">
+                            <a href="profile.html">Sir Nikko</a>
+                        </div>
+                        <img src="img.png" alt="recipe image">
+                    </div>
+                    <div id="recipe-name"> 
+                        <p>Adobong Manok</p>
+                    </div>
+                    <div id="tags">
+                        <p>#adobo #chicken #stew</p>
+                    </div>
+                    <div class="ratings">
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button>
+                        <button type="button"> 
+                            <i class="fa-regular fa-star"></i>
+                        </button> 
+                        <p>(50 ratings)</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </body>
 </html>

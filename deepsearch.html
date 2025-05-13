@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Platemate Deep Search </title>
+        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+    
+        <div class="title-bar">
+            <h1>PlateMate</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>    
+        </div>
+
+        <div class="left-panel">
+            <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
+            <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
+            <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+        </div>
+
+        <div class="deepsearch-feed">
+            <div class ="deepsearch-container">
+                <h2>Deep Search</h2>
+                <div class="recipe-search-fields">
+                    <h3>Ingredients</h3>
+                        <div class ="ingredients-field">
+                            <select id="ingredient-name">
+                                <option>Ingredient Name</option>
+                                <option>Ingredient Name</option>
+                            </select>
+                            <select id="ingredient-name">
+                                <option>Ingredient Name</option>
+                                <option>Ingredient Name</option>
+                            </select>
+                            <select id="ingredient-name">
+                                <option>Ingredient Name</option>
+                                <option>Ingredient Name</option>
+                            </select>
+                            <button class="add-more">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    <h4>Tags</h4>
+                        <div class="tags-field">
+                            <input type="text" id="tag-Input" placeholder="Insert tag...">
+                            <input type="text" id="tag-Input" placeholder="Insert tag...">
+                            <button class="add-more">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    <button class = "deep-search-button">Search recipe</button>
+                </div>
+            </div> 
+        </div>
+
+    </body>
+</html>
+
