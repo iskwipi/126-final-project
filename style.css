@@ -3,7 +3,7 @@ html {
     font-family: 'Quicksand';
 }
 
-h2 {
+h2, h3, h4 {
     font-size: 2rem;
 }
 
@@ -52,9 +52,21 @@ h2 {
     color: #aaa;
     pointer-events: none;
 }
-.search-bar input:hover, #user a:hover, .bookmark button:hover, .upload-section input:hover, .ratings button:hover, .nav-button:hover{
+ #user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover, .deep-search-button:hover, 
+.upload-section input:hover, .search-bar input:hover {
     transform: translateY(-1px);  
-    background: rgba(255, 255, 255, 0.893);
+}
+
+#user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover {
+    background: rgba(135, 134, 134, 0.893);
+}
+
+.deep-search-button:hover {
+    background: rgba(35, 35, 35, 0.893);
+}
+
+.upload-section input:hover, .search-bar input:hover {
+    background: rgba(210, 209, 209, 0.893);
 }
 
 
@@ -88,16 +100,63 @@ h2 {
     color:black
 }
 
-
-.feed {
+.feed, .deepsearch-feed {
     margin-top: 6rem ;
     margin-left: 220px;
     padding: 2rem;
     min-height: 100vh;
 }
 
-.image {
-    position: relative;
+.recipe-search-fields h3, .recipe-search-fields h4 {
+    margin-top: 2rem;
+    font-size: 1.7rem;
+}
+
+.ingredients-field select {
+    font-size: large;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 0.4rem;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.tags-field {
+    margin-bottom: 1rem;
+}
+
+.tags-field input {
+    font-size: large;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 0.4rem;
+    border: 1px solid #ddd;
+}
+
+.add-more {
+    background-color: transparent;
+    border: 1px dashed #ccc;
+    color: #000000;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.deep-search-button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    width: 20%;
 }
 
 .featured-section, .saved-section {
@@ -125,14 +184,20 @@ h2 {
 }
 
 .left-button, .right-button {
-    border-radius: 10px;
+    border-radius: 1.2rem;
     border-color: rgb(43, 43, 43);
 }
+
+.image {
+    position: relative;
+}
+
+
 
 .featured-item, .posts-section{
     flex: 0 0 auto;
     background: #fff;
-    border-radius: 8px;
+    border-radius: 2rem;
     text-align: center;
     position: relative;
 }
@@ -143,7 +208,7 @@ h2 {
 
 .featured-item img, .posts-section img, .saved-section img{
     width: 100%;
-    border-radius: 8px;
+    border-radius: 2rem;
 }
 
 .recipe-posts {
