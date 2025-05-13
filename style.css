@@ -1,7 +1,11 @@
 html {
     scroll-behavior: smooth;
+    font-family: 'Quicksand';
 }
 
+h2 {
+    font-size: 2rem;
+}
 
 .title-bar {
     font-size: xx-large;
@@ -9,7 +13,7 @@ html {
     top: 0;
     left: 0;
     right: 0;
-    height: 7rem; 
+    height: 8rem; 
     background: white; 
     z-index: 1000; 
     display: flex;
@@ -22,7 +26,7 @@ html {
 .search-bar {
     position: relative; 
     margin: 0;
-    padding-top: 1.75rem;
+    padding-top: 0.5rem;
     padding-right: 2.5rem;
     text-align: center;
     display: flex;
@@ -43,12 +47,12 @@ html {
     font-size: 1rem;
     position: absolute;
     right: 4.4rem; 
-    top: 3.15rem;
+    top: 2rem;
     transform: translateY(-50%);
     color: #aaa;
     pointer-events: none;
 }
-.search-bar input:hover, #user button:hover, .bookmark button:hover, .upload-section input:hover{
+.search-bar input:hover, #user a:hover, .bookmark button:hover, .upload-section input:hover{
     transform: translateY(-1px);  
     background: rgba(255, 255, 255, 0.893);
 }
@@ -57,7 +61,7 @@ html {
 .left-panel {
     position: fixed;
     top: 16rem;
-    left: 4rem;
+    left: 3rem;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -129,8 +133,10 @@ html {
     display: flex;
 }
 
-#user button {
+#user a {
     outline: black;
+    color: black;
+    text-decoration: none;
     background: #fff;
     padding: 0.5rem 1rem;
     border-radius: 2rem;
@@ -139,6 +145,8 @@ html {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 
 }
+
+
 
 /* di pa polished bookmarks */
 .bookmark {
