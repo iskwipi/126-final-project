@@ -33,7 +33,6 @@ h2, h3, h4 {
     justify-content: center;
 }
 
-
 .search-bar input {
     border-radius: 5rem;
     padding: 0.75rem 2.5rem 0.75rem 1.5rem; 
@@ -47,7 +46,7 @@ h2, h3, h4 {
     font-size: 1rem;
     position: absolute;
     right: 4.4rem; 
-    top: 2rem;
+    top: 1.9rem;
     transform: translateY(-50%);
     color: #aaa;
     pointer-events: none;
@@ -353,4 +352,167 @@ h2, h3, h4 {
 .mode-section select {
     padding: 0.5rem;
     border-radius: 0.5rem;
+}
+
+.profile {
+    display: flex;        
+    justify-content: right;
+    margin-top: 6rem;
+    padding: 2rem;
+}
+.profile-header {
+    display: flex;
+    width: 80%;
+    height: 30%;
+    background-color: lightgray;
+    border-radius: 0.5rem;
+    margin: 0;
+}
+#profile-picture {
+    border-radius: 50%;
+    margin: 1.5% 2% 1.5% 2%;
+    width: 15%;
+    height: auto;
+    float: left;
+}
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float:left;
+    width: 59%;
+    position: sticky;
+    gap: 0.15rem;
+}
+#profile-name {
+    margin: 0;
+    font-weight: bolder;
+    font-size: 300%;
+}
+#bio {
+    margin: 0;
+    font-size: 175%;
+}
+#loc {
+    margin: 0;
+    font-size: 125%;
+    font-weight: bold;
+}
+
+.followed-by {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: .25rem;
+}
+.followed-by > p {
+    height: fit-content;
+    font-size: 150%;
+    margin: 0;
+}
+#follower-pics {
+    display: flex;
+    flex-direction: row;
+    gap: .25rem;
+}
+#follower-pics > img {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+#follower-pics > p {
+    margin: 0;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    background-color: rgb(222, 222, 222);
+    color: rgb(96, 96, 96);
+}
+
+.new-post-container {
+    display: flex;        
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    padding: 0rem 2rem 2rem 2rem;
+}
+.new-post-body {
+    margin: 0;
+    display: flex;
+    width: 80%;
+    /* background-color: lightgray; */
+    border-radius: 0.5rem;
+}
+.new-post-body > img {
+    height: 3rem;
+    margin: 0.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    float: left;
+}
+.new-post-body > input {
+    margin: 0.5rem;
+    margin-left: 0rem;
+    height: 3rem;
+    width: 45%;
+    border-radius: 5rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    border: 1px solid #ccc;
+    padding-left: 1rem;
+}
+.images-button {
+    display: flex;
+    margin-right: 22%;
+}
+.images-button button {
+    display: flex;
+    border: none;
+    background: transparent;
+    height: 3rem;
+    width: 3rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+.images-button i {
+    padding-top: 2.5rem;
+    display: flex;
+    font-size: 2rem;
+    transform: translateY(-50%);
+    color: #000000;
+    pointer-events: none;
+}
+.display-mode {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 30%;
+    gap: .5rem;
+}
+.display-mode select {
+    width: 55%;
+    height: 3rem;
+    padding-left: .5rem;
+    border: 1px solid #ccc;
+    border-radius: .5rem;
+    font-size: small;
+    cursor: pointer;
+    background-color: white;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right .5rem center;
+    background-size: .75rem;
+    cursor: pointer;
+}
+
+.profile-featured-section {
+    display: flex;
+    justify-content: right;
+    overflow-x: auto;
+    gap: 2rem;
+    padding: 0rem 2rem 1rem 2rem;
 }
