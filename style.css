@@ -25,6 +25,7 @@ h2 {
 
 .search-bar {
     position: relative; 
+    height: 3rem;
     margin: 0;
     padding-top: 0.5rem;
     padding-right: 2.5rem;
@@ -33,7 +34,7 @@ h2 {
     justify-content: center;
 }
 
-.search-bar input {
+.search-bar input, .new-post-body input{
     border-radius: 5rem;
     padding: 0.75rem 2.5rem 0.75rem 1.5rem; 
     font-size: 1rem;
@@ -337,6 +338,7 @@ h2 {
 .new-post-body {
     margin: 0;
     display: flex;
+    align-items: center;
     width: 80%;
     /* background-color: lightgray; */
     border-radius: 0.5rem;
@@ -349,14 +351,13 @@ h2 {
     float: left;
 }
 .new-post-body > input {
-    margin: 0.5rem;
-    margin-left: 0rem;
-    height: 3rem;
+    padding: 0rem;
+    padding-left: 1rem;
+    height: 3.55rem;
     width: 45%;
     border-radius: 5rem;
     transition: box-shadow 0.3s ease, transform 0.2s ease;
     border: 1px solid #ccc;
-    padding-left: 1rem;
 }
 .images-button {
     display: flex;
@@ -372,7 +373,8 @@ h2 {
     cursor: pointer;
 }
 .images-button i {
-    padding-top: 2.5rem;
+    padding-left: .25rem;
+    padding-top: 1.85rem;
     display: flex;
     font-size: 2rem;
     transform: translateY(-50%);
@@ -409,4 +411,7 @@ h2 {
     overflow-x: auto;
     gap: 2rem;
     padding: 0rem 2rem 1rem 2rem;
+}
+#displayMode {
+    font-family: 'Quicksand';
 }
