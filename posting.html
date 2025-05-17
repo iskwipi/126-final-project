@@ -20,9 +20,9 @@
 
         <div class="left-panel">
             <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
-            <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
             <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
 
         <div class="post-container">
@@ -32,19 +32,20 @@
             </div>
             <div class = "description-field">
                 <p>Description</p> 
-                <input type="text" id="recipe-description" placeholder = "Paragraph">
+                <textarea id="recipe-description" placeholder="Paragraph"></textarea>
             </div>
             <div class ="serving-field"> 
                 <p>People per serving</p> 
                 <input type="number" id="recipe-serving" placeholder="Integer">
             </div> 
-            <div class="ingredients-field">
-                <p>Ingredients</p> 
-                <input type="text" id="recipe-ingredients" placeholder="Ingredient Name">
-                <button class="add-more">
+           <div class="ingredients-field">
+                <p>Ingredients</p>
+                <div class="ingredient-row">
+                    <div class="input-wrapper">
+                    <input type="text" id="recipe-ingredients" placeholder="Ingredient Name">
                     <i class="fa-solid fa-plus"></i>
-                </button>
-                <input type="text" id="ingredient-measurement" placeholder="Measure">
+                    </div>
+                    <input type="text" id="ingredient-measurement" placeholder="Measure">
                     <select id="unit-type">
                     <option value="">Unit:</option>
                     <option value="teaspoon">Teaspoon (tsp)</option>
@@ -60,16 +61,18 @@
                     <option value="dash">Dash</option>
                     <option value="piece">Piece</option>
                     </select>
+                </div>
             </div>
+
             <div class="instructions-field">
-                 <p>Instructions</p>
-                 <p style="font-size:1rem">Write your step-by-step instructions here.</p>
-                 <input type="text" id="recipe-instructions" placeholder="Step X: ...">
-                 <button class="add-more">
+                <p>Instructions</p>
+                <p style="font-size:1rem">Write your step-by-step instructions here.</p>
+                  <div class="step-wrapper">
+                    <input type="text" id="recipe-instructions" placeholder="Step X: ...">
                     <i class="fa-solid fa-plus"></i>
-                </button>
+                </div>
             </div>
-            <div class="tags-field">
+            <div class="posting-tags-field">
                 <p>Tags</p>
                 <input type="text" id="tag-Input" placeholder="Insert tag...">
             </div>
@@ -79,6 +82,9 @@
                 <div class="upload-pic-container"> 
                     <button class = "upload-picture">
                         <i class="fa-regular fa-image"></i> 
+                        <div class="plus"> 
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
                         <!-- <img src = "Image.png"> -->
                     </button>
                 </div>
