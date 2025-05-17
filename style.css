@@ -51,16 +51,16 @@ h2, h3, h4 {
     color: #aaa;
     pointer-events: none;
 }
- #user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover, .deep-search-button:hover, 
-.upload-section input:hover, .search-bar input:hover {
+ #user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover, .deep-search-button:hover, .post-recipe-button:hover, 
+.upload-section input:hover, .search-bar input:hover, .upload-picture:hover {
     transform: translateY(-1px);  
 }
 
-#user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover {
+#user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover, .upload-picture:hover {
     background: rgba(135, 134, 134, 0.893);
 }
 
-.deep-search-button:hover {
+.deep-search-button:hover,.post-recipe-button:hover {
     background: rgba(35, 35, 35, 0.893);
 }
 
@@ -99,7 +99,7 @@ h2, h3, h4 {
     color:black
 }
 
-.feed, .deepsearch-feed {
+.feed, .deepsearch-feed, .post-container {
     margin-top: 6rem ;
     margin-left: 220px;
     padding: 2rem;
@@ -111,7 +111,9 @@ h2, h3, h4 {
     font-size: 1.7rem;
 }
 
-.ingredients-field select {
+/* deep search html */
+
+.ingredients-field-search select {
     font-size: large;
     display: block;
     width: 100%;
@@ -122,7 +124,7 @@ h2, h3, h4 {
     background-color: #f9f9f9;
 }
 
-.tags-field {
+/* .tags-field {
     margin-bottom: 1rem;
 }
 
@@ -134,19 +136,19 @@ h2, h3, h4 {
     margin-bottom: 10px;
     border-radius: 0.4rem;
     border: 1px solid #ddd;
-}
+} */
 
 .add-more {
     background-color: transparent;
     border: 1px dashed #ccc;
     color: #000000;
-    padding: 8px 15px;
+    padding: 13px 16px;
     cursor: pointer;
-    border-radius: 0.4rem;
+    border-radius: 0.5rem;
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.deep-search-button {
+.deep-search-button, .post-recipe-button {
     background-color: #000000;
     color: white;
     border: none;
@@ -225,6 +227,78 @@ h2, h3, h4 {
     overflow-y:auto;
     gap: 1.3rem;
     padding-bottom: 1rem;
+}
+
+/* posting.html */
+
+.post-container p {
+    font-size: 2rem;
+
+}
+
+.title-field input,  .description-field input, .serving-field input, .instructions-field input, .ingredients-field input, .tags-field input{
+    border-radius: 0.5rem;
+    padding: 0.75rem 2.5rem 0.75rem 1.5rem; 
+    font-size: 1rem;
+    width: 50%;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    border: 1px solid #ccc;
+}
+
+.instructions-field input {
+    width: 46%;
+}
+
+.description-field input {
+    height: 5rem;
+}
+
+.ingredients-field input {
+    width: 20%;
+}
+
+.ingredients-field select, #ingredient-measurement {
+    width: 12%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.post-recipe-button {
+    margin-top: 2rem;
+}
+
+/* .upload-pic-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+} */
+
+.upload-picture {
+    border-color: white;
+    font-size: 10rem;
+    color: rgb(104, 104, 104);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: gray;
+    height: 20rem;
+    width: 25%;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+} 
+
+.plus-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: #000;
+  background: #fff;
+  border-radius: 50%;
+  padding: 4px;
 }
 
 #user {
@@ -343,14 +417,14 @@ h2, h3, h4 {
     background: transparent;
 }
 
-.mode-section {
+.mode-section, .unit-type {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.mode-section select {
-    padding: 0.5rem;
+.mode-section select, .unit-type select {
+    padding: 15px 16px;
     border-radius: 0.5rem;
 }
 
