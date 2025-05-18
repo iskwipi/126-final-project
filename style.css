@@ -66,8 +66,8 @@ h2, h3, h4 {
     background: rgba(35, 35, 35, 0.893);
 }
  
-.search-bar input:hover, .deep-search-bar input:hover {
-    background: rgba(210, 209, 209, 0.893);
+.search-bar input:hover, .deep-search-bar input:hover, .new-post-body input:hover, .upload-section input:hover {
+    background: rgba(233, 233, 233, 0.893);
 }
 
 
