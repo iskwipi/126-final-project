@@ -54,7 +54,7 @@ h2, h3, h4 {
 
  #user a:hover, .ratings button:hover, .nav-button:hover,  .deep-search-button:hover, .post-recipe-button:hover, 
 .upload-section input:hover, .search-bar input:hover, .upload-picture:hover, 
-.deep-search-bar input:hover{
+.deep-search-bar input:hover, .new-post-body input:hover{
     transform: translateY(-1px);  
 }
 
@@ -65,8 +65,8 @@ h2, h3, h4 {
 .deep-search-button:hover,.post-recipe-button:hover {
     background: rgba(35, 35, 35, 0.893);
 }
-
-.upload-section input:hover, .search-bar input:hover, .deep-search-bar input:hover {
+ 
+.search-bar input:hover, .deep-search-bar input:hover {
     background: rgba(210, 209, 209, 0.893);
 }
 
