@@ -1,157 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Neyro Caraig</title>
-        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
-        <link rel="stylesheet" href="style.css">
-        <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-            <div class="title-bar">
-                <h1>PlateMate</h1>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                </div>    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlateMate</title>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>PlateMate</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for a user or a recipe...">
+    </div>
+  </header>
+  <nav class="sidebar">
+    <a href="homepage.html" class="nav-item">🏠 Home</a>
+    <a href="profile.html" class="nav-item">👤 Profile</a>
+    <a href="cookbook.html" class="nav-item">📖 Cookbook</a>
+    <a href="deepsearch.html" class="nav-item">🔍 Deep Search</a>
+  </nav>
+  <main>
+    <div class="profile-header">
+      <img id="profile-picture" src="papaneyro.jpg" alt="Profile Picture" class="profile-img">
+      <div class="profile-details">
+        <p id="profile-name">Neyro Caraig</p>
+        <p id="bio">21, Gamer</p>
+        <p id="loc">Miagao, Iloilo</p>
+      </div>
+      <!-- <a href="#" class="about-link"><i class="fas fa-user"></i> About</a> -->
+      <div class="followed-by">
+        <p>Followed by:</p>
+        <div id="follower-pics">
+          <img src="julo.jpg" alt="Follower 1">
+          <img src="julo1.jpg" alt="Follower 2">
+          <img src="julo2.jpg" alt="Follower 3">
+          <p>+1k</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-display-container">
+      <div class="input-section">
+        <input type="text" placeholder="New recipe idea?">
+        <button><img src="upload.png" alt="Upload Icon" class="button-icon"></button>
+      </div>
+      <div class="display-mode">
+        <span>Display Mode:</span>
+        <select>
+          <option>Top Rated</option>
+          <option>Most Recent</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="carousel-container">
+      <button class="carousel-btn left" onclick="moveCarousel(-1)">❮</button>
+      <div class="carousel">
+        <div class="recipe-card">
+          <div class="image">
+           <img class="save-icon profile-save-icon" src="bookmark-icon.jpg" alt="Save Recipe" onclick="saveRecipe('Adobong Manok', this)">
+            <div id="user">
+              <img src="profile-icon.png" alt="Profile Icon" class="user-profile-icon">
+              <a href="profile.html">Neyro Caraig</a>
             </div>
-
-            <div class="left-panel">
-                <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
-                <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
-                <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
-                <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <img src="adobo.png" alt="recipe image">
+          </div>
+          <div id="recipe-name">
+            <p>Adobong Manok</p>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <div class="image">
+            <img class="save-icon profile-save-icon" src="bookmark-icon.jpg" alt="Save Recipe" onclick="saveRecipe('Beef Kare-Kare', this)">
+            <div id="user">
+              <img src="profile-icon.png" alt="Profile Icon" class="user-profile-icon">
+              <a href="profile.html">Neyro Caraig</a>
             </div>
-
-            <div class = "profile">
-                <div class = "profile-header">
-                    <img id = "profile-picture" src="papaneyro.jpg">
-                    <div class="profile-details">
-                        <p id = "profile-name">Neyro Caraig</p>
-                        <p id = "bio">21, Gamer</p>
-                        <p id = "loc">Miagao, Iloilo</p>
-                    </div>
-                    <div class = "followed-by">
-                        <p>Followed by:</p>
-                        <div id="follower-pics">
-                            <img src = "julo.jpg">
-                            <img src = "julo1.jpg">
-                            <img src = "julo2.jpg">
-                            <p>+1k</p>
-                        </div>
-                    </div>
-                </div>
+            <img src="kare-kare.jpg" alt="recipe image">
+          </div>
+          <div id="recipe-name">
+            <p>Beef Kare-Kare</p>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <div class="image">
+            <img class="save-icon profile-save-icon" src="bookmark-icon.jpg" alt="Save Recipe" onclick="saveRecipe('Sinigang na Baboy', this)">
+            <div id="user">
+              <img src="profile-icon.png" alt="Profile Icon" class="user-profile-icon">
+              <a href="profile.html">Neyro Caraig</a>
             </div>
-
-            <div class = "new-post-container">
-                <div class = "new-post-body">
-                    <img src="papaneyro.jpg">
-
-                    <input type="text" placeholder="New recipe idea?">
-
-                    <div class="images-button">
-                        <button type="button">
-                           <i class="fa-regular fa-image"></i> 
-                        </button>
-                    </div>
-
-                    <div class = "display-mode">
-                        <p>Display Mode:</p>
-                        <select id="displayMode">
-                            <option>Top Rated</option>
-                            <option>Most Recent</option>
-                        </select>
-                    </div>
-                </div>
+            <img src="sinigang.jpg" alt="recipe image">
+          </div>
+          <div id="recipe-name">
+            <p>Sinigang na Baboy</p>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <div class="image">
+             <img class="save-icon profile-save-icon" src="bookmark-icon.jpg" alt="Save Recipe" onclick="saveRecipe('Bistek', this)">
+            <div id="user">
+              <img src="profile-icon.png" alt="Profile Icon" class="user-profile-icon">
+              <a href="profile.html">Neyro Caraig</a>
             </div>
-
-            <div class="profile-featured-section">
-                <div class="featured-item"> 
-                    <div class="image">
-                        <div class="bookmark">
-                            <button type="button">
-                                <i class="fa-regular fa-bookmark"></i>
-                            </button>
-                        </div>
-                        <div id="user">
-                            <a href="profile.html">Neyro Caraig</a>
-                        </div>
-                        <img src="img.png" alt="recipe image">
-                    </div>
-                    <div id="recipe-name"> 
-                        <p>Adobong Manok</p>
-                    </div>
-                </div>
-                <div class="featured-item"> 
-                    <div class="image">
-                        <div class="bookmark">
-                            <button type="button">
-                                <i class="fa-regular fa-bookmark"></i>
-
-                            </button>
-                        </div>
-                        <div id="user">
-                            <a href="profile.html">Neyro Caraig</a>
-                        </div>
-                        <img src="img.png" alt="recipe image">
-                    </div>
-                    <div id="recipe-name"> 
-                        <p>Adobong Manok</p>
-                    </div>
-                </div>
-
-                <div class="featured-item"> 
-                    <div class="image">
-                        <div class="bookmark">
-                            <button type="button">
-                                <i class="fa-regular fa-bookmark"></i>
-                            </button>
-                        </div>
-                        <div id="user">
-                            <a href="profile.html">Neyro Caraig</a>
-                        </div>
-                        <img src="img.png" alt="recipe image">
-                    </div>
-            
-                    <div id="recipe-name"> 
-                        <p>Adobong Manok</p>
-                    </div>
-                </div>
-
-                <div class="featured-item"> 
-                    <div class="image">
-                        <div class="bookmark">
-                            <button type="button">
-                                <i class="fa-regular fa-bookmark"></i>
-                            </button>
-                        </div>
-                        <div id="user">
-                            <a href="profile.html">Neyro Caraig</a>
-                        </div>
-                        <img src="img.png" alt="recipe image">
-                    </div>
-                    <div id="recipe-name"> 
-                        <p>Adobong Manok</p>
-                    </div>
-                </div>
-
-                <div class="featured-item"> 
-                    <div class="image">
-                        <div id="user">
-                            <a href="profile.html">Neyro Caraig</a>
-                        </div>
-                        <div class="bookmark">
-                            <button type="button">
-                                <i class="fa-regular fa-bookmark"></i>
-                            </button>
-                        </div>
-                        <img src="img.png" alt="recipe image">
-                    </div>
-                    <div id="recipe-name"> 
-                        <p>Adobong Manok</p>
-                    </div>
-                </div>   
-
+            <img src="bistek.jpg" alt="recipe image">
+          </div>
+          <div id="recipe-name">
+            <p>Bistek</p>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <div class="image">
+             <img class="save-icon profile-save-icon" src="bookmark-icon.jpg" alt="Save Recipe" onclick="saveRecipe('Caldereta', this)">
+            <div id="user">
+              <img src="profile-icon.png" alt="Profile Icon" class="user-profile-icon">
+              <a href="profile.html">Neyro Caraig</a>
             </div>
-        </body>
+            <img src="caldereta.jpg" alt="recipe image">
+          </div>
+          <div id="recipe-name">
+            <p>Caldereta</p>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <div class="image">
+             <img class="save-icon profile-save-icon" src="bookmark-icon.jpg" alt="Save Recipe" onclick="saveRecipe('Bangus Bicol Express', this)">
+            <div id="user">
+              <img src="profile-icon.png" alt="Profile Icon" class="user-profile-icon">
+              <a href="profile.html">Neyro Caraig</a>
+            </div>
+            <img src="bicol-express.jpg" alt="recipe image">
+          </div>
+          <div id="recipe-name">
+            <p>Bangus Bicol Express</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn right" onclick="moveCarousel(1)">❯</button>
+    </div>
+  </main>
+  <script>
+    let currentIndex = 0;
+    const carousel = document.querySelector('.carousel');
+    const recipeCards = document.querySelectorAll('.recipe-card');
+    const totalCards = recipeCards.length;
+
+    function moveCarousel(direction) {
+      const cardWidth = recipeCards[0].offsetWidth + 20; // Including gap
+      const maxIndex = totalCards - 4; // Show 4 cards at a time
+      currentIndex = Math.max(0, Math.min(currentIndex + direction, maxIndex));
+      const scrollPosition = currentIndex * cardWidth;
+      carousel.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>

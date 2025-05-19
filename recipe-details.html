@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlateMate - Recipe Details</title>
+  <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>PlateMate</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for a user or a recipe...">
+    </div>
+  </header>
+  <nav class="sidebar">
+    <a href="homepage.html" class="nav-item">🏠 Home</a>
+    <a href="profile.html" class="nav-item">👤 Profile</a>
+    <a href="cookbook.html" class="nav-item">📖 Cookbook</a>
+    <a href="deepsearch.html" class="nav-item">🔍 Deep Search</a>
+  </nav>
+  <main>
+    <div id="recipe-details" style="margin-left: 20px; margin-top: 20px;">
+      <!-- Recipe details will be dynamically loaded here -->
+    </div>
+  </main>
+  <script>
+    // get recipe name from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const recipeName = decodeURIComponent(urlParams.get('recipe'));
+    const recipeDetails = document.getElementById('recipe-details');
+
+    // recipe data
+    const recipeData = {
+      'Caldereta': { img: 'caldereta.jpg', tags: '#caldereta #chicken', ratings: '(16 ratings)', details: 'A rich Filipino stew made with beef or chicken, tomatoes, and liver paste.' },
+      'Sinigang na Baboy': { img: 'sinigang.jpg', tags: '#sinigang #pork', ratings: '(45 ratings)', details: 'A sour pork soup with tamarind base, vegetables, and pork.' },
+      'Adobong Manok': { img: 'adobo.png', tags: '#adobo #chicken #stew', ratings: '(10 ratings)', details: 'A classic Filipino dish of chicken braised in soy sauce, vinegar, and garlic.' },
+      'Bangus Bicol Express': { img: 'bicol-express.jpg', tags: '#bangus #bicolexpress', ratings: '(19 ratings)', details: 'Milkfish cooked with coconut milk, chilies, and shrimp paste.' },
+      'Bistek': { img: 'bistek.jpg', tags: '#beefsteak #beef', ratings: '(10 ratings)', details: 'Beef steak marinated in soy sauce and calamansi, served with onions.' },
+      'Beef Kare-Kare': { img: 'kare-kare.jpg', tags: '#kare-kare #beef', ratings: '(20 ratings)', details: 'A peanut-based stew with oxtail, vegetables, and a thick sauce.' },
+      'Paksiw na Lechon': { img: 'paksiw-na-lechon.jpg', tags: '#paksiw #lechon', ratings: '(13 ratings)', details: 'Leftover lechon cooked with vinegar, soy sauce, and spices.' },
+      'Kinamatisang Manok': { img: 'kinamatisang-manok.jpg', tags: '#kinamatisan #chicken', ratings: '(21 ratings)', details: 'Chicken stewed with tomatoes, onions, and garlic.' }
+    };
+
+    // Display recipe details
+    if (recipeName && recipeData[recipeName]) {
+      const data = recipeData[recipeName];
+      recipeDetails.innerHTML = `
+        <h2>${recipeName}</h2>
+        <img src="${data.img}" alt="${recipeName}" style="width: 300px; height: auto; border-radius: 5px;">
+        <p><strong>Tags:</strong> ${data.tags}</p>
+        <p><strong>Ratings:</strong> ${data.ratings}</p>
+        <p><strong>Details:</strong> ${data.details}</p>
+        <div class="rating" data-recipe="${recipeName}">
+          <span class="star" data-value="1">★</span>
+          <span class="star" data-value="2">★</span>
+          <span class="star" data-value="3">★</span>
+          <span class="star" data-value="4">★</span>
+          <span class="star" data-value="5">★</span>
+        </div>
+      `;
+      const stars = recipeDetails.querySelectorAll('.star');
+      const savedRating = localStorage.getItem(`rating-${recipeName}`);
+      if (savedRating) {
+        stars.forEach(star => {
+          if (star.dataset.value <= savedRating) {
+            star.classList.add('selected');
+          }
+        });
+      }
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const value = star.dataset.value;
+          const currentRating = localStorage.getItem(`rating-${recipeName}`);
+          if (currentRating === value) {
+            localStorage.removeItem(`rating-${recipeName}`);
+            stars.forEach(s => s.classList.remove('selected'));
+            alert(`${recipeName} rating has been removed!`);
+          } else {
+            localStorage.setItem(`rating-${recipeName}`, value);
+            stars.forEach(s => {
+              s.classList.remove('selected');
+              if (s.dataset.value <= value) {
+                s.classList.add('selected');
+              }
+            });
+            alert(`${recipeName} rated ${value} stars!`);
+          }
+        });
+        star.addEventListener('mouseover', () => {
+          const value = star.dataset.value;
+          stars.forEach(s => {
+            s.classList.remove('hovered');
+            if (s.dataset.value <= value) {
+              s.classList.add('hovered');
+            }
+          });
+        });
+        star.addEventListener('mouseout', () => {
+          stars.forEach(s => s.classList.remove('hovered'));
+        });
+      });
+    } else {
+      recipeDetails.innerHTML = '<p>Recipe not found.</p>';
+    }
+  </script>
+</body>
+</html>
