@@ -207,9 +207,18 @@ hr {
     position: relative;
 }
 
+.posts-section, .saved-section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #fff;
+    border-radius: 2rem;
+    text-align: center;
+    position: relative;
+}
 
-
-.featured-item, .posts-section{
+.featured-item{
     flex: 0 0 auto;
     background: #fff;
     border-radius: 2rem;
@@ -236,7 +245,7 @@ hr {
     gap: 0.1rem;
 }
 
-.posts-section {
+.posts-section, .saved-section {
     display: flex;
     overflow-y:auto;
     gap: 1.3rem;
