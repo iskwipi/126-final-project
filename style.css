@@ -33,7 +33,7 @@ h2, h3, h4 {
     justify-content: center;
 }
 
-.search-bar input, .deep-search-bar input {
+.search-bar input, .deep-search-bar input, #comment-input input {
     border-radius: 5rem;
     padding: 0.75rem 2.5rem 0.75rem 1.5rem; 
     font-size: 1rem;
@@ -54,19 +54,21 @@ h2, h3, h4 {
 
  #user a:hover, .ratings button:hover, .nav-button:hover,  .deep-search-button:hover, .post-recipe-button:hover, 
 .upload-section input:hover, .search-bar input:hover, .upload-picture:hover, .deep-search-bar input:hover, 
-.new-post-body input:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover{
+.new-post-body input:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover, #comment-button:hover,
+.rate-button:hover, #poster-profile a:hover, .servings-btn:hover
+{
     transform: translateY(-1px);  
 }
 
-#user a:hover, .ratings button:hover, .nav-button:hover, .upload-picture:hover {
+#user a:hover, .ratings button:hover, .nav-button:hover, .upload-picture:hover, #poster-profile a:hover{
     background: rgba(135, 134, 134, 0.893);
 }
 
-.deep-search-button:hover,.post-recipe-button:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover {
+.deep-search-button:hover,.post-recipe-button:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover, .servings-btn:hover {
     background: rgba(35, 35, 35, 0.893);
 }
  
-.search-bar input:hover, .deep-search-bar input:hover, .new-post-body input:hover, .upload-section input:hover {
+.search-bar input:hover, .deep-search-bar input:hover, .new-post-body input:hover, .upload-section input:hover, #comment-input:hover  {
     background: rgba(233, 233, 233, 0.893);
 }
 
@@ -101,7 +103,7 @@ h2, h3, h4 {
     color:black
 }
 
-.feed, .deepsearch-feed, .post-container, .search-user-feed, .search-recipe-feed  {
+.feed, .deepsearch-feed, .post-container, .search-user-feed, .search-recipe-feed, .display-post-feed  {
     margin-top: 6rem ;
     margin-left: 220px;
     padding: 2rem;
@@ -245,7 +247,7 @@ hr {
 
 .title-field input, .description-field textarea, .serving-field input, .instructions-field input,
 .ingredients-field input, .tags-field input, .ingredients-field-search input, .posting-tags-field input,
-textarea {
+textarea, #comment-input input  {
     border-radius: 0.5rem;
     padding: 0.75rem 2.5rem 0.75rem 1.5rem;
     font-size: 1rem;
@@ -254,7 +256,7 @@ textarea {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.instructions-field input {
+.instructions-field input, #comment-input input {
     width: 46%;
 }
 
@@ -393,7 +395,7 @@ textarea {
     padding: 0;
 }
 
-.bookmark i {
+.bookmark i{
     position: absolute;
     top: 0;
     left: 0;
@@ -729,4 +731,101 @@ textarea {
     font-size: 0.9rem;
 }
 
-/* recipe search */
+/* display post */
+
+.post-title h2{
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+#poster-profile a {
+    text-decoration: none;
+    margin-left: 80%;
+    color: black;
+    padding: 1rem 2rem;     
+    font-size: 1.5rem;      
+    border-color: black;
+    border-radius: 3rem;     
+    outline: 2px solid #000;
+    font-weight: bold;
+}
+
+.post-rate {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* space between text and stars */
+}
+
+.post-rate p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.recipe-information {
+    padding: 2rem;
+    border-color:black;
+}
+
+.post-rate button {
+    background: none ;
+    border: none;
+    box-shadow: none ;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+    font-size: 2rem;
+}
+
+.post-image, .post-tags, .post-interactions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.post-image img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+
+}
+
+.servings-multiplier {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.servings-multiplier p {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+#servings-count {
+    width: 1.5rem;
+    text-align: center;
+
+}
+.servings-btn {
+    cursor:pointer;
+    background: black;
+    color: white;
+    padding:  0.5rem;
+}
+
+.display-post-feed li {
+    list-style: none;
+    margin: 0.5rem 0;
+    font-size: 2rem;
+}
+
+.display-post-feed h3, .display-post-feed h4, .display-post-feed h5 {
+    font-size: 3rem;
+    text-align:left;
+}
