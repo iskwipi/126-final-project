@@ -53,8 +53,8 @@ h2, h3, h4 {
 }
 
  #user a:hover, .ratings button:hover, .nav-button:hover,  .deep-search-button:hover, .post-recipe-button:hover, 
-.upload-section input:hover, .search-bar input:hover, .upload-picture:hover, 
-.deep-search-bar input:hover, .new-post-body input:hover{
+.upload-section input:hover, .search-bar input:hover, .upload-picture:hover, .deep-search-bar input:hover, 
+.new-post-body input:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover{
     transform: translateY(-1px);  
 }
 
@@ -62,7 +62,7 @@ h2, h3, h4 {
     background: rgba(135, 134, 134, 0.893);
 }
 
-.deep-search-button:hover,.post-recipe-button:hover {
+.deep-search-button:hover,.post-recipe-button:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover {
     background: rgba(35, 35, 35, 0.893);
 }
  
@@ -101,7 +101,7 @@ h2, h3, h4 {
     color:black
 }
 
-.feed, .deepsearch-feed, .post-container {
+.feed, .deepsearch-feed, .post-container, .search-user-feed, .search-recipe-feed  {
     margin-top: 6rem ;
     margin-left: 220px;
     padding: 2rem;
@@ -141,7 +141,6 @@ h2, h3, h4 {
     transform: translateY(-50%);
 }
 
-
 .ingredients-field-search i {
     right: 1rem;
 }
@@ -160,8 +159,7 @@ hr {
     margin-bottom: 2rem;
 }
 
-
-.deep-search-button, .post-recipe-button {
+.deep-search-button, .post-recipe-button, .recipe-button, .user-button, .follow-button {
     background-color: #000000;
     color: white;
     border: none;
@@ -207,9 +205,7 @@ hr {
     position: relative;
 }
 
-
-
-.featured-item, .posts-section{
+.featured-item, .posts-section, .search-posts{
     flex: 0 0 auto;
     background: #fff;
     border-radius: 2rem;
@@ -221,22 +217,19 @@ hr {
     width: 238px;
 }
 
-.featured-item img, .posts-section img, .saved-section img{
+.featured-item img, .posts-section img, .saved-section img, .recipe-search img{
     width: 100%;
-    border-radius: 2rem;
+    border-radius: 0.2rem;
 }
 
-.recipe-posts {
-    width: 300px;
-}
-
-.recipe-posts {
+.recipe-posts, .recipe-search {
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
+    width: 300px;
 }
 
-.posts-section {
+.posts-section,.search-posts{
     display: flex;
     overflow-y:auto;
     gap: 1.3rem;
@@ -658,3 +651,82 @@ textarea {
     gap: 2rem;
     padding: 0rem 2rem 1rem 2rem;
 }
+
+/* searchresults.html */
+
+.search-feed-content {
+    display: grid;
+    gap: 1.3rem; 
+    padding: 1.3rem;
+}
+
+.category-section {
+    margin-left: 80%;
+}
+
+.category-section a, .user-details a{
+    text-decoration: none;
+    color: black;
+}
+
+.recipe-button, .user-button {
+    width: 45%;
+}
+
+.follow-button {
+    margin-top: 0.5rem;
+    width: 10%;
+    height: 2.5rem;
+}
+
+.profile-container {
+    border: 1px solid #0d0c0c;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    position: relative; 
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    width: 100%;
+}
+
+.user-details a {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.user-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.2; 
+}
+
+.user-avg-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+}
+
+.user-avg-rating p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.user-avg-rating i {
+    color: #000000;
+    font-size: 0.9rem;
+}
+
+/* recipe search */
