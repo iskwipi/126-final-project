@@ -8,7 +8,11 @@
     </head>
     <body>
         <div class="title-bar">
-            <h1>PlateMate</h1>   
+            <h1>PlateMate</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..." onkeypress="handleSearch(event)">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>    
         </div>
 
         <div class="left-panel">
@@ -22,131 +26,27 @@
             <div class="search-feed-header">
                 <h2>Quick search results</h2>
                 <div class="category-section">
-                    <a href="recipesearch.html"> 
-                        <button type="button" class="recipe-button">
+                    <a> 
+                        <button type="button" class="recipe-button" onclick="switchSearchMode()">
                             <i class="fa-solid fa-file-lines"></i>
                             Recipes
                         </button>
                     </a>
-                    <a href="usersearch.html"> 
+                    <a> 
                         <button type="button" class="user-button">
                             <i class="fa-solid fa-user"></i>
                             Users
                         </button>
                     </a>
                 </div>
+                <h3>
+                    <div class="query-title" id="query-title"></div>
+                </h3>
             </div>
-            <div class="search-feed-content">
-                <h3>Search results for: "Sir Nikko"</h3>
-                <div class="profile-container"> 
-                    <div class="user-details">
-                        <a href="profile.html"><strong>Sir Nikko</strong></a>
-                        <div class="user-info">
-                            <p>25, Gamer</p>
-                            <p>1K followers</p>
-                        </div>
-                        <div class="user-avg-rating">
-                            <p>Average recipe rating:</p>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                    <button type="button" class="follow-button">Follow</button>
-                </div>
-                <div class="profile-container"> 
-                    <div class="user-details">
-                        <a href="profile.html"><strong>Sir Nikko</strong></a>
-                        <div class="user-info">
-                            <p>25, Gamer</p>
-                            <p>1K followers</p>
-                        </div>
-                        <div class="user-avg-rating">
-                            <p>Average recipe rating:</p>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                    <button type="button" class="follow-button">Follow</button>
-                </div>
-                <div class="profile-container"> 
-                    <div class="user-details">
-                        <a href="profile.html"><strong>Sir Nikko</strong></a>
-                        <div class="user-info">
-                            <p>25, Gamer</p>
-                            <p>1K followers</p>
-                        </div>
-                        <div class="user-avg-rating">
-                            <p>Average recipe rating:</p>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                    <button type="button" class="follow-button">Follow</button>
-                </div>
-                <div class="profile-container"> 
-                    <div class="user-details">
-                        <a href="profile.html"><strong>Sir Nikko</strong></a>
-                        <div class="user-info">
-                            <p>25, Gamer</p>
-                            <p>1K followers</p>
-                        </div>
-                        <div class="user-avg-rating">
-                            <p>Average recipe rating:</p>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                    <button type="button" class="follow-button">Follow</button>
-                </div>
-                <div class="profile-container"> 
-                    <div class="user-details">
-                        <a href="profile.html"><strong>Sir Nikko</strong></a>
-                        <div class="user-info">
-                            <p>25, Gamer</p>
-                            <p>1K followers</p>
-                        </div>
-                        <div class="user-avg-rating">
-                            <p>Average recipe rating:</p>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                    <button type="button" class="follow-button">Follow</button>
-                </div>
-                <div class="profile-container"> 
-                    <div class="user-details">
-                        <a href="profile.html"><strong>Sir Nikko</strong></a>
-                        <div class="user-info">
-                            <p>25, Gamer</p>
-                            <p>1K followers</p>
-                        </div>
-                        <div class="user-avg-rating">
-                            <p>Average recipe rating:</p>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                    <button type="button" class="follow-button">Follow</button>
-                </div>
-            </div>
+            <div class="search-feed-content" id="search-feed-content"></div>
         </div>
+        <script src="renderSearch.js"></script>
+        <script src="searchHandler.js"></script>
+        <script src="searchModeSwitcher.js"></script>
     </body>
 </html>

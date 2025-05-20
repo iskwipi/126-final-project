@@ -26,7 +26,7 @@
             ],
             "ratings": [
                 {"raterID": 2, "value": 9},
-                {"raterID": 3, "value": 0}
+                {"raterID": 3, "value": 1}
             ],
             "comments": [
                 {"commenterID": 2, "content": "Nice work!"},

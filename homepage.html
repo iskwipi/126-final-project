@@ -12,7 +12,7 @@
         <div class="title-bar">
             <h1>PlateMate</h1>
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..." onkeypress="handleSearch(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>    
         </div>
@@ -50,13 +50,14 @@
                 <div class="mode-section">
                     <label for="display-mode">Display Mode: </label>
                     <select id="display-mode">
-                        <option>Recent Recipes</option>
-                        <option>Popular</option>
+                        <option value="id">Most Recent</option>
+                        <option value="rating">Top Rated</option>
                     </select>
                 </div>
             </div>
 
             <div class="posts-section" id="posts-section"></div>
         <script src="renderFeed.js"></script>
+        <script src="searchHandler.js"></script>
     </body>
 </html>
