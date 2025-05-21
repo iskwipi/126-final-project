@@ -103,7 +103,7 @@ h2, h3, h4 {
     color:black
 }
 
-.feed, .deepsearch-feed, .post-container, .search-user-feed, .search-recipe-feed, .display-post-feed  {
+.feed, .deepsearch-feed, .search-user-feed, .search-recipe-feed, .display-post-feed  {
     margin-top: 6rem ;
     margin-left: 220px;
     padding: 2rem;
@@ -383,7 +383,7 @@ textarea, #comment-input input  {
     z-index:1;
 }
 
-.bookmark button {
+.bookmark button, .post-bookmark button {
     color: white;
     border: none;
     background: transparent;
@@ -395,7 +395,7 @@ textarea, #comment-input input  {
     padding: 0;
 }
 
-.bookmark i{
+.bookmark i, .post-bookmark i {
     position: absolute;
     top: 0;
     left: 0;
@@ -417,7 +417,7 @@ textarea, #comment-input input  {
     top:1rem;
 }
 
-.ratings button {
+.ratings button, .your-ratings button {
     font-size: 1rem;
     border: none;
     background: transparent;
@@ -734,14 +734,33 @@ textarea, #comment-input input  {
 /* display post */
 
 .post-title h2{
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: bold;
     margin: 0;
 }
 
+.post-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+}
+
+.post-bookmark {
+    margin-top: 0.2rem;
+    margin-left: 1rem;
+}
+.post-bookmark button {
+    color:black;
+}
+
+.post-bookmark i {
+    font-size: 3.5rem;
+    pointer-events: none;
+}
+
 #poster-profile a {
     text-decoration: none;
-    margin-left: 80%;
     color: black;
     padding: 1rem 2rem;     
     font-size: 1.5rem;      
@@ -751,37 +770,34 @@ textarea, #comment-input input  {
     font-weight: bold;
 }
 
+#user-profile a {
+    text-decoration: none;
+    color:black;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 .post-rate {
+    margin-top: -3rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem; /* space between text and stars */
+    gap: 0.1;
 }
 
 .post-rate p {
     margin: 0;
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 2rem;
     display: flex;
     align-items: center;
 }
 
-.recipe-information {
-    padding: 2rem;
-    border-color:black;
+.post-rate i {
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
 }
 
-.post-rate button {
-    background: none ;
-    border: none;
-    box-shadow: none ;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    outline: none;
-    font-size: 2rem;
-}
 
-.post-image, .post-tags, .post-interactions {
+.post-image, .post-tags {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -796,9 +812,8 @@ textarea, #comment-input input  {
 
 }
 
-.servings-multiplier {
+.servings-multiplier, #poster-profile {
     display: flex;
-    gap: 0.5rem;
     justify-content: flex-end;
 }
 
@@ -810,13 +825,14 @@ textarea, #comment-input input  {
 #servings-count {
     width: 1.5rem;
     text-align: center;
-
 }
+
 .servings-btn {
     cursor:pointer;
     background: black;
     color: white;
-    padding:  0.5rem;
+    padding:  0.7rem;
+    gap: 0.5rem;
 }
 
 .display-post-feed li {
@@ -825,7 +841,101 @@ textarea, #comment-input input  {
     font-size: 2rem;
 }
 
-.display-post-feed h3, .display-post-feed h4, .display-post-feed h5 {
+.display-post-feed h3, .display-post-feed h4, .display-post-feed h5{
     font-size: 3rem;
     text-align:left;
+    margin-left: 0;     
+    padding-left: 0;
+}
+
+.your-interactions, .interaction-container{
+    background: #f8f8f8;
+    border: 1.5px solid #c0c0c0;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.user-comment {
+    background: #ffffff;
+    border: 1.5px solid #c0c0c0;
+    border-radius: 0.5rem;
+    padding: 2rem;
+}
+
+.your-ratings {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.your-ratings button {
+    margin-top: -0.4rem;
+}
+
+.user-ratings i {
+    margin-top: 1.1rem;
+}
+
+.your-ratings p {
+    margin: 0;
+    margin-bottom:1%;
+    font-size: 1.5rem;
+    font-weight:bold;
+}
+
+.user-ratings p {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+#user-profile {
+    margin-bottom: 0.1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.user-ratings {
+    margin-bottom: 1rem;
+}
+
+.user-comment {
+    background: #ffffff;
+    border: 1.5px solid #c0c0c0;
+    border-radius: 0..5rem;
+    padding: 0rem;
+}
+
+.user-comment p {
+    font-size: 1.2rem;
+    margin-left: 1%;
+}
+
+.your-comment {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#comment-input {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 1.2rem;
+}
+
+#comment-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.user-header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
 }
