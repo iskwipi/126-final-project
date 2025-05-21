@@ -796,7 +796,6 @@ textarea, #comment-input input  {
     margin-left: 0.5rem;
 }
 
-
 .post-image, .post-tags {
     display: flex;
     justify-content: center;
@@ -846,7 +845,10 @@ textarea, #comment-input input  {
     text-align:left;
     margin-left: 0;     
     padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
+
 
 .your-interactions, .interaction-container{
     background: #f8f8f8;
