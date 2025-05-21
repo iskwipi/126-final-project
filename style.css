@@ -7,6 +7,14 @@ h2, h3, h4 {
     font-size: 2rem;
 }
 
+body {
+    margin: 0;
+}
+
+*::placeholder, button, input {
+    font-family: 'Quicksand';
+}
+
 .title-bar {
     font-size: xx-large;
     position: fixed;
@@ -51,8 +59,8 @@ h2, h3, h4 {
     color: #aaa;
     pointer-events: none;
 }
- #user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover, .deep-search-button:hover, 
-.upload-section input:hover, .search-bar input:hover {
+#user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover, .deep-search-button:hover, 
+.upload-section input:hover, .search-bar input:hover, .login-input input:hover, .signup-form input:hover{
     transform: translateY(-1px);  
 }
 
@@ -64,7 +72,7 @@ h2, h3, h4 {
     background: rgba(35, 35, 35, 0.893);
 }
 
-.upload-section input:hover, .search-bar input:hover {
+.upload-section input:hover, .search-bar input:hover, .login-input input:hover, .signup-form input:hover {
     background: rgba(210, 209, 209, 0.893);
 }
 
@@ -512,7 +520,218 @@ h2, h3, h4 {
 .profile-featured-section {
     display: flex;
     justify-content: right;
-    overflow-x: auto;
+    overflow-x:hidden;
     gap: 2rem;
     padding: 0rem 2rem 1rem 2rem;
+}
+.featured-items-container {
+    display: flex;
+    width: 80%;
+    margin: 0;
+    gap: 0.5rem;
+}
+
+.landing-signuppage-container {
+    max-width: 100%;
+    height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+#landingpage {
+    margin: 0;
+    margin-left:5rem;
+}
+.website-name {
+    margin-right: 5rem;
+    display: flex;
+    width: 60%;
+    font-size: 9rem;
+    font-weight: bold;
+}
+.website-name > p {
+    margin: 0;
+}   
+
+.login-tab {
+    position:static;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: inherit;
+}
+.login-tab-container {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: darkgray;
+    border-radius: 1.25rem 0 0 1.25rem;
+}
+.login-tab-contents{
+    width: 90%;
+    margin: 2rem;
+    margin-bottom: 1rem;
+} 
+.login-tab #slogan {
+    margin: 0;
+    margin-bottom: .5rem;
+    font-weight: bold;
+    font-size: 4rem;
+}
+.login-tab-container #join-today {
+    margin: 0 0 2rem 0;
+    font-weight: bold;
+    font-size: 2rem;
+}
+.login-tab-container #subtitle{
+    margin: 0;
+    font-weight: normal;
+    font-size: 1rem;
+}
+.login-input, .signup-form {
+    margin: 0.4rem 0 0.4rem 0;
+}
+.login-input input, .signup-form input{
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    border: 1px solid #ccc;
+}
+.login-input > input {
+    width: 60%;
+    height: 3rem;
+    padding: 0.15rem 1.5rem 0.15rem 1rem; 
+    border-radius: 5rem;
+}
+#login-button,  #next-button{
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+#login-button > button, .signup-form > button {
+    width: 68%;
+    height: 2.75rem;
+    border-radius: 5rem;
+    border: 1px solid #ccc;
+    font-weight: bold;
+}
+#login-button button:hover, .signup-form > button:hover{
+    background-color: black;
+    color: white;
+}
+#or-div {
+    width: 68%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    margin: 0;
+    gap: .5rem;
+}
+#or-div > p {
+    width: fit-content;
+    font-weight: bold;
+}
+#or-div hr {
+    flex: 1;
+    height: 1.5px;
+    border: none;
+    background-color: black;
+    margin: 0;
+}
+#signup-button {
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+#signup-button > button{
+    width: 68%;
+    height: 2.75rem;
+    border-radius: 5rem;
+    border: 1px solid #ccc;
+    font-weight: bold;
+}
+#signup-button button:hover {
+    background-color: black;
+    color: white;
+}
+
+#signuppage {
+    margin: 0;
+    margin-right: 5rem;
+}
+#signuppage .website-name {
+    margin: 0;
+    margin-left: 5rem;
+}
+.signup-tab {
+    position:static;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: inherit;
+}
+.signup-tab-container {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: darkgray;
+    border-radius: 0 1.25rem 1.25rem 0;
+    text-align: right;
+    align-items: flex-end;
+}
+.signup-tab-contents{
+    width: 80%;
+    margin: 2rem;
+    text-align: right;
+} 
+.signup-tab-contents > p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+#signup-subtitle {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    font-weight: normal;
+}
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    gap: .5rem;
+}
+.signup-form > input{
+    width: calc(100% - .5rem);
+    height: 3rem;
+    padding-left: .5rem;
+    border-radius: .5rem;
+}
+#dob-input > input {
+    width: calc(100% - 1rem);
+}
+.signup-form input, .signup-form input::placeholder {
+    font-size: 1rem;
+}
+#dob {
+    padding-right: .5rem;
+}
+.signup-form > button {
+    width: 100%;
+    border-radius: 5rem;
+}
+#location-input {
+    flex-direction: row;
+}
+#signup-input-subtitle {
+    font-size: .75rem;
+    margin: 0;
+    color: rgb(47, 47, 47);
 }
