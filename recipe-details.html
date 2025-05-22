@@ -5,26 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PlateMate - Recipe Details</title>
   <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <header>
+  <div class="title-bar">
     <h1>PlateMate</h1>
     <div class="search-bar">
-      <input type="text" placeholder="Search for a user or a recipe...">
+      <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
+      <i class="fa-solid fa-magnifying-glass"></i>
     </div>
-  </header>
-  <nav class="sidebar">
-    <a href="homepage.html" class="nav-item">🏠 Home</a>
-    <a href="profile.html" class="nav-item">👤 Profile</a>
-    <a href="cookbook.html" class="nav-item">📖 Cookbook</a>
-    <a href="deepsearch.html" class="nav-item">🔍 Deep Search</a>
-  </nav>
-  <main>
+  </div>
+
+  <div class="left-panel">
+    <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+    <a href="cookbook.html"><i class="fa-solid fa-book"></i> Cookbook</a>
+    <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i> Deep Search</a>
+  </div>
+
+  <div class="recipe-details-container">
     <div id="recipe-details" style="margin-left: 20px; margin-top: 20px;">
       <!-- Recipe details will be dynamically loaded here -->
     </div>
-  </main>
+  </div>
+
   <script>
     // get recipe name from URL parameter
     const urlParams = new URLSearchParams(window.location.search);

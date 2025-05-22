@@ -1,6 +1,7 @@
 html {
     scroll-behavior: smooth;
     font-family: 'Quicksand';
+    font-size: 16px; /* Ensure 1rem = 16px */
 }
 
 h2, h3, h4 {
@@ -13,18 +14,17 @@ h2, h3, h4 {
     top: 0;
     left: 0;
     right: 0;
-    height: 8rem; 
-    background: white; 
-    z-index: 1000; 
+    height: 8rem;
+    background: white;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
 }
 
-
 .search-bar {
-    position: relative; 
+    position: relative;
     margin: 0;
     padding-top: 0.5rem;
     padding-right: 2.5rem;
@@ -35,9 +35,9 @@ h2, h3, h4 {
 
 .search-bar input {
     border-radius: 5rem;
-    padding: 0.75rem 2.5rem 0.75rem 1.5rem; 
+    padding: 0.75rem 2.5rem 0.75rem 1.5rem;
     font-size: 1rem;
-    width: 250px;
+    width: 15.625rem; /* 250px */
     transition: box-shadow 0.3s ease, transform 0.2s ease;
     border: 1px solid #ccc;
 }
@@ -45,18 +45,29 @@ h2, h3, h4 {
 .search-bar i {
     font-size: 1rem;
     position: absolute;
-    right: 4.4rem; 
+    right: 4.4rem;
     top: 1.9rem;
     transform: translateY(-50%);
     color: #aaa;
     pointer-events: none;
 }
- #user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover, .deep-search-button:hover, 
-.upload-section input:hover, .search-bar input:hover {
-    transform: translateY(-1px);  
+
+#user a:hover,
+.ratings button:hover,
+.nav-button:hover,
+.add-more:hover,
+.deep-search-button:hover,
+.upload-section input:hover,
+.search-bar input:hover,
+.login-input input:hover,
+.signup-form input:hover {
+    transform: translateY(-1px);
 }
 
-#user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover {
+#user a:hover,
+.ratings button:hover,
+.nav-button:hover,
+.add-more:hover {
     background: rgba(135, 134, 134, 0.893);
 }
 
@@ -64,10 +75,12 @@ h2, h3, h4 {
     background: rgba(35, 35, 35, 0.893);
 }
 
-.upload-section input:hover, .search-bar input:hover {
+.upload-section input:hover,
+.search-bar input:hover,
+.login-input input:hover,
+.signup-form input:hover {
     background: rgba(210, 209, 209, 0.893);
 }
-
 
 .left-panel {
     position: fixed;
@@ -76,7 +89,7 @@ h2, h3, h4 {
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; 
+    gap: 1.5rem;
 }
 
 .left-panel a {
@@ -91,22 +104,24 @@ h2, h3, h4 {
 
 .left-panel a:hover {
     color: rgb(43, 43, 43);
-    transform: translateY(-1px);  
+    transform: translateY(-1px);
     background: rgba(255, 255, 255, 0.893);
 }
 
 .left-panel a:active {
-    color:black
+    color: black;
 }
 
-.feed, .deepsearch-feed {
-    margin-top: 6rem ;
-    margin-left: 220px;
+.feed,
+.deepsearch-feed {
+    margin-top: 6rem;
+    margin-left: 13.75rem; /* 220px */
     padding: 2rem;
     min-height: 100vh;
 }
 
-.recipe-search-fields h3, .recipe-search-fields h4 {
+.recipe-search-fields h3,
+.recipe-search-fields h4 {
     margin-top: 2rem;
     font-size: 1.7rem;
 }
@@ -115,8 +130,8 @@ h2, h3, h4 {
     font-size: large;
     display: block;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 0.625rem; /* 10px */
+    margin-bottom: 0.625rem; /* 10px */
     border-radius: 0.4rem;
     border: 1px solid #ddd;
     background-color: #f9f9f9;
@@ -130,8 +145,8 @@ h2, h3, h4 {
     font-size: large;
     display: block;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 0.625rem; /* 10px */
+    margin-bottom: 0.625rem; /* 10px */
     border-radius: 0.4rem;
     border: 1px solid #ddd;
 }
@@ -140,7 +155,7 @@ h2, h3, h4 {
     background-color: transparent;
     border: 1px dashed #ccc;
     color: #000000;
-    padding: 8px 15px;
+    padding: 0.5rem 0.9375rem; /* 8px 15px */
     cursor: pointer;
     border-radius: 0.4rem;
     transition: box-shadow 0.3s ease, transform 0.2s ease;
@@ -150,7 +165,7 @@ h2, h3, h4 {
     background-color: #000000;
     color: white;
     border: none;
-    padding: 12px 25px;
+    padding: 0.75rem 1.5625rem; /* 12px 25px */
     border-radius: 0.4rem;
     cursor: pointer;
     font-weight: bold;
@@ -158,7 +173,8 @@ h2, h3, h4 {
     width: 20%;
 }
 
-.featured-section, .saved-section {
+.featured-section,
+.saved-section {
     display: flex;
     overflow-x: auto;
     gap: 1.2rem;
@@ -175,14 +191,15 @@ h2, h3, h4 {
 }
 
 .left-button {
-    left: -20px;
+    left: -1.25rem; /* -20px */
 }
 
 .right-button {
-    right: -20px;
+    right: -1.25rem; /* -20px */
 }
 
-.left-button, .right-button {
+.left-button,
+.right-button {
     border-radius: 1.2rem;
     border-color: rgb(43, 43, 43);
 }
@@ -191,9 +208,8 @@ h2, h3, h4 {
     position: relative;
 }
 
-
-
-.featured-item, .posts-section{
+.featured-item,
+.posts-section {
     flex: 0 0 auto;
     background: #fff;
     border-radius: 2rem;
@@ -202,16 +218,18 @@ h2, h3, h4 {
 }
 
 .featured-item {
-    width: 238px;
+    width: 14.875rem; /* 238px */
 }
 
-.featured-item img, .posts-section img, .saved-section img{
+.featured-item img,
+.posts-section img,
+.saved-section img {
     width: 100%;
     border-radius: 2rem;
 }
 
 .recipe-posts {
-    width: 300px;
+    width: 18.75rem; /* 300px */
 }
 
 .recipe-posts {
@@ -222,7 +240,7 @@ h2, h3, h4 {
 
 .posts-section {
     display: flex;
-    overflow-y:auto;
+    overflow-y: auto;
     gap: 1.3rem;
     padding-bottom: 1rem;
 }
@@ -232,7 +250,7 @@ h2, h3, h4 {
     top: 1rem;
     left: 0.8rem;
     display: flex;
-    z-index:1;
+    z-index: 1;
 }
 
 #user a {
@@ -246,13 +264,12 @@ h2, h3, h4 {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-
 /* di pa polished bookmarks */
 .bookmark {
     position: absolute;
     top: 1.1rem;
     right: 0rem;
-    z-index:1;
+    z-index: 1;
 }
 
 .bookmark button {
@@ -272,21 +289,20 @@ h2, h3, h4 {
     top: 0;
     left: 0;
     font-size: 1.5rem;
-    background: transparent !important; 
+    background: transparent !important;
     pointer-events: none;
 }
 
-
 #recipe-name p {
-    text-align:left;
+    text-align: left;
     font-weight: bold;
 }
 
 .ratings {
-    justify-content: flex-start; 
+    justify-content: flex-start;
     display: flex;
-    gap: 0.1rem; 
-    top:1rem;
+    gap: 0.1rem;
+    top: 1rem;
 }
 
 .ratings button {
@@ -301,7 +317,7 @@ h2, h3, h4 {
 
 .ratings p {
     font-size: 1rem;
-    margin: 0 0 0 0.5rem; 
+    margin: 0 0 0 0.5rem;
 }
 
 #tags p {
@@ -324,7 +340,7 @@ h2, h3, h4 {
 }
 
 .upload-section input {
-    width: 30rem;
+    width: 30rem; /* 480px */
     flex: 0 1 auto;
     padding: 0.75rem 1rem;
     border-radius: 2rem;
@@ -355,11 +371,12 @@ h2, h3, h4 {
 }
 
 .profile {
-    display: flex;        
+    display: flex;
     justify-content: right;
     margin-top: 6rem;
     padding: 2rem;
 }
+
 .profile-header {
     display: flex;
     width: 80%;
@@ -368,6 +385,7 @@ h2, h3, h4 {
     border-radius: 0.5rem;
     margin: 0;
 }
+
 #profile-picture {
     border-radius: 50%;
     margin: 1.5% 2% 1.5% 2%;
@@ -375,27 +393,31 @@ h2, h3, h4 {
     height: auto;
     float: left;
 }
+
 .profile-details {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    float:left;
+    float: left;
     width: 59%;
     position: sticky;
     gap: 0.15rem;
 }
+
 #profile-name {
     margin: 0;
     font-weight: bolder;
-    font-size: 300%;
+    font-size: 3rem;
 }
+
 #bio {
     margin: 0;
-    font-size: 175%;
+    font-size: 1.75rem;
 }
+
 #loc {
     margin: 0;
-    font-size: 125%;
+    font-size: 1.25rem;
     font-weight: bold;
 }
 
@@ -405,21 +427,25 @@ h2, h3, h4 {
     flex-direction: column;
     gap: .25rem;
 }
+
 .followed-by > p {
     height: fit-content;
-    font-size: 150%;
+    font-size: 1.5rem;
     margin: 0;
 }
+
 #follower-pics {
     display: flex;
     flex-direction: row;
     gap: .25rem;
 }
+
 #follower-pics > img {
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
 }
+
 #follower-pics > p {
     margin: 0;
     height: 3rem;
@@ -434,12 +460,13 @@ h2, h3, h4 {
 }
 
 .new-post-container {
-    display: flex;        
+    display: flex;
     flex-direction: row;
     justify-content: right;
     align-items: center;
     padding: 0rem 2rem 2rem 2rem;
 }
+
 .new-post-body {
     margin: 0;
     display: flex;
@@ -447,6 +474,7 @@ h2, h3, h4 {
     /* background-color: lightgray; */
     border-radius: 0.5rem;
 }
+
 .new-post-body > img {
     height: 3rem;
     margin: 0.5rem;
@@ -454,6 +482,7 @@ h2, h3, h4 {
     object-fit: cover;
     float: left;
 }
+
 .new-post-body > input {
     margin: 0.5rem;
     margin-left: 0rem;
@@ -464,10 +493,12 @@ h2, h3, h4 {
     border: 1px solid #ccc;
     padding-left: 1rem;
 }
+
 .images-button {
     display: flex;
     margin-right: 22%;
 }
+
 .images-button button {
     display: flex;
     border: none;
@@ -477,6 +508,7 @@ h2, h3, h4 {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
     cursor: pointer;
 }
+
 .images-button i {
     padding-top: 2.5rem;
     display: flex;
@@ -485,6 +517,7 @@ h2, h3, h4 {
     color: #000000;
     pointer-events: none;
 }
+
 .display-mode {
     display: flex;
     align-items: center;
@@ -492,6 +525,7 @@ h2, h3, h4 {
     width: 30%;
     gap: .5rem;
 }
+
 .display-mode select {
     width: 55%;
     height: 3rem;
@@ -512,7 +546,262 @@ h2, h3, h4 {
 .profile-featured-section {
     display: flex;
     justify-content: right;
-    overflow-x: auto;
+    overflow-x: hidden;
     gap: 2rem;
     padding: 0rem 2rem 1rem 2rem;
+}
+
+.featured-items-container {
+    display: flex;
+    width: 80%;
+    margin: 0;
+    gap: 0.5rem;
+}
+
+.carousel-container {
+    position: relative;
+    padding: 1.25rem; /* 20px */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 1.25rem; /* 20px */
+    padding-bottom: 0.625rem; /* 10px */
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.recipe-card {
+    flex: 0 0 12.5rem; /* 200px */
+    padding: 0.625rem; /* 10px */
+    text-align: center;
+}
+
+.recipe-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 2rem;
+}
+
+.recipe-card p {
+    line-height: 0.3125rem; /* 5px */
+}
+
+.image {
+    position: relative;
+}
+
+.bookmark {
+    position: absolute;
+    top: 0.625rem; /* 10px */
+    right: 0.625rem; /* 10px */
+}
+
+.bookmark button {
+    background: none;
+    border: none;
+    font-size: 1.25rem; /* 20px */
+    cursor: pointer;
+}
+
+#user {
+    position: absolute;
+    top: 1rem;
+    left: 0.8rem;
+    display: flex;
+    z-index: 1;
+}
+
+#user a {
+    color: black;
+    text-decoration: none;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+#recipe-name p {
+    font-size: 1.125rem; /* 18px */
+    margin: 0.3125rem 0; /* 5px 0 */
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    height: 3rem;
+    width: 1.25rem; /* 20px */
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    border-radius: 2rem;
+}
+
+.carousel-btn.left {
+    left: 0.625rem; /* 10px */
+}
+
+.carousel-btn.right {
+    right: 0.625rem; /* 10px */
+}
+
+.bookmark {
+    position: absolute;
+    top: 1.1rem;
+    right: 0rem;
+    z-index: 1;
+}
+
+.bookmark button {
+    color: white;
+    border: none;
+    background: transparent;
+    width: 2rem;
+    height: 2.2rem;
+    position: relative;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    padding: 0;
+}
+
+.bookmark i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 1.5rem;
+    background: transparent !important;
+    pointer-events: none;
+}
+
+/* specific styling for save icon in profile.html */
+.profile-save-icon {
+    position: absolute;
+    top: 0;
+    right: 0.625rem; /* 10px */
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.rating {
+    margin-top: 0.625rem; /* 10px */
+    font-size: 1.25rem; /* 20px */
+}
+
+.star {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star.hovered,
+.star.selected {
+    color: #ffd700;
+}
+
+/* popup styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 1.25rem; /* 20px */
+    border: 1px solid #bab6b6;
+    width: 80%;
+    max-width: 31.25rem; /* 500px */
+    border-radius: 0.625rem; /* 10px */
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.625rem; /* 10px */
+    right: 0.9375rem; /* 15px */
+    font-size: 1.5rem; /* 24px */
+    cursor: pointer;
+    color: #666;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+#search-results .recipe-card {
+    margin: 0.625rem 0; /* 10px 0 */
+    border: none;
+    padding: 0;
+    text-align: left;
+}
+
+#search-results .recipe-card img {
+    width: 3.125rem; /* 50px */
+    height: 3.125rem; /* 50px */
+    border-radius: 0.3125rem; /* 5px */
+    margin-right: 0.625rem; /* 10px */
+    vertical-align: middle;
+}
+
+#search-results .recipe-card h3 {
+    display: inline;
+    font-size: 1.125rem; /* 18px */
+    margin: 0;
+}
+
+#search-results .recipe-card p {
+    margin: 0.3125rem 0; /* 5px 0 */
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.2;
+}
+
+.recipe-details-container {
+    display: flex;
+    justify-content: left;
+    margin-top: 6rem;
+    margin-left: 13.75rem; /* 220px */
+    padding: 2rem;
+}
+
+#recipe-details {
+    max-width: 100%;
+}
+
+#recipe-details img {
+    margin: 0.625rem 0; /* 10px 0 */
+}
+
+#recipe-details .rating {
+    margin-top: 0.625rem; /* 10px */
+    font-size: 1.25rem; /* 20px */
+}
+
+#recipe-details .star {
+    color: #ccc;
+    cursor: pointer;
+}
+
+#recipe-details .star.hovered,
+#recipe-details .star.selected {
+    color: #ffd700;
 }
