@@ -6,163 +6,58 @@ echo implode($_SESSION);
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Neyro Caraig</title>
+        <title>Profile page</title>
         <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
     </head>
     <body>
-            <div class="title-bar">
-                <h1>PlateMate</h1>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    </div>
-                </div>    
-            </div>
-
-            <div class="left-panel">
-                <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
-                <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
-                <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
-                <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
-            </div>
-
-            <div class = "profile">
-                <div class = "profile-header">
-                    <img id = "profile-picture" src="papaneyro.jpg">
-                    <div class="profile-details">
-                        <p id = "profile-name">Neyro Caraig</p>
-                        <p id = "bio">21, Gamer</p>
-                        <p id = "loc">Miagao, Iloilo</p>
-                    </div>
-                    <div class = "followed-by">
-                        <p>Followed by:</p>
-                        <div id="follower-pics">
-                            <img src = "julo.jpg">
-                            <img src = "julo1.jpg">
-                            <img src = "julo2.jpg">
-                            <p>+1k</p>
-                        </div>
-                    </div>
+        <div class="title-bar">
+            <h1>PlateMate</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..." onkeypress="handleSearch(event)">
+                <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
+            </div>    
+        </div>
+        <div class="left-panel">
+            <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
+            <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
+        </div>
+        <div class = "profile">
+            <div class = "profile-header">
+                <img id = "profile-picture" src="papaneyro.jpg">
+                <?php include 'getProfile.php' ?>
             </div>
-
-            <div class = "new-post-container">
-                <div class = "new-post-body">
-                    <img src="papaneyro.jpg">
+        </div>
+        <div class = "new-post-container">
+            <div class = "new-post-body">
+                <img src="papaneyro.jpg">
+                <a href="posting.php">
+                    <button type="button"> 
+                    <input type="text" placeholder="New recipe idea?">
+                    </button>
+                </a>
+                <div class="images-button">
                     <a href="posting.php">
-                        <button type="button"> 
-                        <input type="text" placeholder="New recipe idea?">
-                        </button>
+                    <button type="button">
+                        <i class="fa-regular fa-image"></i> 
+                    </button>
                     </a>
-                    <div class="images-button">
-                        <a href="posting.php">
-                        <button type="button">
-                           <i class="fa-regular fa-image"></i> 
-                        </button>
-                        </a>
-                    </div>
-
-                    <div class = "display-mode">
-                        <p>Display Mode:</p>
-                        <select id="displayMode">
-                            <option>Top Rated</option>
-                            <option>Most Recent</option>
-                        </select>
-                    </div>
+                </div>
+                <div class="mode-section">
+                    <label for="display-mode">Display Mode: </label>
+                    <select id="display-mode">
+                        <option value="id">Most Recent</option>
+                        <option value="rating">Top Rated</option>
+                    </select>
                 </div>
             </div>
-
-            <div class="profile-featured-section">
-                <div class = "featured-items-container">
-                    <div class="featured-item"> 
-                        <div class="image">
-                            <div class="bookmark">
-                                <button type="button">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-                            </div>
-                            <div id="user">
-                                <a href="profile.php">Neyro Caraig</a>
-                            </div>
-                            <img src="img.png" alt="recipe image">
-                        </div>
-                        <div id="recipe-name"> 
-                            <p>Adobong Manok</p>
-                        </div>
-                    </div>
-                    <div class="featured-item"> 
-                        <div class="image">
-                            <div class="bookmark">
-                                <button type="button">
-                                    <i class="fa-regular fa-bookmark"></i>
-
-                                </button>
-                            </div>
-                            <div id="user">
-                                <a href="profile.php">Neyro Caraig</a>
-                            </div>
-                            <img src="img.png" alt="recipe image">
-                        </div>
-                        <div id="recipe-name"> 
-                            <p>Adobong Manok</p>
-                        </div>
-                    </div>
-
-                    <div class="featured-item"> 
-                        <div class="image">
-                            <div class="bookmark">
-                                <button type="button">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-                            </div>
-                            <div id="user">
-                                <a href="profile.php">Neyro Caraig</a>
-                            </div>
-                            <img src="img.png" alt="recipe image">
-                        </div>
-                
-                        <div id="recipe-name"> 
-                            <p>Adobong Manok</p>
-                        </div>
-                    </div>
-
-                    <div class="featured-item"> 
-                        <div class="image">
-                            <div class="bookmark">
-                                <button type="button">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-                            </div>
-                            <div id="user">
-                                <a href="profile.php">Neyro Caraig</a>
-                            </div>
-                            <img src="img.png" alt="recipe image">
-                        </div>
-                        <div id="recipe-name"> 
-                            <p>Adobong Manok</p>
-                        </div>
-                    </div>
-
-                    <div class="featured-item"> 
-                        <div class="image">
-                            <div id="user">
-                                <a href="profile.php">Neyro Caraig</a>
-                            </div>
-                            <div class="bookmark">
-                                <button type="button">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-                            </div>
-                            <img src="img.png" alt="recipe image">
-                        </div>
-                        <div id="recipe-name"> 
-                            <p>Adobong Manok</p>
-                        </div>
-                    </div>   
-
-                </div>
-            </div>
-        </body>
+        </div>
+        <div class="profile-featured-section" id="profile-featured-section"></div>
+        <script src="renderOwned.js"></script>
+        <script src="searchHandler.js"></script>
+    </body>
 <html>
