@@ -1,3 +1,7 @@
+<?php
+session_start();
+echo implode($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,10 +16,10 @@
             <h1>PlateMate</h1>   
         </div>
         <div class="left-panel">
-            <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
-            <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
-            <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
+            <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
+            <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
         <div class="deepsearch-feed">
             <h2>Quick Search</h2>

@@ -1,7 +1,7 @@
 <?php
 $conn = new mysqli("localhost", "root", "", "platemate");
 
-$result = $conn->query("SELECT user.userID, username, dateOfBirth, occupation, email, provinceID, countryID, followerCount FROM user
+$result = $conn->query("SELECT user.userID, username, dateOfBirth, occupation, email, provinceID, cityID, followerCount FROM user
 LEFT JOIN (SELECT followingID AS userID, COUNT(followerID) AS followerCount FROM follows GROUP BY followingID)
 AS follows ON user.userID = follows.userID");
 $users = [];

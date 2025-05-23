@@ -1,3 +1,7 @@
+<?php
+session_start();
+echo implode($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,10 +21,10 @@
         </div>
 
         <div class="left-panel">
-            <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i> Deep Search</a>
-            <a href="cookbook.html"><i class="fa-solid fa-book"></i> Cookbook</a>
-            <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i> Deep Search</a>
+            <a href="cookbook.php"><i class="fa-solid fa-book"></i> Cookbook</a>
+            <a href="profile.php"><i class="fa-solid fa-user"></i> Profile</a>
         </div>
 
         <div class="display-post-feed">
@@ -29,7 +33,7 @@
                     <div class="post-title-row">
                         <h2>Adobong Manok</h2>
                         <div id="poster-profile">
-                            <a href="profile.html">Sir Nikko</a>
+                            <a href="profile.php">Sir Nikko</a>
                             <div class="post-bookmark">
                                 <button type="button">
                                     <i class="fa-regular fa-bookmark"></i>
@@ -124,7 +128,7 @@
                         <div class="interaction-container"> 
                             <div class="user-header-row">
                                 <div id="user-profile">
-                                    <a href="profile.html">Sir Nikko:</a>
+                                    <a href="profile.php">Sir Nikko:</a>
                                 </div>
                                 <div class="user-ratings">
                                     <i class="fa-regular fa-star"></i>

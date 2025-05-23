@@ -5,13 +5,13 @@ var sortOrder = "id";
 
 if(searchTerm){
     document.getElementById('query-title').textContent = `Search results for: "${searchTerm}"`;
-    if(url.includes('recipesearch.html')){
+    if(url.includes('recipesearch.php')){
         document.getElementById('display-mode').addEventListener('change', function () {
             sortOrder = this.value;
             filterRecipes(searchTerm.toLowerCase());
         });
         filterRecipes(searchTerm.toLowerCase());
-    }else if(url.includes('usersearch.html')){
+    }else if(url.includes('usersearch.php')){
         filterUsers(searchTerm.toLowerCase());
     }
 }
@@ -42,7 +42,7 @@ async function filterRecipes(searchTerm){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.html">${recipe.username}</a>
+                        <a href="profile.php">${recipe.username}</a>
                     </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
@@ -97,7 +97,7 @@ async function filterUsers(searchTerm){
         content += `
             <div class="profile-container"> 
                 <div class="user-details">
-                    <a href="profile.html"><strong>${user.username}</strong></a>
+                    <a href="profile.php"><strong>${user.username}</strong></a>
                     <div class="user-info">
                         <p>${Math.round((currentYear - birthYear)/ year)}, ${user.occupation}</p>
                         <p>${user.followerCount != null ? user.followerCount + ' follower' + (user.followerCount > 1 ? 's' : '') : '0 followers'}</p>

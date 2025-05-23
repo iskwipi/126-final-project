@@ -8,10 +8,10 @@ document.getElementById('display-mode').addEventListener('change', function () {
 
 async function renderFeed(){
     const url = window.location.pathname;
-    if(url.includes('homepage.html')){
+    if(url.includes('homepage.php')){
         displayFeatured();
         displayFeed();
-    }else if(url.includes('cookbook.html')){
+    }else if(url.includes('cookbook.php')){
         displaySaved();
     }
 }
@@ -40,7 +40,7 @@ async function displayFeatured(){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.html">${recipe.username}</a>
+                        <a href="profile.php">${recipe.username}</a>
                     </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
@@ -80,7 +80,7 @@ async function displayFeed(){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.html">${recipe.username}</a>
+                        <a href="profile.php">${recipe.username}</a>
                     </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
@@ -135,7 +135,7 @@ async function displaySaved(){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.html">${recipe.username}</a>
+                        <a href="profile.php">${recipe.username}</a>
                     </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+echo implode($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,10 +20,10 @@
             </div>
         </div>
         <div class="left-panel">
-            <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
-            <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
-            <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
+            <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
+            <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
         <div class="feed">
             <div class="featured-section" id="featured-section">
@@ -34,7 +38,7 @@
             <div class="container">
                 <!-- <i class="fa-solid fa-user"></i> -->
                 <div class="upload-section">
-                    <a href="posting.html"> 
+                    <a href="posting.php"> 
                         <button type="button">
                         <input type="text" id="uploadRecipe" placeholder="New recipe idea?                   ">
                         <i class="fa-regular fa-image"></i> </button>

@@ -1,3 +1,7 @@
+<?php
+session_start();
+echo implode($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,10 +22,10 @@
             </div>
 
             <div class="left-panel">
-                <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
-                <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
-                <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
-                <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
+                <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+                <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
+                <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
             </div>
 
             <div class = "profile">
@@ -47,13 +51,13 @@
             <div class = "new-post-container">
                 <div class = "new-post-body">
                     <img src="papaneyro.jpg">
-                    <a href="posting.html">
+                    <a href="posting.php">
                         <button type="button"> 
                         <input type="text" placeholder="New recipe idea?">
                         </button>
                     </a>
                     <div class="images-button">
-                        <a href="posting.html">
+                        <a href="posting.php">
                         <button type="button">
                            <i class="fa-regular fa-image"></i> 
                         </button>
@@ -80,7 +84,7 @@
                                 </button>
                             </div>
                             <div id="user">
-                                <a href="profile.html">Neyro Caraig</a>
+                                <a href="profile.php">Neyro Caraig</a>
                             </div>
                             <img src="img.png" alt="recipe image">
                         </div>
@@ -97,7 +101,7 @@
                                 </button>
                             </div>
                             <div id="user">
-                                <a href="profile.html">Neyro Caraig</a>
+                                <a href="profile.php">Neyro Caraig</a>
                             </div>
                             <img src="img.png" alt="recipe image">
                         </div>
@@ -114,7 +118,7 @@
                                 </button>
                             </div>
                             <div id="user">
-                                <a href="profile.html">Neyro Caraig</a>
+                                <a href="profile.php">Neyro Caraig</a>
                             </div>
                             <img src="img.png" alt="recipe image">
                         </div>
@@ -132,7 +136,7 @@
                                 </button>
                             </div>
                             <div id="user">
-                                <a href="profile.html">Neyro Caraig</a>
+                                <a href="profile.php">Neyro Caraig</a>
                             </div>
                             <img src="img.png" alt="recipe image">
                         </div>
@@ -144,7 +148,7 @@
                     <div class="featured-item"> 
                         <div class="image">
                             <div id="user">
-                                <a href="profile.html">Neyro Caraig</a>
+                                <a href="profile.php">Neyro Caraig</a>
                             </div>
                             <div class="bookmark">
                                 <button type="button">
@@ -161,3 +165,4 @@
                 </div>
             </div>
         </body>
+<html>

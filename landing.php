@@ -1,3 +1,7 @@
+<?php
+session_start();
+echo implode($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,25 +20,23 @@
                 <p id="slogan">Slogan</p>
                 <div class="login-tab-container">
                     <div class="login-tab-contents">
-                        <form action="homepage.html" method="post">
+                        <form action="login.php" method="post">
                             <p id="join-today">Join today!</p>
                             <p id="subtitle">Already have an account?</p>
                             <div class="login-input">
-                                <input type="text" placeholder="Username" required autofocus>
+                                <input type="text" name="username" placeholder="Username" required autofocus>
                             </div>
                             <div class="login-input">
-                                <input type="password" placeholder="Password" required>
+                                <input type="password" name="password" placeholder="Password" required>
                             </div>
                             <div id="login-button" class="login-input">
                                 <button type="submit">Log In</button>
                             </div>
-                        
                             <div id="or-div">
                                 <hr><p>OR</p><hr>
                             </div>
-
                             <div id="signup-button" class="login-input">
-                                <button type="button" onclick="window.location.href='signup.html'">Create an Account</button>
+                                <button type="button" onclick="window.location.href='signup.php'">Create an Account</button>
                             </div>
                         </form>
                     </div>
