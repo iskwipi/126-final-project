@@ -312,24 +312,16 @@ textarea, #comment-input input  {
     background-color: #f9f9f9;
 }
 
-
-
-.input-wrapper,
 .step-wrapper, 
 .ingredients-field-search {
     position: relative;
     width: 50%;
 }
 
-.input-wrapper input {
-    width: 30%;
-}
-
 .step-wrapper input {
     width: 100%;
 }
 
-.input-wrapper i,
 .step-wrapper i, .ingredients-field-search i{
     position: absolute;
     color: #555;
@@ -337,9 +329,55 @@ textarea, #comment-input input  {
     top: 38%;
 }
 
-.input-wrapper i {
-    left: 15.3rem;
+.input-wrapper {
+    position: relative;
+    width: 30%; 
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; 
 }
+
+.input-wrapper input {
+    width: 100%;
+    padding-right: 4rem; 
+}
+
+.input-wrapper i.fa-plus {
+    position: absolute;
+    right: 2.2rem; 
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000000;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.input-wrapper i.fa-circle-xmark {
+    position: absolute;
+    right: 0.5rem; 
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000000;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.step-wrapper input {
+    width: 100%;
+}
+
+.step-wrapper i, .ingredients-field-search i{
+    position: absolute;
+    color: #555;
+    cursor: pointer;
+    top: 38%;
+}
+
+/* .input-wrapper i {
+    left: 15.3rem;
+} */
+
+
 
 .step-wrapper i {
     left: 45rem;
@@ -364,15 +402,6 @@ textarea, #comment-input input  {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.plus {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 4rem;
-    color: #000;
-    pointer-events: none;
-}
 
 
 /* homepage.html */
