@@ -31,7 +31,7 @@ body {
 }
 
 
-.search-bar {
+.search-bar, .deep-search-bar {
     position: relative; 
     margin: 0;
     padding-top: 0.5rem;
@@ -41,7 +41,7 @@ body {
     justify-content: center;
 }
 
-.search-bar input {
+.search-bar input, .deep-search-bar input {
     border-radius: 5rem;
     padding: 0.75rem 2.5rem 0.75rem 1.5rem; 
     font-size: 1rem;
@@ -50,7 +50,7 @@ body {
     border: 1px solid #ccc;
 }
 
-.search-bar i {
+.search-bar i, .deep-search-bar i {
     font-size: 1rem;
     position: absolute;
     right: 4.4rem; 
@@ -59,21 +59,23 @@ body {
     color: #aaa;
     pointer-events: none;
 }
-#user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover, .deep-search-button:hover, 
-.upload-section input:hover, .search-bar input:hover, .login-input input:hover, .signup-form input:hover{
+
+#user a:hover, .ratings button:hover, .nav-button:hover,  .deep-search-button:hover, .post-recipe-button:hover, 
+.upload-section input:hover, .search-bar input:hover, .upload-picture:hover, .deep-search-bar input:hover, 
+.new-post-body input:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover{
     transform: translateY(-1px);  
 }
 
-#user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover {
+#user a:hover, .ratings button:hover, .nav-button:hover, .upload-picture:hover {
     background: rgba(135, 134, 134, 0.893);
 }
 
-.deep-search-button:hover {
+.deep-search-button:hover,.post-recipe-button:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover {
     background: rgba(35, 35, 35, 0.893);
 }
 
-.upload-section input:hover, .search-bar input:hover, .login-input input:hover, .signup-form input:hover {
-    background: rgba(210, 209, 209, 0.893);
+.search-bar input:hover, .deep-search-bar input:hover, .new-post-body input:hover, .upload-section input:hover {
+    background: rgba(233, 233, 233, 0.893);
 }
 
 
@@ -107,7 +109,7 @@ body {
     color:black
 }
 
-.feed, .deepsearch-feed {
+.feed, .deepsearch-feed, .post-container, .search-user-feed, .search-recipe-feed  {
     margin-top: 6rem ;
     margin-left: 220px;
     padding: 2rem;
@@ -119,42 +121,53 @@ body {
     font-size: 1.7rem;
 }
 
-.ingredients-field select {
-    font-size: large;
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 0.4rem;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
+/* deep search html */
+
+.recipe-search-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ingredients-field-search, .tags-field {
+    display: flex;
+    gap: 10px;
+    width: 50%; 
+}
+
+.ingredients-field-search input, .tags-field input {
+    flex: 1;
+}
+
+.deep-search-bar input {
+    width: 70%;
+}
+
+.deep-search-bar i {
+    top: 1.9rem;
+    left: 60rem;
+    transform: translateY(-50%);
+}
+
+.ingredients-field-search i {
+    right: 1rem;
+}
+
+hr {
+    margin-top: 2rem;
+    color: gray;
+}
+
+.deepsearch-feed h2, h3, h4 {
+    text-align:center;
+    margin-bottom: 0.5rem;
 }
 
 .tags-field {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
-.tags-field input {
-    font-size: large;
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 0.4rem;
-    border: 1px solid #ddd;
-}
-
-.add-more {
-    background-color: transparent;
-    border: 1px dashed #ccc;
-    color: #000000;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 0.4rem;
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-}
-
-.deep-search-button {
+.deep-search-button, .post-recipe-button, .recipe-button, .user-button, .follow-button {
     background-color: #000000;
     color: white;
     border: none;
@@ -165,6 +178,7 @@ body {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
     width: 20%;
 }
+
 
 .featured-section, .saved-section {
     display: flex;
@@ -199,9 +213,18 @@ body {
     position: relative;
 }
 
+.posts-section, .saved-section, .search-posts{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #fff;
+    border-radius: 2rem;
+    text-align: center;
+    position: relative;
+}
 
-
-.featured-item, .posts-section{
+.featured-item{
     flex: 0 0 auto;
     background: #fff;
     border-radius: 2rem;
@@ -213,27 +236,141 @@ body {
     width: 238px;
 }
 
-.featured-item img, .posts-section img, .saved-section img{
+.featured-item img, .posts-section img, .saved-section img, .search-posts img{
     width: 100%;
-    border-radius: 2rem;
+    border-radius: 0.2rem;
 }
 
-.recipe-posts {
-    width: 300px;
-}
-
-.recipe-posts {
+.recipe-posts, .recipe-search {
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
+    width: 300px;
 }
 
-.posts-section {
+.posts-section, .saved-section, .search-posts {
     display: flex;
     overflow-y:auto;
     gap: 1.3rem;
     padding-bottom: 1rem;
 }
+
+/* posting.html */
+
+.post-container p {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.title-field input, .description-field textarea, .serving-field input, .instructions-field input,
+.ingredients-field input, .tags-field input, .ingredients-field-search input, .posting-tags-field input,
+textarea {
+    border-radius: 0.5rem;
+    padding: 0.75rem 2.5rem 0.75rem 1.5rem;
+    font-size: 1rem;
+    width: 50%;
+    border: 1px solid #ccc;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.instructions-field input {
+    width: 46%;
+}
+
+.description-field input {
+    height: 5rem;
+}
+
+#recipe-description::placeholder {
+    font-family: 'Quicksand';
+    color: rgb(95, 95, 95);
+    font-size: 1rem;
+}
+
+.ingredient-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ingredients-field input {
+    width: 20%;
+}
+
+#ingredient-measurement,
+.ingredients-field select {
+    width: 12%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+
+
+.input-wrapper,
+.step-wrapper, 
+.ingredients-field-search {
+    position: relative;
+    width: 50%;
+}
+
+.input-wrapper input {
+    width: 30%;
+}
+
+.step-wrapper input {
+    width: 100%;
+}
+
+.input-wrapper i,
+.step-wrapper i, .ingredients-field-search i{
+    position: absolute;
+    color: #555;
+    cursor: pointer;
+    top: 38%;
+}
+
+.input-wrapper i {
+    left: 15.3rem;
+}
+
+.step-wrapper i {
+    left: 45rem;
+}
+
+.post-recipe-button {
+    margin-top: 2rem;
+}
+
+.upload-picture {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10rem;
+    height: 20rem;
+    width: 25%;
+    background: gray;
+    border-color: white;
+    color: rgb(104, 104, 104);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.plus {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: #000;
+    pointer-events: none;
+}
+
+
+/* homepage.html */
 
 #user {
     position: absolute;
@@ -331,7 +468,7 @@ body {
     align-items: center;
 }
 
-.upload-section input {
+.upload-section input, .new-post-body input{
     width: 30rem;
     flex: 0 1 auto;
     padding: 0.75rem 1rem;
@@ -341,24 +478,24 @@ body {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.upload-section i {
+.upload-section i{
     font-size: 2rem;
     margin-left: 1rem;
 }
 
-.upload-section button {
+.upload-section button, .new-post-body button {
     border: none;
     background: transparent;
 }
 
-.mode-section {
+.mode-section, .unit-type {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.mode-section select {
-    padding: 0.5rem;
+.mode-section select, .unit-type select {
+    padding: 15px 16px;
     border-radius: 0.5rem;
 }
 
@@ -448,6 +585,7 @@ body {
     align-items: center;
     padding: 0rem 2rem 2rem 2rem;
 }
+
 .new-post-body {
     margin: 0;
     display: flex;
@@ -455,14 +593,20 @@ body {
     /* background-color: lightgray; */
     border-radius: 0.5rem;
 }
-.new-post-body > img {
+
+.new-post-body > img  {
     height: 3rem;
     margin: 0.5rem;
     border-radius: 50%;
     object-fit: cover;
     float: left;
 }
-.new-post-body > input {
+
+.new-post-body input {
+    margin-top: 0.5rem;
+}
+
+/* .new-post-body > button {
     margin: 0.5rem;
     margin-left: 0rem;
     height: 3rem;
@@ -471,10 +615,12 @@ body {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
     border: 1px solid #ccc;
     padding-left: 1rem;
-}
-.images-button {
+} */
+
+.images-button a {
     display: flex;
     margin-right: 22%;
+    text-decoration: none;
 }
 .images-button button {
     display: flex;
@@ -524,214 +670,82 @@ body {
     gap: 2rem;
     padding: 0rem 2rem 1rem 2rem;
 }
-.featured-items-container {
+
+/* searchresults.html */
+
+.search-feed-content {
+    display: grid;
+    gap: 1.3rem; 
+    padding: 1.3rem;
+}
+
+.category-section {
+    margin-left: 80%;
+}
+
+.category-section a, .user-details a{
+    text-decoration: none;
+    color: black;
+}
+
+.recipe-button, .user-button {
+    width: 45%;
+}
+
+.follow-button {
+    margin-top: 0.5rem;
+    width: 10%;
+    height: 2.5rem;
+}
+
+.profile-container {
+    border: 1px solid #0d0c0c;
+    padding: 1rem;
+    border-radius: 0.5rem;
     display: flex;
-    width: 80%;
+    justify-content: space-between;
+    position: relative; 
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    width: 100%;
+}
+
+.user-details a {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.user-info p {
     margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.2; 
+}
+
+.user-avg-rating {
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
 }
 
-.landing-signuppage-container {
-    max-width: 100%;
-    height: 100vh;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
+.user-avg-rating p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
 }
 
-#landingpage {
-    margin: 0;
-    margin-left:5rem;
-}
-.website-name {
-    margin-right: 5rem;
-    display: flex;
-    width: 60%;
-    font-size: 9rem;
-    font-weight: bold;
-}
-.website-name > p {
-    margin: 0;
-}   
-
-.login-tab {
-    position:static;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    width: 100%;
-    height: inherit;
-}
-.login-tab-container {
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    background-color: darkgray;
-    border-radius: 1.25rem 0 0 1.25rem;
-}
-.login-tab-contents{
-    width: 90%;
-    margin: 2rem;
-    margin-bottom: 1rem;
-} 
-.login-tab #slogan {
-    margin: 0;
-    margin-bottom: .5rem;
-    font-weight: bold;
-    font-size: 4rem;
-}
-.login-tab-container #join-today {
-    margin: 0 0 2rem 0;
-    font-weight: bold;
-    font-size: 2rem;
-}
-.login-tab-container #subtitle{
-    margin: 0;
-    font-weight: normal;
-    font-size: 1rem;
-}
-.login-input, .signup-form {
-    margin: 0.4rem 0 0.4rem 0;
-}
-.login-input input, .signup-form input{
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-    border: 1px solid #ccc;
-}
-.login-input > input {
-    width: 60%;
-    height: 3rem;
-    padding: 0.15rem 1.5rem 0.15rem 1rem; 
-    border-radius: 5rem;
-}
-#login-button,  #next-button{
-    margin-top: 1rem;
-    margin-bottom: 0;
-}
-#login-button > button, .signup-form > button {
-    width: 68%;
-    height: 2.75rem;
-    border-radius: 5rem;
-    border: 1px solid #ccc;
-    font-weight: bold;
-}
-#login-button button:hover, .signup-form > button:hover{
-    background-color: black;
-    color: white;
-}
-#or-div {
-    width: 68%;
-    text-align: center;
-    align-items: center;
-    display: flex;
-    margin: 0;
-    gap: .5rem;
-}
-#or-div > p {
-    width: fit-content;
-    font-weight: bold;
-}
-#or-div hr {
-    flex: 1;
-    height: 1.5px;
-    border: none;
-    background-color: black;
-    margin: 0;
-}
-#signup-button {
-    margin-top: 0;
-    margin-bottom: 2rem;
-}
-#signup-button > button{
-    width: 68%;
-    height: 2.75rem;
-    border-radius: 5rem;
-    border: 1px solid #ccc;
-    font-weight: bold;
-}
-#signup-button button:hover {
-    background-color: black;
-    color: white;
+.user-avg-rating i {
+    color: #000000;
+    font-size: 0.9rem;
 }
 
-#signuppage {
-    margin: 0;
-    margin-right: 5rem;
-}
-#signuppage .website-name {
-    margin: 0;
-    margin-left: 5rem;
-}
-.signup-tab {
-    position:static;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-    width: 100%;
-    height: inherit;
-}
-.signup-tab-container {
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    background-color: darkgray;
-    border-radius: 0 1.25rem 1.25rem 0;
-    text-align: right;
-    align-items: flex-end;
-}
-.signup-tab-contents{
-    width: 80%;
-    margin: 2rem;
-    text-align: right;
-} 
-.signup-tab-contents > p {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-size: 2rem;
-    font-weight: bold;
-}
-#signup-subtitle {
-    margin-bottom: 2rem;
-    font-size: 1rem;
-    font-weight: normal;
-}
-.signup-form {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    gap: .5rem;
-}
-.signup-form > input{
-    width: calc(100% - .5rem);
-    height: 3rem;
-    padding-left: .5rem;
-    border-radius: .5rem;
-}
-#dob-input > input {
-    width: calc(100% - 1rem);
-}
-.signup-form input, .signup-form input::placeholder {
-    font-size: 1rem;
-}
-#dob {
-    padding-right: .5rem;
-}
-.signup-form > button {
-    width: 100%;
-    border-radius: 5rem;
-}
-#location-input {
-    flex-direction: row;
-}
-#signup-input-subtitle {
-    font-size: .75rem;
-    margin: 0;
-    color: rgb(47, 47, 47);
-}
+/* recipe search */

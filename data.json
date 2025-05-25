@@ -1,0 +1,140 @@
+{
+    "recipes": [
+        {
+            "recipeID": 1,
+            "title": "Cake",
+            "description": "Delicious cake recipe",
+            "peoplePerServing": 4,
+            "tags": [
+                "Dessert"
+            ],
+            "picture": "https://ichef.bbc.co.uk/ace/standard/1600/food/recipes/spongecake_1284_16x9.jpg.webp",
+            "ingredients": [
+                {"name": "Flour", "measurement": 2.0, "unit": "cup"},
+                {"name": "Milk", "measurement": 2.0, "unit": "cup"},
+                {"name": "Egg", "measurement": 3.5, "unit": "tbsp"},
+                {"name": "Sugar", "measurement": 5.0, "unit": "tbsp"}
+            ],
+            "instructions": [
+                "Mix all ingredients",
+                "Put mixture in cake pan",
+                "Bake at 175C"
+            ],
+            "ownerID": 1,
+            "savesID": [
+                2
+            ],
+            "ratings": [
+                {"raterID": 2, "value": 9},
+                {"raterID": 3, "value": 1}
+            ],
+            "comments": [
+                {"commenterID": 2, "content": "Nice work!"},
+                {"commenterID": 3, "content": "Interesting"}
+            ]
+        },
+
+        {
+            "recipeID": 2,
+            "title": "Cookies",
+            "description": "Tasty cookie recipe",
+            "peoplePerServing": 2,
+            "tags": [
+                "Baked"
+            ],
+            "picture": "https://img.freepik.com/free-photo/cookies-with-chocolate-chips-closeup-plate_169016-25155.jpg",
+            "ingredients": [
+                {"name": "Flour", "measurement": 2.0, "unit": "cup"},
+                {"name": "Sugar", "measurement": 5.0, "unit": "tbsp"}
+            ],
+            "instructions": [
+                "Mix all ingredients",
+                "Form the dough into balls",
+                "Bake at 150C"
+            ],
+            "ownerID": 2,
+            "savesID": [
+                1
+            ],
+            "ratings": [
+                {"raterID": 1, "value": 9},
+                {"raterID": 3, "value": 0}
+            ],
+            "comments": [
+                {"commenterID": 1, "content": "Great post!"},
+                {"commenterID": 3, "content": "Interesting"}
+            ]
+        }
+    ],
+
+    "users": [
+        {
+            "userID": 1,
+            "username": "Maam Sanz",
+            "dateOfBirth": "1995-08-12",
+            "occupation": "Graphic Designer",
+            "email": "maamsanz@email.com",
+            "province": "Iloilo",
+            "country": "Philippines",
+            "followingsID": [
+                3
+            ],
+            "followersID": [
+                3
+            ],
+            "recipesID": [
+                1
+            ],
+            "savesID": [
+                2
+            ],
+            "picture": "https://i.pinimg.com/736x/24/7c/14/247c14e67e1d68913412f29d51559c3b.jpg"
+        },
+
+        {
+            "userID": 2,
+            "username": "Sir Nikko",
+            "dateOfBirth": "1990-01-01",
+            "occupation": "Chef",
+            "email": "sirnikko@email.com",
+            "province": "Antique",
+            "country": "Philippines",
+            "followingsID": [
+                3
+            ],
+            "followersID": [
+                
+            ],
+            "recipesID": [
+                2
+            ],
+            "savesID": [
+                1
+            ],
+            "picture": "https://i.pinimg.com/474x/6d/ca/67/6dca67f8af23fc6ddf6dff3fecc41ccb.jpg"
+        },
+
+        {
+            "userID": 3,
+            "username": "Mister Neyro",
+            "dateOfBirth": "2004-04-20",
+            "occupation": "Programmer",
+            "email": "neyro@email.com",
+            "province": "Okinawa",
+            "country": "Japan",
+            "followingsID": [
+                1
+            ],
+            "followersID": [
+                1, 2
+            ],
+            "recipesID": [
+                
+            ],
+            "savesID": [
+                
+            ],
+            "picture": "https://tr.rbxcdn.com/180DAY-6e1e920afc51c036c91183f11e62cf64/420/420/Hat/Webp/noFilter"
+        }
+    ]
+}
