@@ -1,40 +1,35 @@
 var sortOrder = "id";
+renderFeed();
 
 document.getElementById('display-mode').addEventListener('change', function () {
     sortOrder = this.value;
-    const url = window.location.pathname;
-    if(url=='/homepage.html'){
-        displayFeatured();
-        displayFeed();
-    }else if(url=='/cookbook.html'){
-        displaySaved();
-    }
+    renderFeed();
 });
 
-async function getData(){
-    const response = await fetch("data.json");
+async function renderFeed(){
+    const url = window.location.pathname;
+    if(url.includes('homepage.php')){
+        displayFeatured();
+        displayFeed();
+    }else if(url.includes('cookbook.php')){
+        displaySaved();
+    }
+}
+
+async function getRecipe(){
+    const response = await fetch("getRecipes.php");
     return response.json();
 }
 
 async function displayFeatured(){
-    const data = await getData();
-    const recipes = [];
-    for(let x = 0; x < 5; x++){
-        for(let y = 0; y < data.recipes.length; y++){
-            recipes[x * data.recipes.length + y] = data.recipes[y];
-        }
-    }
-    const users = data.users;
-
-    console.log(recipes);
-    console.log(users);
+    const data = await getRecipe();
+    const recipes = data;
     var content = `
         <button class="nav-button left-button">
             <i class="fa-solid fa-chevron-left"></i>
         </button>
     `;
     for(let recipe of recipes){
-        console.log(recipe);
         content += `
             <div class="featured-item"> 
                 <div class="image">
@@ -45,12 +40,12 @@ async function displayFeatured(){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.html">${users[recipe.ownerID - 1].username}</a>
+                        <a href="profile.php">${recipe.username}</a>
                     </div>
-                    <img src="${recipe.picture}" alt="recipe image">
+                    <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
                 <div id="recipe-name"> 
-                    <p>${recipe.title}</p>
+                    <p>${recipe.recipeTitle}</p>
                 </div>
             </div>
         `;
@@ -65,36 +60,16 @@ async function displayFeatured(){
 }
 
 async function displayFeed(){
-    const data = await getData();
-    const recipes = [];
-    for(let x = 0; x < 5; x++){
-        for(let y = 0; y < data.recipes.length; y++){
-            recipes[x * data.recipes.length + y] = data.recipes[y];
-        }
-    }
-    const users = data.users;
-
-    for(let i=0; i<recipes.length; i++){
-        total = 0;
-        count = 0;
-        for(let rating of recipes[i].ratings){
-            total += rating.value;
-            count++;
-        }
-        recipes[i].avgRating = total / count;
-    }
-
+    const data = await getRecipe();
+    const recipes = data;
+    console.log(recipes);
     if(sortOrder=="id"){
         recipes.sort((a, b) => (parseInt(b.recipeID) - parseInt(a.recipeID)))
     }else if(sortOrder=="rating"){
         recipes.sort((a, b) => (parseInt(b.avgRating) - parseInt(a.avgRating)))
     }
-
-    console.log(recipes);
-    console.log(users);
     var content = "";
     for(let recipe of recipes){
-        console.log(recipe);
         content += `
             <div class="recipe-posts"> 
                 <div class="image">
@@ -105,15 +80,15 @@ async function displayFeed(){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.html">${users[recipe.ownerID - 1].username}</a>
+                        <a href="profile.php">${recipe.username}</a>
                     </div>
-                    <img src="${recipe.picture}" alt="recipe image">
+                    <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
                 <div id="recipe-name"> 
-                    <p>${recipe.title}</p>
+                    <p>${recipe.recipeTitle}</p>
                 </div>
                 <div id="tags">
-                    <p>${recipe.tags.map(tag => `#${tag}`).join(' ')}</p>
+                    <p>${recipe.tags}</p>
                 </div>
                 <div class="ratings">
                     <button type="button"> 
@@ -131,7 +106,7 @@ async function displayFeed(){
                     <button type="button"> 
                         <i class="fa-regular fa-star"></i>
                     </button> 
-                    <p>(${recipe.ratings.length} ratings)</p>
+                    <p>${recipe.avgRating} stars (${recipe.countRating} ratings)</p>
                 </div>
             </div>
         `;
@@ -141,36 +116,15 @@ async function displayFeed(){
 }
 
 async function displaySaved(){
-    const data = await getData();
-    const recipes = [];
-    for(let x = 0; x < 5; x++){
-        for(let y = 0; y < data.recipes.length; y++){
-            recipes[x * data.recipes.length + y] = data.recipes[y];
-        }
-    }
-    const users = data.users;
-
-    for(let i=0; i<recipes.length; i++){
-        total = 0;
-        count = 0;
-        for(let rating of recipes[i].ratings){
-            total += rating.value;
-            count++;
-        }
-        recipes[i].avgRating = total / count;
-    }
-
+    const data = await getRecipe();
+    const recipes = data;
     if(sortOrder=="id"){
         recipes.sort((a, b) => (parseInt(b.recipeID) - parseInt(a.recipeID)))
     }else if(sortOrder=="rating"){
         recipes.sort((a, b) => (parseInt(b.avgRating) - parseInt(a.avgRating)))
     }
-
-    console.log(recipes);
-    console.log(users);
     var content = "";
     for(let recipe of recipes){
-        console.log(recipe);
         content += `
             <div class="recipe-posts"> 
                 <div class="image">
@@ -181,15 +135,15 @@ async function displaySaved(){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.html">${users[recipe.ownerID - 1].username}</a>
+                        <a href="profile.php">${recipe.username}</a>
                     </div>
-                    <img src="${recipe.picture}" alt="recipe image">
+                    <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
                 <div id="recipe-name"> 
-                    <p>${recipe.title}</p>
+                    <p>${recipe.recipeTitleitle}</p>
                 </div>
                 <div id="tags">
-                    <p>${recipe.tags.map(tag => `#${tag}`).join(' ')}</p>
+                    <p>${recipe.tags}</p>
                 </div>
                 <div class="ratings">
                     <button type="button"> 
@@ -207,7 +161,7 @@ async function displaySaved(){
                     <button type="button"> 
                         <i class="fa-regular fa-star"></i>
                     </button> 
-                    <p>(${recipe.ratings.length} ratings)</p>
+                    <p>${recipe.avgRating} stars (${recipe.countRating} ratings)</p>
                 </div>
             </div>
         `;
@@ -215,7 +169,3 @@ async function displaySaved(){
     const posts = document.getElementById('saved-section');
     posts.innerHTML = content;
 }
-
-displayFeed();
-displayFeatured();
-displaySaved();

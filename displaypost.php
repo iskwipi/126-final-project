@@ -1,0 +1,150 @@
+<?php
+session_start();
+echo implode($_SESSION);
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Post </title>
+        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="title-bar">
+            <h1>PlateMate</h1>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>    
+        </div>
+
+        <div class="left-panel">
+            <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i> Deep Search</a>
+            <a href="cookbook.php"><i class="fa-solid fa-book"></i> Cookbook</a>
+            <a href="profile.php"><i class="fa-solid fa-user"></i> Profile</a>
+        </div>
+
+        <div class="display-post-feed">
+            <div class="post-container"> 
+                <div class="post-title">
+                    <div class="post-title-row">
+                        <h2>Adobong Manok</h2>
+                        <div id="poster-profile">
+                            <a href="profile.php">Sir Nikko</a>
+                            <div class="post-bookmark">
+                                <button type="button">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-rate">
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                        <p>(50 ratings)</p>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p>Adobong Manok is a Filipino chicken stew made with soy sauce, vinegar, garlic, bay leaves, and peppercorns. It is a popular dish in the Philippines and is often served with rice.</p>
+                </div>
+                <div class="post-image">
+                    <img src="img.png" alt="recipe image">
+                </div>
+                <div class="post-tags">
+                    <p>Tags: </p>
+                    <p>#adobo #chicken #stew</p>
+                </div>
+                <div class="servings-multiplier">
+                    <button type="button" id="decrement-servings" class="servings-btn">-</button>
+                        <input type="number" id="servings-count" value="1" min="1" readonly>
+                    <button type="button" id="increment-servings" class="servings-btn">+</button>
+                    <p>Servings</p>
+                </div>
+                <hr>
+                <div class="recipe-information">
+                    <h3>Ingredients:</h3>
+                    <div class="post-ingredients">
+                        <ul>
+                            <li>1 kg chicken</li>
+                            <li>1/2 cup soy sauce</li>
+                            <li>1/2 cup vinegar</li>
+                            <li>1 garlic</li>
+                            <li>2 bay leaves</li>
+                            <li>1 tsp peppercorns</li>
+                            <li>Pinch salt</li>
+                        </ul>
+                    </div>
+                    <div class="recipe-instructions">
+                        <h4>Instructions: </h4>
+                        <div class="recipe-steps">
+                            <ul>
+                                <li>Step 1: yeah yeah yeah yeah</li>
+                                <li>Step 2: bruh bruh bruh</li>
+                                <li>Step 3: nah uh </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="post-interactions">
+                <h5>Ratings</h5>
+                <div class="post-ratings-container"> 
+                    <div class="your-interactions">
+                        <div class="your-ratings">
+                            <p>Your ratings:</p>
+                            <button type="button"> 
+                                <i class="fa-regular fa-star"></i>
+                            </button>
+                            <button type="button" class="rate-button"> 
+                                <i class="fa-regular fa-star"></i>
+                            </button>
+                            <button type="button" class="rate-button"> 
+                                <i class="fa-regular fa-star"></i>
+                            </button>
+                            <button type="button" class="rate-button"> 
+                                <i class="fa-regular fa-star"></i>
+                            </button>
+                            <button type="button" class="rate-button"> 
+                                <i class="fa-regular fa-star"></i>
+                            </button>
+                        </div>
+                        <div class="your-comment">
+                            <input type="text" id="comment-input" placeholder="Leave a comment...">
+                            <button type="button" id="comment-button">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <hr>
+                    <br>
+                    <div class="post-comments-ratings">
+                        <div class="interaction-container"> 
+                            <div class="user-header-row">
+                                <div id="user-profile">
+                                    <a href="profile.php">Sir Nikko:</a>
+                                </div>
+                                <div class="user-ratings">
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="user-comment">
+                                <p>This is a great recipe! I love it!</p>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

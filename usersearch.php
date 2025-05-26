@@ -1,7 +1,11 @@
+<?php
+session_start();
+echo implode($_SESSION);
+?>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title> Platemate Deep Search </title>
+        <title> Platemate search results </title>
         <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
@@ -14,26 +18,24 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>    
         </div>
-
         <div class="left-panel">
-            <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
-            <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
-            <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
+            <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
+            <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
-
-        <div class="search-recipe-feed">
+        <div class="search-user-feed">
             <div class="search-feed-header">
                 <h2>Quick search results</h2>
                 <div class="category-section">
                     <a> 
-                        <button type="button" class="recipe-button">
+                        <button type="button" class="recipe-button" onclick="switchSearchMode()">
                             <i class="fa-solid fa-file-lines"></i>
                             Recipes
                         </button>
                     </a>
                     <a> 
-                        <button type="button" class="user-button" onclick="switchSearchMode()">
+                        <button type="button" class="user-button">
                             <i class="fa-solid fa-user"></i>
                             Users
                         </button>
@@ -42,15 +44,8 @@
                 <h3>
                     <div class="query-title" id="query-title"></div>
                 </h3>
-                <div class="mode-section">
-                    <label for="display-mode">Display Mode: </label>
-                    <select id="display-mode">
-                        <option value="id">Most Recent</option>
-                        <option value="rating">Top Rated</option>
-                    </select>
-                </div>
             </div>
-            <div class="search-posts" id="search-posts"></div>  
+            <div class="search-feed-content" id="search-feed-content"></div>
         </div>
         <script src="renderSearch.js"></script>
         <script src="searchHandler.js"></script>

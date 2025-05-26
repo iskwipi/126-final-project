@@ -1,3 +1,7 @@
+<?php
+session_start();
+echo implode($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,23 +12,19 @@
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
     </head>
     <body>
-
         <div class="title-bar">
             <h1>PlateMate</h1>
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search for a user or a recipe..." onkeypress="handleSearch(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
-            </div>    
+            </div>
         </div>
-
         <div class="left-panel">
-            <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
-            <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
-            <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
+            <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
+            <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
-        
-
         <div class="feed">
             <div class="featured-section" id="featured-section">
                 <button class="nav-button left-button">
@@ -34,19 +34,16 @@
                 <button class="nav-button right-button">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
-
             </div>
-
             <div class="container">
                 <!-- <i class="fa-solid fa-user"></i> -->
                 <div class="upload-section">
-                    <a href="posting.html"> 
+                    <a href="posting.php"> 
                         <button type="button">
                         <input type="text" id="uploadRecipe" placeholder="New recipe idea?                   ">
                         <i class="fa-regular fa-image"></i> </button>
                     </a>    
                 </div>
-
                 <div class="mode-section">
                     <label for="display-mode">Display Mode: </label>
                     <select id="display-mode">
@@ -55,7 +52,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="posts-section" id="posts-section"></div>
         <script src="renderFeed.js"></script>
         <script src="searchHandler.js"></script>

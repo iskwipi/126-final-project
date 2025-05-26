@@ -41,7 +41,7 @@ body {
     justify-content: center;
 }
 
-.search-bar input, .deep-search-bar input {
+.search-bar input, .deep-search-bar input, #comment-input input {
     border-radius: 5rem;
     padding: 0.75rem 2.5rem 0.75rem 1.5rem; 
     font-size: 1rem;
@@ -59,23 +59,28 @@ body {
     color: #aaa;
     pointer-events: none;
 }
-
-#user a:hover, .ratings button:hover, .nav-button:hover,  .deep-search-button:hover, .post-recipe-button:hover, 
-.upload-section input:hover, .search-bar input:hover, .upload-picture:hover, .deep-search-bar input:hover, 
-.new-post-body input:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover{
+#user a:hover, .ratings button:hover, .nav-button:hover, .add-more:hover, .deep-search-button:hover, 
+.upload-section input:hover, .search-bar input:hover, .login-input input:hover, .signup-form input:hover,
+.post-recipe-button:hover, .upload-picture:hover, .deep-search-bar input:hover, 
+.new-post-body input:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover, #comment-button:hover,
+.rate-button:hover, #poster-profile a:hover, .servings-btn:hover{
     transform: translateY(-1px);  
 }
 
-#user a:hover, .ratings button:hover, .nav-button:hover, .upload-picture:hover {
+#user a:hover, .ratings button:hover, .nav-button:hover, .upload-picture:hover, #poster-profile a:hover{
     background: rgba(135, 134, 134, 0.893);
 }
 
-.deep-search-button:hover,.post-recipe-button:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover {
+.deep-search-button:hover,.post-recipe-button:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover, .servings-btn:hover {
     background: rgba(35, 35, 35, 0.893);
 }
 
-.search-bar input:hover, .deep-search-bar input:hover, .new-post-body input:hover, .upload-section input:hover {
+.search-bar input:hover, .deep-search-bar input:hover, .new-post-body input:hover, .upload-section input:hover, #comment-input:hover  {
     background: rgba(233, 233, 233, 0.893);
+}
+
+.upload-section input:hover, .search-bar input:hover, .login-input input:hover, .signup-form input:hover {
+    background: rgba(210, 209, 209, 0.893);
 }
 
 
@@ -109,7 +114,7 @@ body {
     color:black
 }
 
-.feed, .deepsearch-feed, .post-container, .search-user-feed, .search-recipe-feed  {
+.feed, .deepsearch-feed, .search-user-feed, .search-recipe-feed, .display-post-feed  {
     margin-top: 6rem ;
     margin-left: 220px;
     padding: 2rem;
@@ -264,7 +269,7 @@ hr {
 
 .title-field input, .description-field textarea, .serving-field input, .instructions-field input,
 .ingredients-field input, .tags-field input, .ingredients-field-search input, .posting-tags-field input,
-textarea {
+textarea, #comment-input input  {
     border-radius: 0.5rem;
     padding: 0.75rem 2.5rem 0.75rem 1.5rem;
     font-size: 1rem;
@@ -273,7 +278,7 @@ textarea {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.instructions-field input {
+.instructions-field input, #comment-input input {
     width: 46%;
 }
 
@@ -400,7 +405,7 @@ textarea {
     z-index:1;
 }
 
-.bookmark button {
+.bookmark button, .post-bookmark button {
     color: white;
     border: none;
     background: transparent;
@@ -412,7 +417,7 @@ textarea {
     padding: 0;
 }
 
-.bookmark i {
+.bookmark i, .post-bookmark i {
     position: absolute;
     top: 0;
     left: 0;
@@ -434,7 +439,7 @@ textarea {
     top:1rem;
 }
 
-.ratings button {
+.ratings button, .your-ratings button {
     font-size: 1rem;
     border: none;
     background: transparent;
@@ -670,7 +675,6 @@ textarea {
     gap: 2rem;
     padding: 0rem 2rem 1rem 2rem;
 }
-
 /* searchresults.html */
 
 .search-feed-content {
@@ -748,4 +752,425 @@ textarea {
     font-size: 0.9rem;
 }
 
-/* recipe search */
+/* display post */
+
+.post-title h2{
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.post-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+}
+
+.post-bookmark {
+    margin-top: 0.2rem;
+    margin-left: 1rem;
+}
+.post-bookmark button {
+    color:black;
+}
+
+.post-bookmark i {
+    font-size: 3.5rem;
+    pointer-events: none;
+}
+
+#poster-profile a {
+    text-decoration: none;
+    color: black;
+    padding: 1rem 2rem;     
+    font-size: 1.5rem;      
+    border-color: black;
+    border-radius: 3rem;     
+    outline: 2px solid #000;
+    font-weight: bold;
+}
+
+#user-profile a {
+    text-decoration: none;
+    color:black;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.post-rate {
+    margin-top: -3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.1;
+}
+
+.post-rate p {
+    margin: 0;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.post-rate i {
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+.post-image, .post-tags {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.post-image img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+
+}
+
+.servings-multiplier, #poster-profile {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.servings-multiplier p {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+#servings-count {
+    width: 1.5rem;
+    text-align: center;
+}
+
+.servings-btn {
+    cursor:pointer;
+    background: black;
+    color: white;
+    padding:  0.7rem;
+    gap: 0.5rem;
+}
+
+.display-post-feed li {
+    list-style: none;
+    margin: 0.5rem 0;
+    font-size: 2rem;
+}
+
+.display-post-feed h3, .display-post-feed h4, .display-post-feed h5{
+    font-size: 3rem;
+    text-align:left;
+    margin-left: 0;     
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+
+.your-interactions, .interaction-container{
+    background: #f8f8f8;
+    border: 1.5px solid #c0c0c0;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+
+.user-comment {
+    background: #ffffff;
+    border: 1.5px solid #c0c0c0;
+    border-radius: 0.5rem;
+    padding: 2rem;
+}
+
+.your-ratings {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.your-ratings button {
+    margin-top: -0.4rem;
+}
+
+.user-ratings i {
+    margin-top: 1.1rem;
+}
+
+.your-ratings p {
+    margin: 0;
+    margin-bottom:1%;
+    font-size: 1.5rem;
+    font-weight:bold;
+}
+
+.user-ratings p {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+#user-profile {
+    margin-bottom: 0.1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.user-ratings {
+    margin-bottom: 1rem;
+}
+
+.user-comment {
+    background: #ffffff;
+    border: 1.5px solid #c0c0c0;
+    border-radius: 0..5rem;
+    padding: 0rem;
+}
+
+.user-comment p {
+    font-size: 1.2rem;
+    margin-left: 1%;
+}
+
+.your-comment {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+#comment-input {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 1.2rem;
+}
+
+#comment-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.user-header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.featured-items-container {
+    display: flex;
+    width: 80%;
+    margin: 0;
+    gap: 0.5rem;
+}
+
+.landing-signuppage-container {
+    max-width: 100%;
+    height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+#landingpage {
+    margin: 0;
+    margin-left:5rem;
+}
+.website-name {
+    margin-right: 5rem;
+    display: flex;
+    width: 60%;
+    font-size: 9rem;
+    font-weight: bold;
+}
+.website-name > p {
+    margin: 0;
+}   
+
+.login-tab {
+    position:static;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: inherit;
+}
+.login-tab-container {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: darkgray;
+    border-radius: 1.25rem 0 0 1.25rem;
+}
+.login-tab-contents{
+    width: 90%;
+    margin: 2rem;
+    margin-bottom: 1rem;
+} 
+.login-tab #slogan {
+    margin: 0;
+    margin-bottom: .5rem;
+    font-weight: bold;
+    font-size: 4rem;
+}
+.login-tab-container #join-today {
+    margin: 0 0 2rem 0;
+    font-weight: bold;
+    font-size: 2rem;
+}
+.login-tab-container #subtitle{
+    margin: 0;
+    font-weight: normal;
+    font-size: 1rem;
+}
+.login-input, .signup-form {
+    margin: 0.4rem 0 0.4rem 0;
+}
+.login-input input, .signup-form input{
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    border: 1px solid #ccc;
+}
+.login-input > input {
+    width: 60%;
+    height: 3rem;
+    padding: 0.15rem 1.5rem 0.15rem 1rem; 
+    border-radius: 5rem;
+}
+#login-button,  #next-button{
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+#login-button > button, .signup-form > button {
+    width: 68%;
+    height: 2.75rem;
+    border-radius: 5rem;
+    border: 1px solid #ccc;
+    font-weight: bold;
+}
+#login-button button:hover, .signup-form > button:hover{
+    background-color: black;
+    color: white;
+}
+#or-div {
+    width: 68%;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    margin: 0;
+    gap: .5rem;
+}
+#or-div > p {
+    width: fit-content;
+    font-weight: bold;
+}
+#or-div hr {
+    flex: 1;
+    height: 1.5px;
+    border: none;
+    background-color: black;
+    margin: 0;
+}
+#signup-button {
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+#signup-button > button{
+    width: 68%;
+    height: 2.75rem;
+    border-radius: 5rem;
+    border: 1px solid #ccc;
+    font-weight: bold;
+}
+#signup-button button:hover {
+    background-color: black;
+    color: white;
+}
+
+#signuppage {
+    margin: 0;
+    margin-right: 5rem;
+}
+#signuppage .website-name {
+    margin: 0;
+    margin-left: 5rem;
+}
+.signup-tab {
+    position:static;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    height: inherit;
+}
+.signup-tab-container {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: darkgray;
+    border-radius: 0 1.25rem 1.25rem 0;
+    text-align: right;
+    align-items: flex-end;
+}
+.signup-tab-contents{
+    width: 80%;
+    margin: 2rem;
+    text-align: right;
+} 
+.signup-tab-contents > p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+#signup-subtitle {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    font-weight: normal;
+}
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    gap: .5rem;
+}
+.signup-form > input{
+    width: calc(100% - .5rem);
+    height: 3rem;
+    padding-left: .5rem;
+    border-radius: .5rem;
+}
+#dob-input > input {
+    width: calc(100% - 1rem);
+}
+.signup-form input, .signup-form input::placeholder {
+    font-size: 1rem;
+}
+#dob {
+    padding-right: .5rem;
+}
+.signup-form > button {
+    width: 100%;
+    border-radius: 5rem;
+}
+#location-input {
+    flex-direction: row;
+}
+#signup-input-subtitle {
+    font-size: .75rem;
+    margin: 0;
+    color: rgb(47, 47, 47);
+}

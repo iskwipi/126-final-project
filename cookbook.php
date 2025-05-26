@@ -1,3 +1,7 @@
+<?php
+session_start();
+echo implode($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,24 +12,20 @@
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
     </head>
     <body>
-
-    
         <div class="title-bar">
             <h1>PlateMate</h1>
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..."  onkeypress="handleSearch(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>    
         </div>
-
         <div class="left-panel">
-            <a href="homepage.html"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.html"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
-            <a href="cookbook.html"><i class="fa-solid fa-book"></i>  Cookbook</a>
-            <a href="profile.html"><i class="fa-solid fa-user"></i>  Profile</a>
+            <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
+            <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
-
         <div class="feed">
             <div class="container">
                 <h2>Saved recipes</h2>
@@ -37,8 +37,8 @@
                     </select>
                 </div>
             </div>
-
             <div class="saved-section" id="saved-section"></div>
             <script src="renderFeed.js"></script>
+            <script src="searchHandler.js"></script>
     </body>
 </html>
