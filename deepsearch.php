@@ -13,7 +13,12 @@ echo implode($_SESSION);
     </head>
     <body>
         <div class="title-bar">
-            <h1>PlateMate</h1>   
+            <img src="logo-white.png">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Quick search"  onkeypress="handleSearch(event)">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>    
         </div>
         <div class="left-panel">
             <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
@@ -22,11 +27,11 @@ echo implode($_SESSION);
             <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
         <div class="deepsearch-feed">
-            <h2>Quick Search</h2>
+            <!-- <h2>Quick Search</h2>
             <div class="deep-search-bar">
                 <input type="text" id="searchInput" placeholder="Search for a user or a recipe..." onkeypress="handleSearch(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
+            </div> -->
             <hr>
             <div class="deepsearch-container">
                 <h3>Deep Search</h3>

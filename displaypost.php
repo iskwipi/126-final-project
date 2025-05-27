@@ -13,13 +13,13 @@ echo implode($_SESSION);
     </head>
     <body>
         <div class="title-bar">
-            <h1>PlateMate</h1>
+            <img src="logo-white.png">
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..."  onkeypress="handleSearch(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
             </div>    
         </div>
-
         <div class="left-panel">
             <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
             <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i> Deep Search</a>

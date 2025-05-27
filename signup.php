@@ -45,15 +45,19 @@ echo implode($_SESSION);
             return true;
         }
     </script>
-    <body>
+    <body id="overflow-hidden">
+        <div class="background-design-landing-signuppage">
+            <div id="signup-rectangle2"></div>
+            <div id="signup-rectangle1"></div>    
+        </div>
         <div id="signuppage" class="landing-signuppage-container">
             <div class="signup-tab">
                 <div class="signup-tab-container">
                     <div class="signup-tab-contents">
-                        <p>Signup (Step <?= $step ?> of 3)</p>
+                        <p>Signup</p>
 
                         <?php if ($step == 1): ?>
-                            <p id="signup-subtitle">Get ready for your cooking journey!</p>
+                            <p id="signup-subtitle">Get ready for your cooking journey!<br><b>(Step <?= $step ?> of 3)</b></p>
                             <form class="signup-form" method="post">
                                 <input type="hidden" name="step" value="1">
                                 <div id="username-input" class="signup-form">
@@ -70,7 +74,7 @@ echo implode($_SESSION);
                             </form>
 
                         <?php elseif ($step == 2): ?>
-                            <p id="signup-subtitle">Almost there!</p>
+                            <p id="signup-subtitle">Almost there!<br><b>(Step <?= $step ?> of 3)</b></p>
                             <form class="signup-form" method="post">
                                 <input type="hidden" name="step" value="2">
                                 <div id="occupation-input" class="signup-form">
@@ -85,7 +89,7 @@ echo implode($_SESSION);
                             </form>
 
                         <?php elseif ($step == 3): ?>
-                            <p id="signup-subtitle">One last step!</p>
+                            <p id="signup-subtitle">One last step!<br><b>(Step <?= $step ?> of 3)</b></p>
                             <form class="signup-form" action="register.php" method="post" onsubmit="return validatePasswords();">
                                 <input type="hidden" name="step" value="3">
                                 <div id="password-input" class="signup-form">
@@ -101,7 +105,8 @@ echo implode($_SESSION);
                 </div>
             </div>
             <div class="website-name">
-                <p>Platemate</p>
+                <div id="logo"><img src="logo-white.png"></div>
+                <p>latemate</p>
             </div>
         </div>
     </body>
