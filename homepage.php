@@ -13,11 +13,12 @@ echo implode($_SESSION);
     </head>
     <body>
         <div class="title-bar">
-            <h1>PlateMate</h1>
+            <img src="logo-white.png">
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..." onkeypress="handleSearch(event)">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..."  onkeypress="handleSearch(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
+                </div>
+            </div>    
         </div>
         <div class="left-panel">
             <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
@@ -27,15 +28,19 @@ echo implode($_SESSION);
         </div>
         <div class="feed">
             <div class="featured-section" id="featured-section">
-                <button class="nav-button left-button">
+                <div class="section-title"><h1>Today's Featured Recipes</h1></div>
+                <div id="section">
+                    <button class="nav-button left-button">
                     <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <div class="featured-posts" id="featured-posts"></div>
-                <button class="nav-button right-button">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
+                    </button>
+                    <div class="featured-posts" id="featured-posts"></div>
+                    <button class="nav-button right-button">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+                
             </div>
-            <div class="container">
+            <div class="homepage-container">
                 <!-- <i class="fa-solid fa-user"></i> -->
                 <div class="upload-section">
                     <a href="posting.php"> 

@@ -12,11 +12,10 @@ echo implode($_SESSION);
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
     </head>
     <body>
-
         <div class="title-bar">
-            <h1>PlateMate</h1>
+            <img src="logo-white.png">
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for a user or a recipe...">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..."  onkeypress="handleSearch(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>    
@@ -42,7 +41,7 @@ echo implode($_SESSION);
                 <p>People per serving</p> 
                 <input type="number" id="recipe-serving" placeholder="Integer">
             </div> 
-           <div class="ingredients-field">
+            <div class="ingredients-field">
                 <p>Ingredients</p>
                 <div class="ingredient-row">
                     <div class="input-wrapper">
@@ -71,7 +70,7 @@ echo implode($_SESSION);
             <div class="instructions-field">
                 <p>Instructions</p>
                 <p style="font-size:1rem">Write your step-by-step instructions here.</p>
-                  <div class="step-wrapper">
+                    <div class="step-wrapper">
                     <input type="text" id="recipe-instructions" placeholder="Step X: ...">
                     <i class="fa-solid fa-plus"></i>
                 </div>

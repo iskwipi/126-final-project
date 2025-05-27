@@ -11,13 +11,19 @@ echo implode($_SESSION);
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body id="overflow-hidden">
+        <div class="background-design-landing-signuppage">
+                <div id="landing-rectangle1"></div>
+                <div id="landing-rectangle2"></div>
+        </div>
+
         <div id="landingpage" class="landing-signuppage-container">
             <div class="website-name">
-                <p>Platemate</p>
+                <div id="logo"><img src="logo-white.png"></div>
+                <p>latemate</p>
             </div>
             <div class="login-tab">
-                <p id="slogan">Slogan</p>
+                <p id="slogan">A taste of everyone’s table.</p>
                 <div class="login-tab-container">
                     <div class="login-tab-contents">
                         <form action="login.php" method="post">

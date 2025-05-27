@@ -9,9 +9,15 @@ h2, h3, h4 {
 
 body {
     margin: 0;
+    background-color: #D7E7CF;
 }
 
-*::placeholder, button, input {
+#overflow-hidden {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+*::placeholder, button, input, select {
     font-family: 'Quicksand';
 }
 
@@ -21,13 +27,17 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 8rem; 
-    background: white; 
+    height: 7rem; 
+    background: #487530; 
     z-index: 1000; 
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
+}
+.title-bar > img {
+    height: 5rem;
+    width: auto;
 }
 
 
@@ -35,17 +45,18 @@ body {
     position: relative; 
     margin: 0;
     padding-top: 0.5rem;
-    padding-right: 2.5rem;
+    /* padding-right: 2.5rem; */
     text-align: center;
     display: flex;
     justify-content: center;
+    width: 20rem;
 }
 
 .search-bar input, .deep-search-bar input, #comment-input input {
     border-radius: 5rem;
-    padding: 0.75rem 2.5rem 0.75rem 1.5rem; 
+    padding: 0.75rem 1.5rem 0.75rem 1.5rem; 
     font-size: 1rem;
-    width: 250px;
+    width: 100%;
     transition: box-shadow 0.3s ease, transform 0.2s ease;
     border: 1px solid #ccc;
 }
@@ -53,8 +64,8 @@ body {
 .search-bar i, .deep-search-bar i {
     font-size: 1rem;
     position: absolute;
-    right: 4.4rem; 
-    top: 1.9rem;
+    right: 1.4rem; 
+    top: 1.95rem;
     transform: translateY(-50%);
     color: #aaa;
     pointer-events: none;
@@ -114,13 +125,24 @@ body {
     color:black
 }
 
-.feed, .deepsearch-feed, .search-user-feed, .search-recipe-feed, .display-post-feed  {
-    margin-top: 6rem ;
+.feed, .deepsearch-feed, .search-user-feed, .search-recipe-feed, .display-post-feed, .post-container {
+    margin-top: 7rem;
     margin-left: 220px;
-    padding: 2rem;
+    margin-right: 2rem;
+    /* padding: 2rem; */
     min-height: 100vh;
 }
-
+.display-post-feed {
+    margin-right: 0;
+}
+.post-container, .search-user-feed{
+    background-color: white;
+    margin-right: 0;
+    padding: 2rem;
+}
+.post-container p {
+    font-weight: bold;
+}
 .recipe-search-fields h3, .recipe-search-fields h4 {
     margin-top: 2rem;
     font-size: 1.7rem;
@@ -187,11 +209,19 @@ hr {
 
 .featured-section, .saved-section {
     display: flex;
+    flex-direction: column;
     overflow-x: auto;
     gap: 1.2rem;
-    padding-bottom: 1rem;
 }
-
+.featured-section {
+    gap: 0;
+}
+#section {
+    display: flex;
+    flex-direction: row;
+    min-height: 10rem;
+    max-height: 10rem;
+}
 .featured-section::-webkit-scrollbar {
     display: none;
 }
@@ -200,7 +230,6 @@ hr {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none;    /* Firefox */
 }
-
 .left-button {
     left: -20px;
 }
@@ -223,8 +252,7 @@ hr {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
-    background: #fff;
-    border-radius: 2rem;
+
     text-align: center;
     position: relative;
 }
@@ -240,10 +268,16 @@ hr {
 .featured-item {
     width: 238px;
 }
-
-.featured-item img, .posts-section img, .saved-section img, .search-posts img{
-    width: 100%;
+.featured-item img, .recipe-posts img, .saved-section img, .search-posts img{
+    min-height: 10rem;
+    max-height: 10rem;
+    min-width: 100%;
+    max-width: 100%;
     border-radius: 0.2rem;
+}
+.recipe-posts > .image > img{
+    min-height: 10rem;
+    max-height: 10rem;
 }
 
 .recipe-posts, .recipe-search {
@@ -338,7 +372,7 @@ textarea, #comment-input input  {
 }
 
 .input-wrapper i {
-    left: 15.3rem;
+    left: 14rem;
 }
 
 .step-wrapper i {
@@ -459,12 +493,12 @@ textarea, #comment-input input  {
     cursor: pointer;
 }
 
-.container {
+.homepage-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    margin: 2rem 0;
+    /* gap: 1rem; */
+    margin: 1rem 0;
 }
 
 .upload-section {
@@ -485,7 +519,7 @@ textarea, #comment-input input  {
 
 .upload-section i{
     font-size: 2rem;
-    margin-left: 1rem;
+    padding-left: 1rem;
 }
 
 .upload-section button, .new-post-body button {
@@ -500,10 +534,13 @@ textarea, #comment-input input  {
 }
 
 .mode-section select, .unit-type select {
-    padding: 15px 16px;
+    padding: 10px 11px;
     border-radius: 0.5rem;
 }
 
+#profile-body {
+    background-color: white;
+}
 .profile {
     display: flex;        
     justify-content: right;
@@ -514,7 +551,7 @@ textarea, #comment-input input  {
     display: flex;
     width: 80%;
     height: 30%;
-    background-color: lightgray;
+    background-color: #B1CEA2;
     border-radius: 0.5rem;
     margin: 0;
 }
@@ -684,7 +721,7 @@ textarea, #comment-input input  {
 }
 
 .category-section {
-    margin-left: 80%;
+    width: 30%;
 }
 
 .category-section a, .user-details a{
@@ -970,16 +1007,58 @@ textarea, #comment-input input  {
     gap: 0.5rem;
 }
 
+.background-design-landing-signuppage {
+    max-width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 0;
+}  
+#landing-rectangle1 {
+    position: absolute;
+    left: -75.5rem;
+    width: 80rem;
+    height: 80rem;
+    background-color: #487530;
+    transform: skew(-57.9deg);
+}
+#landing-rectangle2 {
+    position: absolute;
+    right: -190rem;
+    width: 80rem;
+    height: 80rem;
+    background-color:#B1CEA2;
+    transform: skew(55deg);
+    opacity: 60%;
+}
+#signup-rectangle1 {
+    position: absolute;
+    left: -158rem;
+    width: 80rem;
+    height: 80rem;
+    background-color: #B1CEA2;
+    transform: skew(-76deg);
+    opacity: 60%;
+}
+#signup-rectangle2 {
+    position: absolute;
+    right: -159.6rem;
+    width: 80rem;
+    height: 80rem;
+    background-color: #487530;
+    transform: skew(35deg);
+    
+}
+
 .landing-signuppage-container {
     max-width: 100%;
     height: 100vh;
-    overflow-y: hidden;
-    overflow-x: hidden;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     vertical-align: middle;
+    position: relative;
+    z-index: 1;
 }
 
 #landingpage {
@@ -989,13 +1068,27 @@ textarea, #comment-input input  {
 .website-name {
     margin-right: 5rem;
     display: flex;
+    flex-direction: row;
     width: 60%;
     font-size: 9rem;
     font-weight: bold;
+    color: white;
 }
 .website-name > p {
     margin: 0;
 }   
+#logo {
+    display: flex;
+    height: fit-content;
+    /* width: 20rem; */
+    height: auto;
+    justify-content: center;
+}
+#logo > img {
+
+    height: auto;
+    
+}
 
 .login-tab {
     position:static;
@@ -1007,12 +1100,17 @@ textarea, #comment-input input  {
     width: 100%;
     height: inherit;
 }
-.login-tab-container {
+.login-tab-container, .signup-tab-container {
     height: fit-content;
     display: flex;
     flex-direction: column;
-    background-color: darkgray;
+    background-color: rgba(102, 146, 78, .93);
     border-radius: 1.25rem 0 0 1.25rem;
+}
+.signup-tab-container {
+    border-radius: 0 1.25rem 1.25rem 0;
+    text-align: right;
+    align-items: flex-end;
 }
 .login-tab-contents{
     width: 90%;
@@ -1023,7 +1121,7 @@ textarea, #comment-input input  {
     margin: 0;
     margin-bottom: .5rem;
     font-weight: bold;
-    font-size: 4rem;
+    font-size: 1.5rem;
 }
 .login-tab-container #join-today {
     margin: 0 0 2rem 0;
@@ -1042,25 +1140,27 @@ textarea, #comment-input input  {
     transition: box-shadow 0.3s ease, transform 0.2s ease;
     border: 1px solid #ccc;
 }
-.login-input > input {
-    width: 60%;
+.login-input > input , .login-input > button {
+    width: 70%;
     height: 3rem;
     padding: 0.15rem 1.5rem 0.15rem 1rem; 
     border-radius: 5rem;
+    box-sizing: border-box;
 }
-#login-button,  #next-button{
+#login-button, #next-button{
     margin-top: 1rem;
     margin-bottom: 0;
 }
-#login-button > button, .signup-form > button {
-    width: 68%;
+#login-button > button, .signup-form > button, #signup-button > button{
     height: 2.75rem;
     border-radius: 5rem;
     border: 1px solid #ccc;
     font-weight: bold;
+    
 }
-#login-button button:hover, .signup-form > button:hover{
-    background-color: black;
+#login-button button:hover, #signup-button button:hover, .signup-form > button:hover{
+    background-color: #487530;
+    border: 1px solid #487530;
     color: white;
 }
 #or-div {
@@ -1086,17 +1186,6 @@ textarea, #comment-input input  {
     margin-top: 0;
     margin-bottom: 2rem;
 }
-#signup-button > button{
-    width: 68%;
-    height: 2.75rem;
-    border-radius: 5rem;
-    border: 1px solid #ccc;
-    font-weight: bold;
-}
-#signup-button button:hover {
-    background-color: black;
-    color: white;
-}
 
 #signuppage {
     margin: 0;
@@ -1115,15 +1204,6 @@ textarea, #comment-input input  {
     text-align: left;
     width: 100%;
     height: inherit;
-}
-.signup-tab-container {
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    background-color: darkgray;
-    border-radius: 0 1.25rem 1.25rem 0;
-    text-align: right;
-    align-items: flex-end;
 }
 .signup-tab-contents{
     width: 80%;
@@ -1151,6 +1231,7 @@ textarea, #comment-input input  {
     width: calc(100% - .5rem);
     height: 3rem;
     padding-left: .5rem;
+    padding-right: .5rem;
     border-radius: .5rem;
 }
 #dob-input > input {
