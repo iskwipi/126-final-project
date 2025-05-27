@@ -1,8 +1,8 @@
 <?php
 session_start();
-$step = $_POST['step'] ?? 1;
+$step = $_GET['step'] ?? 1;
 
-if (isset($_SESSION['userID']) || isset($_SESSION['username'])) {
+if ($step == 1 && $_SERVER['REQUEST_METHOD'] !== 'POST') {
     unset($_SESSION['userID']);
     unset($_SESSION['username']);
     unset($_SESSION['email']);
@@ -14,12 +14,14 @@ if (isset($_SESSION['userID']) || isset($_SESSION['username'])) {
     $_SESSION['username'] = $_POST['username'];
     $_SESSION['email'] = $_POST['email'];
     $_SESSION['dob'] = $_POST['dob'];
-    $step = 2;
+    header("Location: " . $_SERVER['PHP_SELF'] . "?step=2");
+    exit();
 }else if ($step == 2 && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['occupation'] = $_POST['occupation'];
     $_SESSION['province'] = $_POST['province'];
     $_SESSION['city'] = $_POST['city'];
-    $step = 3;
+    header("Location: " . $_SERVER['PHP_SELF'] . "?step=3");
+    exit();
 }
 echo implode($_SESSION);
 ?>

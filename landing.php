@@ -20,7 +20,7 @@ echo implode($_SESSION);
                 <p id="slogan">Slogan</p>
                 <div class="login-tab-container">
                     <div class="login-tab-contents">
-                        <form action="login.php" method="post">
+                        <form action="login.php" method="get">
                             <p id="join-today">Join today!</p>
                             <p id="subtitle">Already have an account?</p>
                             <div class="login-input">
