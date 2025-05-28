@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="input-wrapper">
                         <input type="text" id="recipe-ingredients" name="recipe-ingredients[]" placeholder="Ingredient Name" required>
                         <i class="fa-solid fa-plus" onclick="addIngredientRow(this)"></i>
-                        <i class="fa-regular fa-circle-xmark" onclick="removeIngredientRow(this)"></i>
+                        <i class="fa-solid fa-xmark" onclick="removeIngredientRow(this)"></i>
                     </div>
                     <input type="text" id="ingredient-measurement" name="ingredient-measurement[]" placeholder="Measure" required>
                     <select id="unit-type" name="unit-type[]" required>
