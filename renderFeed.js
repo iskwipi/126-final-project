@@ -40,7 +40,7 @@ async function displayFeatured(){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.php">${recipe.username}</a>
+                        <a href="profile.php?id=${recipe.userID}">${recipe.username}</a>
                     </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
@@ -88,7 +88,7 @@ async function displayFeed(){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.php">${recipe.username}</a>
+                        <a href="profile.php?id=${recipe.userID}">${recipe.username}</a>
                     </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
@@ -158,7 +158,7 @@ async function displaySaved(){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.php">${recipe.username}</a>
+                        <a href="profile.php?id=${recipe.userID}">${recipe.username}</a>
                     </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>

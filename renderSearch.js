@@ -42,7 +42,7 @@ async function filterRecipes(searchTerm){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.php">${recipe.username}</a>
+                        <a href="profile.php?id=${recipe.userID}">${recipe.username}</a>
                     </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
@@ -103,15 +103,15 @@ async function filterUsers(searchTerm){
     for(let user of users){
         const birthYear = new Date(user.dateOfBirth);
         content += `
-            <div class="profile-container"> 
+            <div class="profile-container" data-profile-id="${user.userID}"> 
                 <div class="user-details">
-                    <a href="profile.php"><strong>${user.username}</strong></a>
+                    <a><strong>${user.username}</strong></a>
                     <div class="user-info">
                         <p>${Math.round((currentYear - birthYear)/ year)}, ${user.occupation}</p>
                         <p>${user.followerCount != null ? user.followerCount + ' follower' + (user.followerCount > 1 ? 's' : '') : '0 followers'}</p>
                     </div>
                     <div class="user-avg-rating">
-                        <p>Average recipe rating:</p>
+                        <p>Average recipe rating: ${user.avgRating != null ? user.avgRating : 0}</p>
                         <i class="fa-regular fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                         <i class="fa-regular fa-star"></i>
@@ -125,4 +125,12 @@ async function filterUsers(searchTerm){
     }
     const posts = document.getElementById('search-feed-content');
     posts.innerHTML = content;
+    const profiles = document.querySelectorAll('.profile-container');
+    profiles.forEach(profile => {
+        console.log("link");
+        profile.addEventListener('click', () => {
+        const profileID = profile.getAttribute('data-profile-id');
+        window.location.href = `profile.php?id=${profileID}`;
+        });
+    });
 }

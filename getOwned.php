@@ -1,7 +1,7 @@
 <?php
 session_start();
 $conn = new mysqli("localhost", "root", "", "platemate");
-$userID = $_SESSION['userID'];
+$userID = $_GET["id"] ?? $_SESSION['userID'];
 $result = $conn->query("SELECT recipe.recipeID, user.username, recipe.recipeTitle, picture.pictureLink, rating.avgRating, rating.countRating, recipe.recipeDescription, tag.tagTitle
 FROM ((((((recipe
 INNER JOIN (SELECT * FROM owns WHERE owns.userID = $userID) AS owns ON recipe.recipeID = owns.recipeID)

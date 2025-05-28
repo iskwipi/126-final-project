@@ -57,6 +57,10 @@ echo implode($_SESSION);
             </div>
         </div>
         <div class="profile-featured-section" id="profile-featured-section"></div>
+        <script>
+            const profileID = <?php echo json_encode($_GET["id"]); ?>;
+            console.log(profileID);
+        </script>
         <script src="renderOwned.js"></script>
         <script src="searchHandler.js"></script>
     </body>

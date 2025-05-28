@@ -2,7 +2,7 @@
 session_start();
 $conn = new mysqli("localhost", "root", "", "platemate");
 $userID = $_SESSION['userID'];
-$result = $conn->query("SELECT recipe.recipeID, user.username, recipe.recipeTitle, picture.pictureLink, rating.avgRating, rating.countRating, recipe.recipeDescription, tag.tagTitle
+$result = $conn->query("SELECT recipe.recipeID, user.userID, user.username, recipe.recipeTitle, picture.pictureLink, rating.avgRating, rating.countRating, recipe.recipeDescription, tag.tagTitle
 FROM (((((((recipe
 INNER JOIN (SELECT * FROM saves WHERE saves.userID = $userID) AS saves ON recipe.recipeID = saves.recipeID)
 INNER JOIN owns ON recipe.recipeID = owns.recipeID)
@@ -19,6 +19,7 @@ while ($row = $result->fetch_assoc()) {
     if (!isset($recipes[$id])) {
         $recipes[$id] = [
             "recipeID" => $row['recipeID'],
+            "userID" => $row['userID'],
             "username" => $row['username'],
             "recipeTitle" => $row['recipeTitle'],
             "pictureLink" => $row['pictureLink'],

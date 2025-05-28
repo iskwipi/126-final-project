@@ -1,6 +1,5 @@
 <?php
-$userID = $_SESSION['userID'];
-$username = $_SESSION['username'];
+$userID = $_GET["id"] ?? $_SESSION['userID'];
 $conn = new mysqli("localhost", "root", "", "platemate");
 $result = $conn->query("SELECT user.userID, username, dateOfBirth, occupation, email, provinceName, cityName
 FROM ((SELECT * FROM user WHERE user.userID = '$userID') AS user

@@ -7,7 +7,8 @@ document.getElementById('display-mode').addEventListener('change', function () {
 });
 
 async function getOwned(){
-    const response = await fetch("getOwned.php");
+    const request = typeof profileID !== 'undefined' ? "getOwned.php?id=" + profileID : "getOwned.php"
+    const response = await fetch(request);
     return response.json();
 }
 
