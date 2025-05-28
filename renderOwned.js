@@ -34,21 +34,11 @@ async function displayOwned(){
                     <p>${recipe.tags}</p>
                 </div>
                 <div class="ratings">
-                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
-                    </button> 
                     <p>${recipe.avgRating} stars (${recipe.countRating} ratings)</p>
                 </div>
             </div>

@@ -34,9 +34,8 @@ async function displayFeatured(){
             <div class="featured-item" data-recipe-id="${recipe.recipeID}"> 
                 <div class="image">
                     <div class="bookmark">
-                        <button type="button">
+                        <button type="button" onclick="saveRecipe(${recipe.recipeID}, event)">
                             <i class="fa-regular fa-bookmark"></i>
-                            <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
                         </button>
                     </div>
                     <div id="user">
@@ -82,8 +81,8 @@ async function displayFeed(){
             <div class="recipe-posts" data-recipe-id="${recipe.recipeID}"> 
                 <div class="image">
                     <div class="bookmark">
-                        <button type="button">
-                            <i class="fa-regular fa-bookmark"></i>
+                        <button type="button"onclick="saveRecipe(${recipe.recipeID}, event)">
+                            <i class="fa-regular fa-bookmark "></i>
                             <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
                         </button>
                     </div>
@@ -99,21 +98,11 @@ async function displayFeed(){
                     <p>${recipe.tags}</p>
                 </div>
                 <div class="ratings">
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button> 
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
                     <p>${recipe.avgRating} stars (${recipe.countRating} ratings)</p>
                 </div>
             </div>
@@ -154,7 +143,6 @@ async function displaySaved(){
                     <div class="bookmark">
                         <button type="button">
                             <i class="fa-regular fa-bookmark"></i>
-                            <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
                         </button>
                     </div>
                     <div id="user">
@@ -169,21 +157,11 @@ async function displaySaved(){
                     <p>${recipe.tags}</p>
                 </div>
                 <div class="ratings">
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button>
-                    <button type="button"> 
-                        <i class="fa-regular fa-star"></i>
-                    </button> 
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
                     <p>${recipe.avgRating} stars (${recipe.countRating} ratings)</p>
                 </div>
             </div>
