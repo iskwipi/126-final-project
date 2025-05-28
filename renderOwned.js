@@ -23,7 +23,7 @@ async function displayOwned(){
     var content = "";
     for(let recipe of recipes){
         content += `
-            <div class="recipe-posts"> 
+            <div class="recipe-posts" data-recipe-id="${recipe.recipeID}"> 
                 <div class="image">
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
@@ -56,4 +56,12 @@ async function displayOwned(){
     }
     const posts = document.getElementById('profile-featured-section');
     posts.innerHTML = content;
+    const recipePosts = document.querySelectorAll('.recipe-posts');
+    recipePosts.forEach(recipePost => {
+        console.log("link");
+        recipePost.addEventListener('click', () => {
+        const recipeID = recipePost.getAttribute('data-recipe-id');
+        window.location.href = `displaypost.php?id=${recipeID}`;
+        });
+    });
 }

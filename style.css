@@ -257,6 +257,10 @@ hr {
     position: relative;
 }
 
+.post-container{
+    margin: 0;
+}
+
 .featured-item{
     flex: 0 0 auto;
     background: #fff;

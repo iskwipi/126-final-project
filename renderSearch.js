@@ -33,7 +33,7 @@ async function filterRecipes(searchTerm){
     var content = "";
     for(let recipe of recipes){
         content += `
-            <div class="recipe-posts"> 
+            <div class="recipe-posts" data-recipe-id="${recipe.recipeID}"> 
                 <div class="image">
                     <div class="bookmark">
                         <button type="button">
@@ -75,6 +75,14 @@ async function filterRecipes(searchTerm){
     }
     const posts = document.getElementById('search-posts');
     posts.innerHTML = content;
+    const recipePosts = document.querySelectorAll('.recipe-posts');
+    recipePosts.forEach(recipePost => {
+        console.log("link");
+        recipePost.addEventListener('click', () => {
+        const recipeID = recipePost.getAttribute('data-recipe-id');
+        window.location.href = `displaypost.php?id=${recipeID}`;
+        });
+    });
 }
 
 async function getUsers(){

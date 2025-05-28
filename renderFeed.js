@@ -16,13 +16,13 @@ async function renderFeed(){
     }
 }
 
-async function getRecipe(){
+async function getRecipes(){
     const response = await fetch("getRecipes.php");
     return response.json();
 }
 
 async function displayFeatured(){
-    const data = await getRecipe();
+    const data = await getRecipes();
     const recipes = data;
     var content = `
         <button class="nav-button left-button">
@@ -31,7 +31,7 @@ async function displayFeatured(){
     `;
     for(let recipe of recipes){
         content += `
-            <div class="featured-item"> 
+            <div class="featured-item" data-recipe-id="${recipe.recipeID}"> 
                 <div class="image">
                     <div class="bookmark">
                         <button type="button">
@@ -57,10 +57,18 @@ async function displayFeatured(){
     `;
     const posts = document.getElementById('featured-section');
     posts.innerHTML = content;
+    const recipePosts = document.querySelectorAll('.featured-item');
+    recipePosts.forEach(recipePost => {
+        console.log("link");
+        recipePost.addEventListener('click', () => {
+        const recipeID = recipePost.getAttribute('data-recipe-id');
+        window.location.href = `displaypost.php?id=${recipeID}`;
+        });
+    });
 }
 
 async function displayFeed(){
-    const data = await getRecipe();
+    const data = await getRecipes();
     const recipes = data;
     console.log(recipes);
     if(sortOrder=="id"){
@@ -71,7 +79,7 @@ async function displayFeed(){
     var content = "";
     for(let recipe of recipes){
         content += `
-            <div class="recipe-posts"> 
+            <div class="recipe-posts" data-recipe-id="${recipe.recipeID}"> 
                 <div class="image">
                     <div class="bookmark">
                         <button type="button">
@@ -113,10 +121,25 @@ async function displayFeed(){
     }
     const posts = document.getElementById('posts-section');
     posts.innerHTML = content;
+    console.log("done");
+    const recipePosts = document.querySelectorAll('.recipe-posts');
+    recipePosts.forEach(recipePost => {
+        console.log("link");
+        recipePost.addEventListener('click', () => {
+        const recipeID = recipePost.getAttribute('data-recipe-id');
+        window.location.href = `displaypost.php?id=${recipeID}`;
+        });
+    });
+}
+
+
+async function getSaves(){
+    const response = await fetch("getSaved.php");
+    return response.json();
 }
 
 async function displaySaved(){
-    const data = await getRecipe();
+    const data = await getSaves();
     const recipes = data;
     if(sortOrder=="id"){
         recipes.sort((a, b) => (parseInt(b.recipeID) - parseInt(a.recipeID)))
@@ -126,7 +149,7 @@ async function displaySaved(){
     var content = "";
     for(let recipe of recipes){
         content += `
-            <div class="recipe-posts"> 
+            <div class="recipe-posts" data-recipe-id="${recipe.recipeID}"> 
                 <div class="image">
                     <div class="bookmark">
                         <button type="button">
@@ -140,7 +163,7 @@ async function displaySaved(){
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
                 <div id="recipe-name"> 
-                    <p>${recipe.recipeTitleitle}</p>
+                    <p>${recipe.recipeTitle}</p>
                 </div>
                 <div id="tags">
                     <p>${recipe.tags}</p>
@@ -168,4 +191,12 @@ async function displaySaved(){
     }
     const posts = document.getElementById('saved-section');
     posts.innerHTML = content;
+    const recipePosts = document.querySelectorAll('.recipe-posts');
+    recipePosts.forEach(recipePost => {
+        console.log("link");
+        recipePost.addEventListener('click', () => {
+        const recipeID = recipePost.getAttribute('data-recipe-id');
+        window.location.href = `displaypost.php?id=${recipeID}`;
+        });
+    });
 }
