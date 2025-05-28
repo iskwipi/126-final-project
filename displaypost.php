@@ -91,8 +91,8 @@ if($recipes->num_rows == 1){
                     <div id="poster-profile">
                         <a href="profile.php">' . $owns["username"] . '</a>
                         <div class="post-bookmark">
-                            <button type="button">
-                                <i class="fa-regular fa-bookmark"></i>
+                            <button type="button" onclick="saveRecipe(' . $recipeID . ', this)">
+                                <i class="fa-regular fa-bookmark "></i>
                             </button>
                         </div>
                     </div>
@@ -179,6 +179,7 @@ if($recipes->num_rows == 1){
     echo "Invalid recipeID</br>" . $conn->error;
 }
 
+
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -189,6 +190,7 @@ $conn->close();
         <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
+        <script src="renderFeed.js"></script>
     </head>
     <body>
         <div class="title-bar">

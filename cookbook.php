@@ -37,8 +37,9 @@ echo implode($_SESSION);
                     </select>
                 </div>
             </div>
-            <div class="saved-section" id="saved-section"></div>
-            <script src="renderFeed.js"></script>
-            <script src="searchHandler.js"></script>
+            <div class="saved-section" id="saved-section">
+                <script src="renderFeed.js"></script>
+                <script src="searchHandler.js"></script>
+            </div>
     </body>
 </html>
