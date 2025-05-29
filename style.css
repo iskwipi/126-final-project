@@ -156,8 +156,13 @@ body {
     align-items: center;
 }
 
-.ingredients-field-search, .tags-field {
+.recipe-search-fields .input-wrapper {
+    width: 100% !important;
+}
+
+.ingredients-field, .posting-tags-field {
     display: flex;
+    flex-direction: column;
     gap: 10px;
     width: 50%; 
 }

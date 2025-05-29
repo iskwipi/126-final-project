@@ -27,30 +27,31 @@ echo implode($_SESSION);
             <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
         <div class="deepsearch-feed">
-            <!-- <h2>Quick Search</h2>
-            <div class="deep-search-bar">
-                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..." onkeypress="handleSearch(event)">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div> -->
-            <hr>
             <div class="deepsearch-container">
                 <h3>Deep Search</h3>
-                <div class="recipe-search-fields">
-                    <h3>Ingredients</h3>
-                    <div class="ingredients-field-search">
-                        <input type="text" id="ingredient-name" placeholder="Type ingredient here..">
-                        <i class="fa-solid fa-plus"></i>
+                <form class="recipe-search-fields" method="POST" action="getDeepsearch.php">
+                    <div class="ingredients-field">
+                        <h4>Ingredients Lookup</h4>
+                        <div class="input-wrapper">
+                            <input type="text" id="recipe-ingredients" name="recipe-ingredients[]" placeholder="Ingredient Name">
+                            <i class="fa-solid fa-plus" onclick="addIngredientRow(this)"></i>
+                            <i class="fa-regular fa-circle-xmark" onclick="removeIngredientRow(this)"></i>
+                        </div>
                     </div>
-                    <h4>Tags</h4>
-                    <div class="tags-field">
-                        <input type="text" id="tag-Input" placeholder="Insert tag...">
+                    <div class="posting-tags-field">
+                        <h4>Tags Filter</h4>
+                        <div class="input-wrapper">
+                            <input type="text" id="tag-Input" name="tag-Input[]" placeholder="Insert tag...">
+                            <i class="fa-solid fa-plus" onclick="addTagRow(this)"></i>
+                            <i class="fa-regular fa-circle-xmark" onclick="removeTagRow(this)"></i>
+                        </div>
                     </div>
-                    <button class="deep-search-button">Search recipe</button>
-                </div>
+                    <button type="submit" class="deep-search-button">Search recipe</button>
+                </form>
             </div>
-            <hr> 
         </div>
         <script src="searchHandler.js"></script>
+        <script src="searching.js"></script>
     </body>
 </html>
 

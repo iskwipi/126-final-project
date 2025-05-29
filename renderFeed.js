@@ -219,7 +219,7 @@ async function displaySaved(){
                     <p>${recipe.recipeTitle}</p>
                 </div>
                 <div id="tags">
-                    <p>${recipe.tags}</p>
+                    <p>#${recipe.tags.join(" #")}</p>
                 </div>
                 <div class="ratings">
                     <button type="button"> 

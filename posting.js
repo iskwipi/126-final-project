@@ -80,12 +80,12 @@ function removeInstructionRow(element) {
     }
 }
 
-const instructionFields = document.querySelectorAll('.instructions-field textarea, .description-field textarea');
-instructionFields.forEach(textarea => {
+const textareas = document.querySelectorAll('textarea');
+textareas.forEach(textarea => {
     textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
     textarea.addEventListener('input', () => {
-        textarea.style.height = 'auto'; // Reset to auto
-        textarea.style.height = textarea.scrollHeight + 'px'; // Adjust height
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
     });
 });

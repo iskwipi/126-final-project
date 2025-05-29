@@ -1,23 +1,15 @@
-var sortOrder = "id";
-displayOwned();
+var sortOrder = "score";
+filterRecipes();
 
 document.getElementById('display-mode').addEventListener('change', function () {
     sortOrder = this.value;
-    displayOwned();
+    filterRecipes();
 });
 
-async function getOwned(){
-    const request = typeof profileID !== 'undefined' ? "getOwned.php?id=" + profileID : "getOwned.php"
-    const response = await fetch(request);
-    return response.json();
-}
-
-async function displayOwned(){
-    const data = await getOwned();
-    const recipes = data;
-    console.log(recipes);
-    if(sortOrder=="id"){
-        recipes.sort((a, b) => (parseInt(b.recipeID) - parseInt(a.recipeID)))
+function filterRecipes(){
+    var recipes = deepsearchResult;
+    if(sortOrder=="score"){
+        recipes.sort((a, b) => (parseInt(b.score) - parseInt(a.score)))
     }else if(sortOrder=="rating"){
         recipes.sort((a, b) => (parseInt(b.avgRating) - parseInt(a.avgRating)))
     }
@@ -26,6 +18,15 @@ async function displayOwned(){
         content += `
             <div class="recipe-posts" data-recipe-id="${recipe.recipeID}"> 
                 <div class="image">
+                    <div class="bookmark">
+                        <button type="button">
+                            <i class="fa-regular fa-bookmark"></i>
+                            <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                        </button>
+                    </div>
+                    <div id="user">
+                        <a href="profile.php?id=${recipe.userID}">${recipe.username}</a>
+                    </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
                 <div id="recipe-name"> 
@@ -35,10 +36,19 @@ async function displayOwned(){
                     <p>#${recipe.tags.join(" #")}</p>
                 </div>
                 <div class="ratings">
+                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
+                    </button>
+                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
+                    </button>
+                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
+                    </button>
+                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
+                    </button>
+                    <button type="button"> 
                         <i class="fa-regular fa-star"></i>
                     </button> 
                     <p>${recipe.avgRating != null ? recipe.avgRating : 0} stars (${recipe.countRating != null ? recipe.countRating : 0} ratings)</p>
@@ -46,7 +56,7 @@ async function displayOwned(){
             </div>
         `;
     }
-    const posts = document.getElementById('profile-featured-section');
+    const posts = document.getElementById('search-posts');
     posts.innerHTML = content;
     const recipePosts = document.querySelectorAll('.recipe-posts');
     recipePosts.forEach(recipePost => {
