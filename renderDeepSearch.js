@@ -66,4 +66,46 @@ function filterRecipes(){
         window.location.href = `displaypost.php?id=${recipeID}`;
         });
     });
+
+    document.querySelectorAll('.recipe-posts .bookmark button').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const recipeID = btn.closest('.recipe-posts')?.getAttribute('data-recipe-id');
+            saveRecipe(recipeID, btn);
+        });
+    });
+}
+
+async function saveRecipe(recipeID, btn) {
+    const icon = btn.querySelector('i');
+    const post = btn.closest('.recipe-posts, .featured-item'); 
+
+    try {
+        const response = await fetch('saveRecipe.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ recipeID })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            if (result.status === "saved") {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid');
+            } else if (result.status === "unsaved") {
+                icon.classList.remove('fa-solid');
+                icon.classList.add('fa-regular');
+
+                if (window.location.pathname.includes("cookbook.php")) {
+                    post.remove(); // tanggal agad
+                }
+            }
+        } else {
+            console.error("Failed to toggle save");
+        }
+    } catch (error) {
+        console.error("Error saving:", error);
+    }
 }

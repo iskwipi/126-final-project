@@ -37,7 +37,8 @@ async function displayFeatured() {
         }
 
         // filter only recipes from followed users
-        const filteredRecipes = recipes.filter(recipe => following.includes(parseInt(recipe.userID)));
+        var filteredRecipes = recipes.filter(recipe => following.includes(parseInt(recipe.userID)));
+        filteredRecipes.sort((a, b) => (parseInt(b.recipeID) - parseInt(a.recipeID)))
 
         let content = ``;
         for (let recipe of filteredRecipes) {

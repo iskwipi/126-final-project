@@ -5,6 +5,7 @@ echo $_GET["id"];
 
 $conn = new mysqli("localhost", "root", "", "platemate");
 
+$userID = $_SESSION["userID"];
 $recipeID = $_GET["id"];
 $sql = "SELECT * FROM recipe WHERE recipeID = $recipeID";
 $recipes = $conn->query($sql);
@@ -82,7 +83,10 @@ if($recipes->num_rows == 1){
         FROM rates WHERE rates.recipeID = $recipeID GROUP BY recipeID";
     $average = $conn->query($sql)->fetch_assoc();
 
-
+    if($average === null){
+        $average["avgRating"] = 0;
+        $average["countRating"] = 0;
+    }
 
     $recipeContent =  '
     <div class="display-post-feed">
@@ -141,24 +145,43 @@ if($recipes->num_rows == 1){
         <hr>
         <div class="post-interactions">
             <h5>Ratings</h5>
-            <div class="post-ratings-container"> 
-                <div class="your-interactions">
-                    <form method="post">
-                        <div class="your-ratings">
-                            <p>Your rating:</p>
-                            <input type="number" min="0" max ="5" step=".5" value="0">
-                        </div>
-                        <div class="your-comment">
-                            <input type="text" id="comment-input" placeholder="Leave a comment...">
-                            <button type="submit" id="comment-button">
-                                <i class="fa-solid fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <div class="post-ratings-container">
+    ';
 
-                <hr>
-                <br>
+    // Prepare the SQL statement
+    $sql = "SELECT * FROM comments WHERE userID = ? AND recipeID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $userID, $recipeID);
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+    echo $result->fetch_assoc();
+
+    // Check if any rows returned
+    if ($result->num_rows == 0) {
+        $recipeContent .= '
+                    <div class="your-interactions">
+                        <form method="post" action="postRating.php">
+                            <input type"number" id="recipeID" name="recipeID" value="' . $recipeID . '" hidden>
+                            <div class="your-ratings">
+                                <p>Your rating:</p>
+                                <input type="number" id="rating-input" name="rating-input" min="0" max ="5" step=".5" value="0">
+                            </div>
+                            <div class="your-comment">
+                                <input type="text" id="comment-input" name="comment-input" placeholder="Leave a comment...">
+                                <button type="submit" id="comment-button">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
+                    <br>
+        ';
+    }
+
+    $recipeContent .= '
                 <div class="post-comments-ratings">
                     ' . $ratingList . '
                 </div>
@@ -181,7 +204,6 @@ $conn->close();
         <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
-        <script src="renderFeed.js"></script>
     </head>
     <body>
         <div class="title-bar">
@@ -202,5 +224,6 @@ $conn->close();
         <?php
             echo $recipeContent;
         ?>
+        <script src="searchHandler.js"></script>
     </body>
 </html>

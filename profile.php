@@ -36,32 +36,32 @@ $isOwnProfile = ($currentUserID == $profileID);
                 ?>
             </div>
         </div>
-        <?php if ($isOwnProfile): ?>
         <div class="new-post-container">
-            <div class="new-post-body">
-                <img src="papaneyro.jpg">
-                <a href="posting.php">
-                    <button type="button"> 
-                        <input type="text" placeholder="New recipe idea?">
-                    </button>
-                </a>
-                <div class="images-button">
+            <?php if ($isOwnProfile): ?>
+                <div class="new-post-body">
+                    <img src="papaneyro.jpg">
                     <a href="posting.php">
-                        <button type="button">
-                            <i class="fa-regular fa-image"></i> 
+                        <button type="button"> 
+                            <input type="text" placeholder="New recipe idea?">
                         </button>
                     </a>
+                    <div class="images-button">
+                        <a href="posting.php">
+                            <button type="button">
+                                <i class="fa-regular fa-image"></i> 
+                            </button>
+                        </a>
+                    </div>
                 </div>
-                <div class="mode-section">
+            <?php endif; ?>
+            <div class="mode-section">
                     <label for="display-mode">Display Mode: </label>
                     <select id="display-mode">
                         <option value="id">Most Recent</option>
                         <option value="rating">Top Rated</option>
                     </select>
                 </div>
-            </div>
         </div>
-        <?php endif; ?>
         <div class="profile-featured-section" id="profile-featured-section"></div>
         <script>
             const profileID = <?php echo json_encode($profileID); ?>;
