@@ -82,6 +82,8 @@ if($recipes->num_rows == 1){
         FROM rates WHERE rates.recipeID = $recipeID GROUP BY recipeID";
     $average = $conn->query($sql)->fetch_assoc();
 
+
+
     $recipeContent =  '
     <div class="display-post-feed">
         <div class="post-container"> 
@@ -141,31 +143,20 @@ if($recipes->num_rows == 1){
             <h5>Ratings</h5>
             <div class="post-ratings-container"> 
                 <div class="your-interactions">
-                    <div class="your-ratings">
-                        <p>Your ratings:</p>
-                        <button type="button"> 
-                            <i class="fa-regular fa-star"></i>
-                        </button>
-                        <button type="button" class="rate-button"> 
-                            <i class="fa-regular fa-star"></i>
-                        </button>
-                        <button type="button" class="rate-button"> 
-                            <i class="fa-regular fa-star"></i>
-                        </button>
-                        <button type="button" class="rate-button"> 
-                            <i class="fa-regular fa-star"></i>
-                        </button>
-                        <button type="button" class="rate-button"> 
-                            <i class="fa-regular fa-star"></i>
-                        </button>
-                    </div>
-                    <div class="your-comment">
-                        <input type="text" id="comment-input" placeholder="Leave a comment...">
-                        <button type="button" id="comment-button">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </div>
+                    <form method="post">
+                        <div class="your-ratings">
+                            <p>Your rating:</p>
+                            <input type="number" min="0" max ="5" step=".5" value="0">
+                        </div>
+                        <div class="your-comment">
+                            <input type="text" id="comment-input" placeholder="Leave a comment...">
+                            <button type="submit" id="comment-button">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
+
                 <hr>
                 <br>
                 <div class="post-comments-ratings">
