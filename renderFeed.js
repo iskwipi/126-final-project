@@ -32,7 +32,6 @@ async function displayFeatured(){
                     <div class="bookmark">
                         <button type="button">
                             <i class="fa-regular fa-bookmark"></i>
-                            <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
                         </button>
                     </div>
                     <div id="user">
@@ -49,12 +48,20 @@ async function displayFeatured(){
     content += ``;
     const posts = document.getElementById('featured-posts');
     posts.innerHTML = content;
+
     const recipePosts = document.querySelectorAll('.featured-item');
     recipePosts.forEach(recipePost => {
-        console.log("link");
         recipePost.addEventListener('click', () => {
-        const recipeID = recipePost.getAttribute('data-recipe-id');
-        window.location.href = `displaypost.php?id=${recipeID}`;
+            const recipeID = recipePost.getAttribute('data-recipe-id');
+            window.location.href = `displaypost.php?id=${recipeID}`;
+        });
+    });
+
+    document.querySelectorAll('.featured-item .bookmark button').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const recipeID = btn.closest('.featured-item')?.getAttribute('data-recipe-id');
+            saveRecipe(recipeID, btn);
         });
     });
 }
@@ -74,9 +81,8 @@ async function displayFeed(){
             <div class="recipe-posts" data-recipe-id="${recipe.recipeID}"> 
                 <div class="image">
                     <div class="bookmark">
-                        <button type="button">
-                            <i class="fa-regular fa-bookmark"></i>
-                            <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                        <button type="button"">
+                            <i class="fa-regular fa-bookmark "></i>
                         </button>
                     </div>
                     <div id="user">
@@ -113,17 +119,73 @@ async function displayFeed(){
     }
     const posts = document.getElementById('posts-section');
     posts.innerHTML = content;
-    console.log("done");
+
     const recipePosts = document.querySelectorAll('.recipe-posts');
-    recipePosts.forEach(recipePost => {
-        console.log("link");
-        recipePost.addEventListener('click', () => {
-        const recipeID = recipePost.getAttribute('data-recipe-id');
-        window.location.href = `displaypost.php?id=${recipeID}`;
+        recipePosts.forEach(recipePost => {
+            recipePost.addEventListener('click', () => {
+                const recipeID = recipePost.getAttribute('data-recipe-id');
+                window.location.href = `displaypost.php?id=${recipeID}`;
+            });
+        });
+
+    document.querySelectorAll('.recipe-posts .bookmark button').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const recipeID = btn.closest('.recipe-posts')?.getAttribute('data-recipe-id');
+            saveRecipe(recipeID, btn);
         });
     });
 }
 
+// // avoid displaying post when user clicks on the bookmark button
+// document.querySelectorAll('.bookmark button').forEach(btn => {
+//     btn.addEventListener('click', function (e) {
+//         e.stopPropagation(); 
+//         const recipeID = btn.closest('.recipe-posts, .featured-item')?.getAttribute('data-recipe-id');
+//         saveRecipe(recipeID, btn);
+//     });
+// });
+
+// document.querySelectorAll('.recipe-posts, .featured-item').forEach(post => {
+//     post.addEventListener('click', function () {
+//         const recipeID = post.getAttribute('data-recipe-id');
+//         window.location.href = `displaypost.php?id=${recipeID}`;
+//     });
+// });
+
+async function saveRecipe(recipeID, btn) {
+    const icon = btn.querySelector('i');
+    const post = btn.closest('.recipe-posts, .featured-item'); 
+
+    try {
+        const response = await fetch('saveRecipe.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ recipeID })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            if (result.status === "saved") {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid');
+            } else if (result.status === "unsaved") {
+                icon.classList.remove('fa-solid');
+                icon.classList.add('fa-regular');
+
+                if (window.location.pathname.includes("cookbook.php")) {
+                    post.remove(); // tanggal agad
+                }
+            }
+        } else {
+            console.error("Failed to toggle save");
+        }
+    } catch (error) {
+        console.error("Error saving:", error);
+    }
+}
 
 async function getSaves(){
     const response = await fetch("getSaved.php");
@@ -145,8 +207,7 @@ async function displaySaved(){
                 <div class="image">
                     <div class="bookmark">
                         <button type="button">
-                            <i class="fa-regular fa-bookmark"></i>
-                            <!-- <i class="fa-solid fa-bookmark solid-icon"></i> -->
+                            <i class="fa-solid fa-bookmark"></i>
                         </button>
                     </div>
                     <div id="user">
@@ -183,12 +244,21 @@ async function displaySaved(){
     }
     const posts = document.getElementById('saved-section');
     posts.innerHTML = content;
+
     const recipePosts = document.querySelectorAll('.recipe-posts');
     recipePosts.forEach(recipePost => {
-        console.log("link");
         recipePost.addEventListener('click', () => {
-        const recipeID = recipePost.getAttribute('data-recipe-id');
-        window.location.href = `displaypost.php?id=${recipeID}`;
+            const recipeID = recipePost.getAttribute('data-recipe-id');
+            window.location.href = `displaypost.php?id=${recipeID}`;
         });
     });
+
+    document.querySelectorAll('.recipe-posts .bookmark button').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const recipeID = btn.closest('.recipe-posts')?.getAttribute('data-recipe-id');
+            saveRecipe(recipeID, btn);
+        });
+    });
+
 }

@@ -260,7 +260,6 @@ hr {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
-
     text-align: center;
     position: relative;
 }
@@ -599,7 +598,7 @@ textarea, #comment-input input  {
     gap: 0.5rem;
 }
 
-.mode-section select, .unit-type select {
+.mode-section select,  .unit-type select {
     padding: 10px 11px;
     border-radius: 0.5rem;
 }
