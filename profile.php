@@ -1,6 +1,8 @@
 <?php
 session_start();
-echo implode($_SESSION);
+$currentUserID = $_SESSION['userID'] ?? null;
+$profileID = isset($_GET['id']) ? intval($_GET['id']) : $currentUserID;
+$isOwnProfile = ($currentUserID == $profileID);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +19,7 @@ echo implode($_SESSION);
             <div class="search-bar">
                 <input type="text" id="searchInput" placeholder="Search for a user or a recipe..."  onkeypress="handleSearch(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-            </div>    
+            </div>
         </div>
         <div class="left-panel">
             <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
@@ -26,25 +27,29 @@ echo implode($_SESSION);
             <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
             <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
-        <div class = "profile">
-            <div class = "profile-header">
-                <img id = "profile-picture" src="papaneyro.jpg">
-                <?php include 'getProfile.php' ?>
+        <div class="profile">
+            <div class="profile-header">
+                <img id="profile-picture" src="papaneyro.jpg">
+                <?php
+                    $_GET['id'] = $profileID;
+                    include 'getProfile.php';
+                ?>
             </div>
         </div>
-        <div class = "new-post-container">
-            <div class = "new-post-body">
+        <?php if ($isOwnProfile): ?>
+        <div class="new-post-container">
+            <div class="new-post-body">
                 <img src="papaneyro.jpg">
                 <a href="posting.php">
                     <button type="button"> 
-                    <input type="text" placeholder="New recipe idea?">
+                        <input type="text" placeholder="New recipe idea?">
                     </button>
                 </a>
                 <div class="images-button">
                     <a href="posting.php">
-                    <button type="button">
-                        <i class="fa-regular fa-image"></i> 
-                    </button>
+                        <button type="button">
+                            <i class="fa-regular fa-image"></i> 
+                        </button>
                     </a>
                 </div>
                 <div class="mode-section">
@@ -56,12 +61,14 @@ echo implode($_SESSION);
                 </div>
             </div>
         </div>
+        <?php endif; ?>
         <div class="profile-featured-section" id="profile-featured-section"></div>
         <script>
-            const profileID = <?php echo json_encode($_GET["id"]); ?>;
-            console.log(profileID);
+            const profileID = <?php echo json_encode($profileID); ?>;
+            const isOwnProfile = <?php echo json_encode($isOwnProfile); ?>;
+
         </script>
         <script src="renderOwned.js"></script>
         <script src="searchHandler.js"></script>
     </body>
-<html>
+</html>
