@@ -982,7 +982,6 @@ textarea, #comment-input input  {
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
-
 .user-comment {
     background: #ffffff;
     border: 1.5px solid #c0c0c0;
@@ -990,14 +989,22 @@ textarea, #comment-input input  {
     padding: 2rem;
 }
 
-.your-ratings {
+.your-ratings, .user-header-row  {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 0.3rem;
+    margin-bottom: .5rem;
 }
-
 .your-ratings button {
     margin-top: -0.4rem;
+}
+.your-ratings > input{
+    width: 3rem;
+    height: 2rem;
+    border-radius: .5rem;
+    padding: 0 .25rem .10rem .5rem;
+    border: 1px solid #ccc;
 }
 
 .user-ratings i {
@@ -1006,7 +1013,7 @@ textarea, #comment-input input  {
 
 .your-ratings p {
     margin: 0;
-    margin-bottom:1%;
+    margin-bottom:.5%;
     font-size: 1.5rem;
     font-weight:bold;
 }
@@ -1022,9 +1029,9 @@ textarea, #comment-input input  {
     font-size: 1.2rem;
 }
 
-.user-ratings {
+/* .user-ratings {
     margin-bottom: 1rem;
-}
+} */
 
 .user-comment {
     background: #ffffff;
@@ -1057,12 +1064,6 @@ textarea, #comment-input input  {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-}
-
-.user-header-row {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
 }
 
 .featured-items-container {
