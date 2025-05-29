@@ -81,6 +81,10 @@ if($recipes->num_rows == 1){
     $sql = "SELECT AVG(rating) AS avgRating, COUNT(rating) AS countRating
         FROM rates WHERE rates.recipeID = $recipeID GROUP BY recipeID";
     $average = $conn->query($sql)->fetch_assoc();
+    if(is_null($average)){
+        $average["avgRating"] = 0;
+        $average["countRating"] = 0;
+    }
 
 
 
@@ -143,13 +147,14 @@ if($recipes->num_rows == 1){
             <h5>Ratings</h5>
             <div class="post-ratings-container"> 
                 <div class="your-interactions">
-                    <form method="post">
+                    <form class="rating-container" id="rating-container" name="rating-container" method="POST" action="postRating.php">
+                        <input type="number" id="recipeID" name="recipeID" value="' . $recipeID . '" hidden>
                         <div class="your-ratings">
                             <p>Your rating:</p>
-                            <input type="number" min="0" max ="5" step=".5" value="0">
+                            <input type="number" id="rating-input" name="rating-input" min="0" max ="5" step=".5" value="0">
                         </div>
                         <div class="your-comment">
-                            <input type="text" id="comment-input" placeholder="Leave a comment...">
+                            <input type="text" id="comment-input" name="comment-input" placeholder="Leave a comment...">
                             <button type="submit" id="comment-button">
                                 <i class="fa-solid fa-paper-plane"></i>
                             </button>
