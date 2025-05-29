@@ -29,19 +29,17 @@ echo implode($_SESSION);
         <div class="feed">
             <div class="featured-section" id="featured-section">
                 <div class="section-title"><h1>Today's Featured Recipes</h1></div>
-                <div id="section">
-                    <button class="nav-button left-button">
-                    <i class="fa-solid fa-chevron-left"></i>
+                <div class="scrollable-section" id="scrollable-section">
+                    <button class="left-nav-button">
+                        <i class="fa-solid fa-chevron-left"></i>
                     </button>
                     <div class="featured-posts" id="featured-posts"></div>
-                    <button class="nav-button right-button">
+                    <button class="right-nav-button">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
-                
             </div>
             <div class="homepage-container">
-                <!-- <i class="fa-solid fa-user"></i> -->
                 <div class="upload-section">
                     <a href="posting.php"> 
                         <button type="button">
@@ -58,6 +56,7 @@ echo implode($_SESSION);
                 </div>
             </div>
             <div class="posts-section" id="posts-section"></div>
+        <script src="homepageTools.js"></script>
         <script src="renderFeed.js"></script>
         <script src="searchHandler.js"></script>
     </body>

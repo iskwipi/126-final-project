@@ -207,38 +207,46 @@ hr {
 }
 
 
-.featured-section, .saved-section {
+.saved-section {
     display: flex;
     flex-direction: column;
     overflow-x: auto;
     gap: 1.2rem;
 }
 .featured-section {
-    gap: 0;
-}
-#section {
     display: flex;
-    flex-direction: row;
-    min-height: 10rem;
-    max-height: 10rem;
+    flex-direction: column;
+    overflow: auto;
+    gap: 1.2rem;
+}
+.featured-section {
+    gap: 0;
 }
 .featured-section::-webkit-scrollbar {
     display: none;
 }
 
-.featured-section {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none;    /* Firefox */
+.scrollable-section, .featured-posts {
+    display: flex;
+    flex-direction: row;
+    min-height: 13.5rem;
+    max-height: 13.5rem;
+    column-gap: 0.5rem;
 }
-.left-button {
+.featured-posts{
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.left-nav-button {
     left: -20px;
 }
 
-.right-button {
+.right-nav-button {
     right: -20px;
 }
 
-.left-button, .right-button {
+.left-nav-button, .right-nav-button {
     border-radius: 1.2rem;
     border-color: rgb(43, 43, 43);
 }
@@ -247,7 +255,7 @@ hr {
     position: relative;
 }
 
-.posts-section, .saved-section, .search-posts{
+.posts-section, .saved-section, .search-posts, .profile-featured-section{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -291,7 +299,7 @@ hr {
     width: 300px;
 }
 
-.posts-section, .saved-section, .search-posts {
+.posts-section, .saved-section, .search-posts, .profile-featured-section{
     display: flex;
     overflow-y:auto;
     gap: 1.3rem;
@@ -305,7 +313,7 @@ hr {
     cursor: pointer;
 }
 
-.title-field input, .description-field textarea, .serving-field input, .instructions-field input,
+.title-field input, .description-field textarea, .serving-field input, .picture-field input,
 .ingredients-field input, .tags-field input, .ingredients-field-search input, .posting-tags-field input,
 textarea, #comment-input input  {
     border-radius: 0.5rem;
@@ -411,9 +419,34 @@ textarea, #comment-input input  {
     top: 38%;
 }
 
-/* .input-wrapper i {
-    left: 15.3rem;
-} */
+.instructions-field .input-wrapper {
+    padding: 0;
+    border: 0;
+    width: 60%;
+}
+
+.posting-tags-field .input-wrapper {
+    padding: 0;
+    border: 0;
+    width: 60%;
+}
+
+.instructions-field textarea, .description-field textarea {
+    height: auto;
+    padding: 0.75rem 2.5rem 0.75rem 1.5rem;
+    overflow: hidden;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.instructions-field textarea{
+    width: 100%;
+    padding-right: 4rem; 
+}
+
+.description-field textarea{
+    width: 60%;
+}
 
 
 
@@ -740,10 +773,10 @@ textarea, #comment-input input  {
 
 .profile-featured-section {
     display: flex;
-    justify-content: right;
+    justify-content: left;
     overflow-x:hidden;
     gap: 2rem;
-    padding: 0rem 2rem 1rem 2rem;
+    padding-left: 17rem;
 }
 /* searchresults.html */
 

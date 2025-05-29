@@ -81,6 +81,10 @@ if($recipes->num_rows == 1){
     $sql = "SELECT AVG(rating) AS avgRating, COUNT(rating) AS countRating
         FROM rates WHERE rates.recipeID = $recipeID GROUP BY recipeID";
     $average = $conn->query($sql)->fetch_assoc();
+    if(is_null($average)){
+        $average["avgRating"] = 0;
+        $average["countRating"] = 0;
+    }
 
     $recipeContent =  '
     <div class="display-post-feed">

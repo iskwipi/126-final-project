@@ -24,11 +24,7 @@ async function getRecipes(){
 async function displayFeatured(){
     const data = await getRecipes();
     const recipes = data;
-    var content = `
-        <button class="nav-button left-button">
-            <i class="fa-solid fa-chevron-left"></i>
-        </button>
-    `;
+    var content = ``;
     for(let recipe of recipes){
         content += `
             <div class="featured-item" data-recipe-id="${recipe.recipeID}"> 
@@ -50,12 +46,8 @@ async function displayFeatured(){
             </div>
         `;
     }
-    content += `
-        <button class="nav-button right-button">
-            <i class="fa-solid fa-chevron-right"></i>
-        </button>
-    `;
-    const posts = document.getElementById('featured-section');
+    content += ``;
+    const posts = document.getElementById('featured-posts');
     posts.innerHTML = content;
     const recipePosts = document.querySelectorAll('.featured-item');
     recipePosts.forEach(recipePost => {
@@ -96,7 +88,7 @@ async function displayFeed(){
                     <p>${recipe.recipeTitle}</p>
                 </div>
                 <div id="tags">
-                    <p>${recipe.tags}</p>
+                    <p>#${recipe.tags.join(" #")}</p>
                 </div>
                 <div class="ratings">
                     <button type="button"> 
@@ -114,7 +106,7 @@ async function displayFeed(){
                     <button type="button"> 
                         <i class="fa-regular fa-star"></i>
                     </button> 
-                    <p>${recipe.avgRating} stars (${recipe.countRating} ratings)</p>
+                    <p>${recipe.avgRating != null ? recipe.avgRating : 0} stars (${recipe.countRating != null ? recipe.countRating : 0} ratings)</p>
                 </div>
             </div>
         `;
@@ -184,7 +176,7 @@ async function displaySaved(){
                     <button type="button"> 
                         <i class="fa-regular fa-star"></i>
                     </button> 
-                    <p>${recipe.avgRating} stars (${recipe.countRating} ratings)</p>
+                    <p>${recipe.avgRating != null ? recipe.avgRating : 0} stars (${recipe.countRating != null ? recipe.countRating : 0} ratings)</p>
                 </div>
             </div>
         `;

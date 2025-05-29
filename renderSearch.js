@@ -68,7 +68,7 @@ async function filterRecipes(searchTerm){
                     <button type="button"> 
                         <i class="fa-regular fa-star"></i>
                     </button> 
-                    <p>${recipe.avgRating} stars (${recipe.countRating} ratings)</p>
+                    <p>${recipe.avgRating != null ? recipe.avgRating : 0} stars (${recipe.countRating != null ? recipe.countRating : 0} ratings)</p>
                 </div>
             </div>
         `;
