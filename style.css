@@ -559,13 +559,13 @@ textarea, #comment-input input  {
     background: transparent;
 }
 
-.mode-section, .mode-section-cookbook, .unit-type {
+.mode-section, .unit-type {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.mode-section select, .mode-section-cookbook select, .unit-type select {
+.mode-section select,  .unit-type select {
     padding: 10px 11px;
     border-radius: 0.5rem;
 }

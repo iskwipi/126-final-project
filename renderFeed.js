@@ -135,21 +135,21 @@ async function displayFeed(){
     });
 }
 
-// avoid displaying post when user clicks on the bookmark button
-document.querySelectorAll('.bookmark button').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-        e.stopPropagation(); 
-        const recipeID = btn.closest('.recipe-posts, .featured-item')?.getAttribute('data-recipe-id');
-        saveRecipe(recipeID, btn);
-    });
-});
+// // avoid displaying post when user clicks on the bookmark button
+// document.querySelectorAll('.bookmark button').forEach(btn => {
+//     btn.addEventListener('click', function (e) {
+//         e.stopPropagation(); 
+//         const recipeID = btn.closest('.recipe-posts, .featured-item')?.getAttribute('data-recipe-id');
+//         saveRecipe(recipeID, btn);
+//     });
+// });
 
-document.querySelectorAll('.recipe-posts, .featured-item').forEach(post => {
-    post.addEventListener('click', function () {
-        const recipeID = post.getAttribute('data-recipe-id');
-        window.location.href = `displaypost.php?id=${recipeID}`;
-    });
-});
+// document.querySelectorAll('.recipe-posts, .featured-item').forEach(post => {
+//     post.addEventListener('click', function () {
+//         const recipeID = post.getAttribute('data-recipe-id');
+//         window.location.href = `displaypost.php?id=${recipeID}`;
+//     });
+// });
 
 async function saveRecipe(recipeID, btn) {
     const icon = btn.querySelector('i');

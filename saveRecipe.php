@@ -3,6 +3,7 @@ session_start();
 $conn = new mysqli("localhost", "root", "", "platemate");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //reads incoming json and gets userID and recipeID
     $data = json_decode(file_get_contents("php://input"), true);
     $userID = $_SESSION['userID'];
     $recipeID = $data['recipeID'];
