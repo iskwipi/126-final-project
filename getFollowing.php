@@ -5,10 +5,10 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 header('Content-Type: application/json');
 
-$servername = "localhost";    // default in XAMPP
-$username = "root";           // default in XAMPP
-$password = "";               // default: no password
-$dbname = "platemate"; // replace this with your actual database name
+$servername = "localhost";    
+$username = "root";           
+$password = "";               
+$dbname = "platemate"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
