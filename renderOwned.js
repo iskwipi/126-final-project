@@ -1,10 +1,13 @@
 var sortOrder = "id";
 displayOwned();
 
-document.getElementById('display-mode').addEventListener('change', function () {
+const displayMode = document.getElementById('display-mode');
+if (displayMode) {
+    displayMode.addEventListener('change', function () {
     sortOrder = this.value;
     displayOwned();
-});
+    });
+}
 
 async function getOwned(){
     const request = typeof profileID !== 'undefined' ? "getOwned.php?id=" + profileID : "getOwned.php"

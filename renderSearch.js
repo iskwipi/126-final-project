@@ -42,7 +42,7 @@ async function filterRecipes(searchTerm){
                         </button>
                     </div>
                     <div id="user">
-                        <a href="profile.php?id=${recipe.userID}">${recipe.username}</a>
+                        <p>${recipe.userID}">${recipe.username}</p>
                     </div>
                     <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
@@ -102,6 +102,9 @@ async function filterUsers(searchTerm){
     var content = "";
     for(let user of users){
         const birthYear = new Date(user.dateOfBirth);
+        const isFollowing = user.isFollowing == 1;
+        const followBtnText = isFollowing ? "Unfollow" : "Follow";
+        const followBtnDisabled = "";
         content += `
             <div class="profile-container" data-profile-id="${user.userID}"> 
                 <div class="user-details">
@@ -119,7 +122,7 @@ async function filterUsers(searchTerm){
                         <i class="fa-regular fa-star"></i>
                     </div>
                 </div>
-                <button type="button" class="follow-button">Follow</button>
+                <button type="button" class="follow-button" ${followBtnDisabled}>${followBtnText}</button>
             </div>
         `;
     }
@@ -127,10 +130,33 @@ async function filterUsers(searchTerm){
     posts.innerHTML = content;
     const profiles = document.querySelectorAll('.profile-container');
     profiles.forEach(profile => {
-        console.log("link");
+        // checking profile
         profile.addEventListener('click', () => {
-        const profileID = profile.getAttribute('data-profile-id');
-        window.location.href = `profile.php?id=${profileID}`;
+            const profileID = profile.getAttribute('data-profile-id');
+            window.location.href = `profile.php?id=${profileID}`;
         });
+
+    
+        const followBtn = profile.querySelector('.follow-button');
+        if (followBtn) {
+            followBtn.addEventListener('click', async (event) => {
+                event.stopPropagation();
+                const profileID = profile.getAttribute('data-profile-id');
+                
+                const response = await fetch('followUser.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ userID: profileID })
+                });
+
+                if (response.ok) {
+                    followBtn.textContent = (followBtn.textContent === "Follow") ? "Unfollow" : "Follow";
+                } else {
+                    const errorText = await response.text();
+                    console.error('Follow/unfollow failed:', errorText);
+                }
+            });
+        }
     });
 }

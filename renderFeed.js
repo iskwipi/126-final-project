@@ -21,49 +21,78 @@ async function getRecipes(){
     return response.json();
 }
 
-async function displayFeatured(){
-    const data = await getRecipes();
-    const recipes = data;
-    var content = ``;
-    for(let recipe of recipes){
-        content += `
-            <div class="featured-item" data-recipe-id="${recipe.recipeID}"> 
-                <div class="image">
-                    <div class="bookmark">
-                        <button type="button">
-                            <i class="fa-regular fa-bookmark"></i>
-                        </button>
+async function displayFeatured() {
+    try {
+        const [recipes, following] = await Promise.all([
+            getRecipes(),
+            getFollowing()
+        ]);
+
+        if (!Array.isArray(following) || following.length === 0) {
+            document.getElementById('featured-posts').innerHTML = `
+                <div class="no-following">
+                    <p>You’re not following anyone yet :(</p>
+                </div>`;
+            return;
+        }
+
+        // filter only recipes from followed users
+        const filteredRecipes = recipes.filter(recipe => following.includes(parseInt(recipe.userID)));
+
+        let content = ``;
+        for (let recipe of filteredRecipes) {
+            content += `
+                <div class="featured-item" data-recipe-id="${recipe.recipeID}"> 
+                    <div class="image">
+                        <div class="bookmark">
+                            <button type="button">
+                                <i class="fa-regular fa-bookmark"></i>
+                            </button>
+                        </div>
+                        <div id="user">
+                            <a href="profile.php?id=${recipe.userID}">${recipe.username}</a>
+                        </div>
+                        <img src="${recipe.pictureLink}" alt="recipe image">
                     </div>
-                    <div id="user">
-                        <a href="profile.php?id=${recipe.userID}">${recipe.username}</a>
+                    <div id="recipe-name"> 
+                        <p>${recipe.recipeTitle}</p>
                     </div>
-                    <img src="${recipe.pictureLink}" alt="recipe image">
                 </div>
-                <div id="recipe-name"> 
-                    <p>${recipe.recipeTitle}</p>
-                </div>
-            </div>
-        `;
+            `;
+        }
+
+        const posts = document.getElementById('featured-posts');
+        posts.innerHTML = content;
+
+        // click post
+        document.querySelectorAll('.featured-item').forEach(recipePost => {
+            recipePost.addEventListener('click', () => {
+                const recipeID = recipePost.getAttribute('data-recipe-id');
+                window.location.href = `displaypost.php?id=${recipeID}`;
+            });
+        });
+
+        // bookmark
+        document.querySelectorAll('.featured-item .bookmark button').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const recipeID = btn.closest('.featured-item')?.getAttribute('data-recipe-id');
+                saveRecipe(recipeID, btn);
+            });
+        });
+
+    } catch (error) {
+        console.error("error displaying featured posts:", error);
+        document.getElementById('featured-posts').innerHTML = `
+            <div class="error">
+                <p>couldn’t load featured posts</p>
+            </div>`;
     }
-    content += ``;
-    const posts = document.getElementById('featured-posts');
-    posts.innerHTML = content;
+}
 
-    const recipePosts = document.querySelectorAll('.featured-item');
-    recipePosts.forEach(recipePost => {
-        recipePost.addEventListener('click', () => {
-            const recipeID = recipePost.getAttribute('data-recipe-id');
-            window.location.href = `displaypost.php?id=${recipeID}`;
-        });
-    });
-
-    document.querySelectorAll('.featured-item .bookmark button').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const recipeID = btn.closest('.featured-item')?.getAttribute('data-recipe-id');
-            saveRecipe(recipeID, btn);
-        });
-    });
+async function getFollowing() {
+    const response = await fetch("getFollowing.php");
+    return response.json();
 }
 
 async function displayFeed(){
@@ -262,3 +291,4 @@ async function displaySaved(){
     });
 
 }
+
