@@ -137,8 +137,10 @@ body {
 .post-container {
     padding: 2rem;
     padding-top: 1rem;
-    margin-right: 13.75rem;
+    margin-left: 3rem;
     background-color: white;
+    min-width: 80%;
+    max-width: 80%;
 }
 .container {
     padding-top: 1rem;
