@@ -22,7 +22,7 @@ session_start();
         </div>
         <div class="left-panel">
             <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Recipe Search</a>
             <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
             <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
@@ -44,7 +44,6 @@ session_start();
                     <a href="posting.php"> 
                         <button type="button">
                         <input type="text" id="uploadRecipe" placeholder="New recipe idea?                   ">
-                        <i class="fa-regular fa-image"></i> </button>
                     </a>    
                 </div>
                 <div class="mode-section">

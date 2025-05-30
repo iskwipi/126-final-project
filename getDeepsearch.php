@@ -189,7 +189,7 @@ $conn->close();
         </div>
         <div class="left-panel">
             <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Recipe Search</a>
             <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
             <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>

@@ -83,7 +83,7 @@ body {
 }
 
 .deep-search-button:hover,.post-recipe-button:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover, .servings-btn:hover {
-    background: rgba(35, 35, 35, 0.893);
+    background: #487530;
 }
 
 .search-bar input:hover, .deep-search-bar input:hover, .new-post-body input:hover, .upload-section input:hover, #comment-input:hover  {
@@ -124,18 +124,49 @@ body {
 .left-panel a:active {
     color:black
 }
-
 .feed, .deepsearch-feed, .search-user-feed, .search-recipe-feed, .display-post-feed, .post-container {
     margin-top: 7rem;
-    margin-left: 220px;
+    margin-left: 16rem;
     margin-right: 2rem;
     /* padding: 2rem; */
     min-height: 100vh;
 }
+.deepsearch-feed {
+    margin-top: 9rem;
+}
+.post-container {
+    padding: 2rem;
+    padding-top: 1rem;
+    margin-right: 13.75rem;
+    background-color: white;
+}
+.container {
+    padding-top: 1rem;
+}
+.submit-cancel {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+.submit-cancel > button {
+    font-size: 1.25rem;
+}
+.submit-cancel > a {
+    text-align: end;
+    text-decoration: none;
+    color: black;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.submit-cancel > a:hover{
+    color: #66924E;
+}
 .display-post-feed {
     margin-right: 0;
 }
-.post-container, .search-user-feed{
+
+.search-user-feed{
     background-color: white;
     margin-right: 0;
     padding: 2rem;
@@ -155,11 +186,12 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
 .recipe-search-fields .input-wrapper {
     width: 100% !important;
 }
-
+.recipe-search-fields > button {
+    margin-top: 1rem;
+}
 .ingredients-field, .posting-tags-field {
     display: flex;
     flex-direction: column;
@@ -253,8 +285,12 @@ hr {
 
 .left-nav-button, .right-nav-button {
     border-radius: 1.2rem;
-    border-color: rgb(43, 43, 43);
+    border: 1px #ccc;
 }
+.left-nav-button:hover, .right-nav-button:hover {
+    background-color: #66924E;
+    color: white;
+} 
 
 .image {
     position: relative;
@@ -267,10 +303,6 @@ hr {
     gap: 10px;
     text-align: center;
     position: relative;
-}
-
-.post-container{
-    margin: 0;
 }
 
 .featured-item{
@@ -289,7 +321,7 @@ hr {
     max-height: 10rem;
     min-width: 100%;
     max-width: 100%;
-    border-radius: 0.2rem;
+    border-radius: 0.5rem;
 }
 .recipe-posts > .image > img{
     min-height: 10rem;
@@ -458,9 +490,6 @@ textarea, #comment-input input  {
     left: 45rem;
 }
 
-.post-recipe-button {
-    margin-top: 2rem;
-}
 
 .upload-picture {
     position: relative;
@@ -576,7 +605,6 @@ textarea, #comment-input input  {
     display: flex;
     align-items: center;
 }
-
 .upload-section input, .new-post-body input{
     width: 30rem;
     flex: 0 1 auto;
@@ -586,15 +614,15 @@ textarea, #comment-input input  {
     font-size: 1rem;
     transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
-
-.upload-section i{
-    font-size: 2rem;
-    padding-left: 1rem;
-}
-
 .upload-section button, .new-post-body button {
     border: none;
     background: transparent;
+}
+.upload-section button {
+    padding: 0;
+}
+#uploadRecipe {
+    border-radius: .5rem;
 }
 
 .mode-section, .unit-type {
@@ -611,6 +639,7 @@ textarea, #comment-input input  {
 #profile-body {
     background-color: white;
 }
+
 .profile {
     display: flex;        
     justify-content: right;
@@ -667,29 +696,6 @@ textarea, #comment-input input  {
     font-size: 150%;
     margin: 0;
 }
-#follower-pics {
-    display: flex;
-    flex-direction: row;
-    gap: .25rem;
-}
-#follower-pics > img {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-}
-#follower-pics > p {
-    margin: 0;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
-    background-color: rgb(222, 222, 222);
-    color: rgb(96, 96, 96);
-}
-
 .new-post-container {
     display: flex;        
     flex-direction: row;
@@ -697,15 +703,14 @@ textarea, #comment-input input  {
     align-items: center;
     padding: 0rem 2rem 2rem 2rem;
 }
-
 .new-post-body {
     margin: 0;
     display: flex;
-    width: 80%;
+    width: 64.25%;
+    /* margin-left: ; */
     /* background-color: lightgray; */
     border-radius: 0.5rem;
 }
-
 .new-post-body > img  {
     height: 3rem;
     margin: 0.5rem;
@@ -713,43 +718,8 @@ textarea, #comment-input input  {
     object-fit: cover;
     float: left;
 }
-
 .new-post-body input {
     margin-top: 0.5rem;
-}
-
-/* .new-post-body > button {
-    margin: 0.5rem;
-    margin-left: 0rem;
-    height: 3rem;
-    width: 45%;
-    border-radius: 5rem;
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-    border: 1px solid #ccc;
-    padding-left: 1rem;
-} */
-
-.images-button a {
-    display: flex;
-    margin-right: 22%;
-    text-decoration: none;
-}
-.images-button button {
-    display: flex;
-    border: none;
-    background: transparent;
-    height: 3rem;
-    width: 3rem;
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
-}
-.images-button i {
-    padding-top: 2.5rem;
-    display: flex;
-    font-size: 2rem;
-    transform: translateY(-50%);
-    color: #000000;
-    pointer-events: none;
 }
 .display-mode {
     display: flex;
@@ -774,7 +744,22 @@ textarea, #comment-input input  {
     background-size: .75rem;
     cursor: pointer;
 }
+/* .new-post-body > button {
+    margin: 0.5rem;
+    margin-left: 0rem;
+    height: 3rem;
+    width: 45%;
+    border-radius: 5rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    border: 1px solid #ccc;
+    padding-left: 1rem;
+} */
 
+.images-button a {
+    display: flex;
+    margin-right: 22%;
+    text-decoration: none;
+}
 .profile-featured-section {
     display: flex;
     justify-content: left;

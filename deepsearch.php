@@ -6,7 +6,7 @@ session_start();
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title> Platemate Deep Search </title>
+        <title> Platemate Recipe Search </title>
         <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
         <link rel="stylesheet" href="style.css">
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
@@ -15,20 +15,20 @@ session_start();
         <div class="title-bar">
             <img src="logo-white.png">
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Quick search"  onkeypress="handleSearch(event)">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..."  onkeypress="handleSearch(event)">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>    
         </div>
         <div class="left-panel">
             <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Recipe Search</a>
             <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
             <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
         <div class="deepsearch-feed">
             <div class="deepsearch-container">
-                <h3>Deep Search</h3>
+                <h3>Recipe Search</h3>
                 <form class="recipe-search-fields" method="POST" action="getDeepsearch.php">
                     <div class="ingredients-field">
                         <h4>Ingredients Lookup</h4>

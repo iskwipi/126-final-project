@@ -23,7 +23,7 @@ $isOwnProfile = ($currentUserID == $profileID);
         </div>
         <div class="left-panel">
             <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Deep Search</a>
+            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i>  Recipe Search</a>
             <a href="cookbook.php"><i class="fa-solid fa-book"></i>  Cookbook</a>
             <a href="profile.php"><i class="fa-solid fa-user"></i>  Profile</a>
         </div>
@@ -45,13 +45,7 @@ $isOwnProfile = ($currentUserID == $profileID);
                             <input type="text" placeholder="New recipe idea?">
                         </button>
                     </a>
-                    <div class="images-button">
-                        <a href="posting.php">
-                            <button type="button">
-                                <i class="fa-regular fa-image"></i> 
-                            </button>
-                        </a>
-                    </div>
+
                 </div>
             <?php endif; ?>
             <div class="mode-section">

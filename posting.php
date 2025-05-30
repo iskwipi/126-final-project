@@ -11,6 +11,13 @@ session_start();
         <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <div class="title-bar">
+            <img src="logo-white.png">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..."  onkeypress="handleSearch(event)">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
         <form class="post-container" id="post-recipe-form" method="POST" action="postRecipe.php" enctype="multipart/form-data">
             <div class="title-field">
                 <p>Title</p>
@@ -71,7 +78,11 @@ session_start();
                 <p>Picture</p>
                 <input type="text" id="picture-link" name="picture-link" placeholder="Picture link" required>
             </div>
-            <button class="post-recipe-button" type="submit">Post recipe</button>
+            <div class="submit-cancel">
+                <button class="post-recipe-button" type="submit">Post Recipe</button>
+                <a href="profile.php">Back to profile</a>
+            </div>
+
         </form>
         <script src="posting.js"></script>
     </body>
