@@ -1,16 +1,35 @@
 <?php
 session_start();
+header('Content-Type: application/json');
+
+if (!isset($_SESSION['userID']) && !isset($_GET["id"])) {
+    echo json_encode(['success' => false, 'message' => 'Not logged in or no user ID provided']);
+    exit();
+}
+
 $conn = new mysqli("localhost", "root", "", "platemate");
-$userID = $_GET["id"] ?? $_SESSION['userID'];
-$result = $conn->query("SELECT recipe.recipeID, user.username, recipe.recipeTitle, picture.pictureLink, rating.avgRating, rating.countRating, recipe.recipeDescription, tag.tagTitle
+if ($conn->connect_error) {
+    echo json_encode(['success' => false, 'message' => 'Database connection failed']);
+    exit();
+}
+
+$userID = isset($_GET["id"]) ? (int)$_GET["id"] : (int)$_SESSION['userID'];
+
+// Use prepared statement to prevent SQL injection
+$stmt = $conn->prepare("SELECT recipe.recipeID, owns.userID, user.username, recipe.recipeTitle, picture.pictureLink, 
+                        rating.avgRating, rating.countRating, recipe.recipeDescription, tag.tagTitle
 FROM ((((((recipe
-INNER JOIN (SELECT * FROM owns WHERE owns.userID = $userID) AS owns ON recipe.recipeID = owns.recipeID)
+INNER JOIN owns ON recipe.recipeID = owns.recipeID)
 INNER JOIN user ON owns.userID = user.userID)
 INNER JOIN picture ON recipe.recipeID = picture.recipeID)
 LEFT JOIN (SELECT recipeID, AVG(rating) AS avgRating, COUNT(rating) AS countRating FROM rates GROUP BY recipeID)
 AS rating ON recipe.recipeID = rating.recipeID)
 LEFT JOIN tags ON recipe.recipeID = tags.recipeID)
-LEFT JOIN tag ON tags.tagID = tag.tagID)");
+LEFT JOIN tag ON tags.tagID = tag.tagID)
+WHERE owns.userID = ?");
+$stmt->bind_param("i", $userID);
+$stmt->execute();
+$result = $stmt->get_result();
 
 $recipes = [];
 while ($row = $result->fetch_assoc()) {
@@ -18,6 +37,7 @@ while ($row = $result->fetch_assoc()) {
     if (!isset($recipes[$id])) {
         $recipes[$id] = [
             "recipeID" => $row['recipeID'],
+            "userID" => $row['userID'],
             "username" => $row['username'],
             "recipeTitle" => $row['recipeTitle'],
             "pictureLink" => $row['pictureLink'],
@@ -33,6 +53,8 @@ while ($row = $result->fetch_assoc()) {
 }
 
 $output = array_values($recipes);
-header('Content-Type: application/json');
 echo json_encode($output);
+
+$stmt->close();
+$conn->close();
 ?>

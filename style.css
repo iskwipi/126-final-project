@@ -79,7 +79,7 @@ body {
 }
 
 #user a:hover, .ratings button:hover, .nav-button:hover, .upload-picture:hover, #poster-profile a:hover{
-    background: rgba(135, 134, 134, 0.893);
+    
 }
 
 .deep-search-button:hover,.post-recipe-button:hover, .recipe-button:hover, .user-button:hover, .follow-button:hover, .servings-btn:hover {
@@ -118,7 +118,6 @@ body {
 .left-panel a:hover {
     color: rgb(43, 43, 43);
     transform: translateY(-1px);  
-    background: rgba(255, 255, 255, 0.893);
 }
 
 .left-panel a:active {
@@ -1312,4 +1311,125 @@ textarea, #comment-input input  {
     font-size: .75rem;
     margin: 0;
     color: rgb(47, 47, 47);
+}
+
+/*updates*/
+/* Recipe actions container */
+.recipe-actions {
+    margin-top: 10px;
+}
+
+/* Edit and Delete buttons */
+.edit-btn, .delete-btn {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+}
+.edit-btn {
+    background-color: #28a745;
+}
+.edit-btn:hover {
+    background-color: #218838;
+}
+.delete-btn {
+    background-color: #dc3545;
+}
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Form styles for editrecipe.php and editprofile.php */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+textarea {
+    height: 100px;
+}
+.ingredient, .instruction, .picture {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.ingredient select,
+.ingredient input,
+.instruction textarea,
+.picture input {
+    flex: 1;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.profile-header {
+    position: relative;
+}
+
+.edit-profile-btn {
+    position: absolute;
+    top: 160px;      /* Adjust as needed */
+    right: 10px;    /* Adjust as needed */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 5%;
+    background-color: none;
+}
+
+.edit-profile-btn:hover {
+    background-color: #487530;
+    color: white;
+}
+
+/* Align the form to the left */
+form {
+    max-width: 400px;
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+}
+
+/* Make each label and input stack vertically and align left */
+form label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 500;
+    text-align: left;
+}
+
+form input,
+form select {
+    display: block;
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 4px;
+    box-sizing: border-box;
+    text-align: left;
 }
