@@ -27,3 +27,5 @@ echo '
         <p>Followed by:<br>' . $followerCount . ' follower/s</p>
     </div>
 ';
+
+?>

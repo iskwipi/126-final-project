@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo implode($_SESSION);
+// echo implode($_SESSION);
 $conn = new mysqli("localhost", "root", "", "platemate");
 $recipeID = $_POST["recipeID"];
 $userID = $_SESSION["userID"];

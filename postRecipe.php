@@ -104,8 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // tag separated by commas 
             // $tagArr = array_map('trim', explode(',', $tags));
-            echo implode($tags);
-            echo implode($ingredients);
+            // echo implode($tags);
+            // echo implode($ingredients);
             foreach ($tags as $tagTitle) {
                 $tagTitle = trim($tagTitle);
                 if ($tagTitle === "") continue;

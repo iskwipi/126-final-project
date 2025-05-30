@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo implode($_SESSION);
+// echo implode($_SESSION);
 ?>
 <html lang="en">
     <head>

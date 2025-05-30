@@ -23,7 +23,7 @@ if ($step == 1 && $_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: " . $_SERVER['PHP_SELF'] . "?step=3");
     exit();
 }
-echo implode($_SESSION);
+// echo implode($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">

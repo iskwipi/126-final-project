@@ -1,7 +1,7 @@
 <?php
 session_start();
-echo implode($_SESSION);
-echo $_GET["id"];
+// echo implode($_SESSION);
+// echo $_GET["id"];
 
 $conn = new mysqli("localhost", "root", "", "platemate");
 
@@ -156,7 +156,7 @@ if($recipes->num_rows == 1){
 
     // Get the result
     $result = $stmt->get_result();
-    echo $result->fetch_assoc();
+    // echo $result->fetch_assoc();
 
     // Check if any rows returned
     if ($result->num_rows == 0) {

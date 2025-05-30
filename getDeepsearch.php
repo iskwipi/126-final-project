@@ -51,13 +51,13 @@ if (count($tagsFromForm) > 0) {
     $result = $stmt->get_result();
     $recipes = $result->fetch_all(MYSQLI_ASSOC);
     $stmt->close();
-    echo "filtered recipes";
+    // echo "filtered recipes";
 } else {
     // No tags provided: fetch all recipes
     $sql = "SELECT recipeID FROM recipe";
     $result = $conn->query($sql);
     $recipes = $result->fetch_all(MYSQLI_ASSOC);
-    echo "all recipes";
+    // echo "all recipes";
 }
 
 unset($recipe);

@@ -10,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
     $username = trim($_GET["username"]);
     $password = $_GET["password"];
-    echo $username;
-    echo $password;
+    // echo $username;
+    // echo $password;
     $stmt = $conn->prepare("SELECT userID, passwordHash FROM user WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
