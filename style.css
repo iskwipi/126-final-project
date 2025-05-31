@@ -256,6 +256,7 @@ hr {
     flex-direction: column;
     overflow: auto;
     gap: 1.2rem;
+    margin-left: 50px;
 }
 .featured-section {
     gap: 0;
@@ -333,7 +334,8 @@ hr {
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
-    width: 300px;
+    width: 240px;
+    margin-left: 50px;
 }
 
 .posts-section, .saved-section, .search-posts, .profile-featured-section{
@@ -605,6 +607,7 @@ textarea, #comment-input input  {
     border-radius: 2rem;
     display: flex;
     align-items: center;
+    margin-left: 30px;
 }
 .upload-section input, .new-post-body input{
     width: 30rem;
@@ -1314,12 +1317,13 @@ textarea, #comment-input input  {
 }
 
 /*updates*/
-/* Recipe actions container */
+
+/* recipe actions container */
 .recipe-actions {
     margin-top: 10px;
 }
 
-/* Edit and Delete buttons */
+/* edit and delete buttons */
 .edit-btn, .delete-btn {
     padding: 8px 12px;
     margin: 5px;
@@ -1342,7 +1346,7 @@ textarea, #comment-input input  {
     background-color: #c82333;
 }
 
-/* Form styles for editrecipe.php and editprofile.php */
+/* form styles for editrecipe.php and editprofile.php */
 form {
     max-width: 600px;
     margin: 0 auto;
@@ -1379,14 +1383,6 @@ textarea {
     flex: 1;
 }
 
-/* Links */
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
 
 .profile-header {
     position: relative;
@@ -1394,8 +1390,8 @@ a:hover {
 
 .edit-profile-btn {
     position: absolute;
-    top: 160px;      /* Adjust as needed */
-    right: 10px;    /* Adjust as needed */
+    top: 160px;   
+    right: 10px;   
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -1408,28 +1404,47 @@ a:hover {
     color: white;
 }
 
-/* Align the form to the left */
+
 form {
-    max-width: 400px;
-    margin-left: 0;
+    max-width: 1300px;
+    margin-left: 50px;
     margin-right: auto;
     text-align: left;
+    background-color: white;
+    padding: 20px;
+    margin-top: 40px;
 }
 
-/* Make each label and input stack vertically and align left */
+
 form label {
     display: block;
     margin-bottom: 12px;
     font-weight: 500;
     text-align: left;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 form input,
 form select {
     display: block;
-    width: 100%;
+    width: 30%;
     padding: 6px 8px;
     margin-top: 4px;
     box-sizing: border-box;
     text-align: left;
+    font-size: 20px;
+}
+
+.title-field p,
+.description-field p,
+.serving-field p,
+.ingredients-field p {
+    font-size: 30px; 
+    font-weight: 600; 
+    margin-bottom: 6px;
+}
+
+.title-field {
+    margin-top: 70px
 }

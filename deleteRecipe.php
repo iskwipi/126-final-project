@@ -33,7 +33,7 @@ if ($stmt->get_result()->num_rows == 0) {
 }
 $stmt->close();
 
-// Delete related data
+// for deleting related data
 $stmt = $conn->prepare("DELETE FROM contains WHERE recipeID = ?");
 $stmt->bind_param("i", $recipe_id);
 $stmt->execute();
@@ -59,7 +59,7 @@ $stmt->bind_param("i", $recipe_id);
 $stmt->execute();
 $stmt->close();
 
-// Delete the recipe
+// for deleting the recipe
 $stmt = $conn->prepare("DELETE FROM recipe WHERE recipeID = ?");
 $stmt->bind_param("i", $recipe_id);
 $stmt->execute();

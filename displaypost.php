@@ -1,67 +1,113 @@
 <?php
 session_start();
-// echo implode($_SESSION);
-// echo $_GET["id"];
-
 $conn = new mysqli("localhost", "root", "", "platemate");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-$userID = $_SESSION["userID"];
-$recipeID = $_GET["id"];
-$sql = "SELECT * FROM recipe WHERE recipeID = $recipeID";
-$recipes = $conn->query($sql);
+$userID = isset($_SESSION["userID"]) ? intval($_SESSION["userID"]) : 0;
+$recipeID = isset($_GET["id"]) ? intval($_GET["id"]) : 0;
 
-if($recipes->num_rows == 1){
+if ($recipeID === 0) {
+    $_SESSION['error'] = "Invalid recipe ID.";
+    header("Location: homepage.php");
+    exit();
+}
+
+// fetch recipe details
+$stmt = $conn->prepare("SELECT * FROM recipe WHERE recipeID = ?");
+$stmt->bind_param("i", $recipeID);
+$stmt->execute();
+$recipes = $stmt->get_result();
+
+if ($recipes->num_rows == 1) {
     $recipe = $recipes->fetch_assoc();
 
-    $sql = "SELECT tagTitle FROM tag as T
-        INNER JOIN (SELECT tagID FROM tags WHERE recipeID = $recipeID) as R
-        ON T.tagID = R.tagID";
-    $tags = $conn->query($sql)->fetch_array(MYSQLI_ASSOC);
+    // fetch tags
+    $stmt = $conn->prepare("SELECT t.tagTitle FROM tag t
+                            INNER JOIN tags ts ON t.tagID = ts.tagID
+                            WHERE ts.recipeID = ?");
+    $stmt->bind_param("i", $recipeID);
+    $stmt->execute();
+    $tags = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $tagTitles = array_column($tags, 'tagTitle'); // Extract tagTitle values
+    $stmt->close();
 
-    $sql = "SELECT pictureLink FROM picture WHERE recipeID = $recipeID";
-    $pictures = $conn->query($sql)->fetch_array(MYSQLI_ASSOC);
+    // fetch pictures
+    $stmt = $conn->prepare("SELECT pictureLink FROM picture WHERE recipeID = ?");
+    $stmt->bind_param("i", $recipeID);
+    $stmt->execute();
+    $pictures = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $pictureLink = !empty($pictures) ? $pictures[0]['pictureLink'] : 'default-recipe.png';
+    $stmt->close();
 
-    $sql = "SELECT measurementValue, unitName, ingredientName FROM unit as U
-        INNER JOIN (SELECT measurementValue, unitID, ingredientName FROM ingredient as I
-            INNER JOIN (SELECT * FROM contains WHERE recipeID = $recipeID) as C
-            ON I.ingredientID = C.ingredientID) as IC
-        ON U.unitID = IC.unitID";
-    $ingredients = $conn->query($sql);
+    // fetch ingredients
+    $stmt = $conn->prepare("
+        SELECT c.measurementValue, u.unitName, i.ingredientName
+        FROM contains c
+        JOIN ingredient i ON c.ingredientID = i.ingredientID
+        LEFT JOIN unit u ON c.unitID = u.unitID
+        WHERE c.recipeID = ?
+    ");
+    $stmt->bind_param("i", $recipeID);
+    $stmt->execute();
+    $ingredients = $stmt->get_result();
     $ingredientList = "<ul>";
-    while($ingredient = $ingredients->fetch_assoc()){
-        $ingredientList .= "<li>" . $ingredient["measurementValue"] . " " . $ingredient["unitName"] . "s of " . $ingredient["ingredientName"] . "</li>";
+    while ($ingredient = $ingredients->fetch_assoc()) {
+        $unit = $ingredient["unitName"] ? $ingredient["unitName"] . "s" : "";
+        $ingredientList .= "<li>" . htmlspecialchars($ingredient["measurementValue"]) . " " . htmlspecialchars($unit) . " of " . htmlspecialchars($ingredient["ingredientName"]) . "</li>";
     }
     $ingredientList .= "</ul>";
+    $stmt->close();
 
-    $sql = "SELECT instructionNumber, instructionDetails FROM instruction WHERE recipeID = $recipeID";
-    $instructions = $conn->query($sql);
+    // fetch instructions
+    $stmt = $conn->prepare("SELECT instructionNumber, instructionDetails FROM instruction WHERE recipeID = ? ORDER BY instructionNumber");
+    $stmt->bind_param("i", $recipeID);
+    $stmt->execute();
+    $instructions = $stmt->get_result();
     $instructionList = "<ul>";
-    while($instruction = $instructions->fetch_assoc()){
-        $instructionList .= "<li>Step " . $instruction["instructionNumber"] . ": " . $instruction["instructionDetails"] . "</li>";
+    while ($instruction = $instructions->fetch_assoc()) {
+        $instructionList .= "<li>Step " . htmlspecialchars($instruction["instructionNumber"]) . ": " . htmlspecialchars($instruction["instructionDetails"]) . "</li>";
     }
     $instructionList .= "</ul>";
+    $stmt->close();
 
-    $sql = "SELECT username FROM user as U
-        INNER JOIN (SELECT userID FROM owns WHERE recipeID = $recipeID) as O
-        ON U.userID = O.userID";
-    $owns = $conn->query($sql)->fetch_assoc();
+    // fetch owner
+    $stmt = $conn->prepare("SELECT u.username FROM user u
+                            INNER JOIN owns o ON u.userID = o.userID
+                            WHERE o.recipeID = ?");
+    $stmt->bind_param("i", $recipeID);
+    $stmt->execute();
+    $owns = $stmt->get_result()->fetch_assoc();
+    $stmt->close();
 
-    $sql = "SELECT username FROM user as U
-        INNER JOIN (SELECT userID FROM saves WHERE recipeID = $recipeID) as S
-        ON U.userID = S.userID";
-    $saves = $conn->query($sql)->fetch_array(MYSQLI_ASSOC);
+    // fetch saves for display
+    $stmt = $conn->prepare("SELECT u.username FROM user u
+                            INNER JOIN saves s ON u.userID = s.userID
+                            WHERE s.recipeID = ?");
+    $stmt->bind_param("i", $recipeID);
+    $stmt->execute();
+    $saves = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
 
-    $sql = "SELECT U.username as username, C.comment as comment, R.rating as rating FROM ((user as U
-        INNER JOIN (SELECT userID, comment FROM comments WHERE recipeID = $recipeID) as C ON U.userID = C.userID)
-        INNER JOIN (SELECT userID, rating FROM rates WHERE recipeID = $recipeID) as R ON U.userID = R.userID)";
-    $ratings = $conn->query($sql);
+    // fetch ratings and comments
+    $stmt = $conn->prepare("
+        SELECT u.username, c.comment, r.rating
+        FROM user u
+        INNER JOIN comments c ON u.userID = c.userID
+        INNER JOIN rates r ON u.userID = r.userID
+        WHERE c.recipeID = ? AND r.recipeID = ?
+    ");
+    $stmt->bind_param("ii", $recipeID, $recipeID);
+    $stmt->execute();
+    $ratings = $stmt->get_result();
     $ratingList = "";
-    while($rating = $ratings->fetch_assoc()){
+    while ($rating = $ratings->fetch_assoc()) {
         $ratingList .= '
         <div class="interaction-container"> 
             <div class="user-header-row">
                 <div id="user-profile">
-                    <a href="profile.php">' . $rating["username"] . ':</a>
+                    <a href="profile.php?id=' . htmlspecialchars($rating["username"]) . '">' . htmlspecialchars($rating["username"]) . ':</a>
                 </div>
                 <div class="user-ratings">
                     <i class="fa-regular fa-star"></i>
@@ -69,36 +115,40 @@ if($recipes->num_rows == 1){
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
-                    <p>' . $rating["rating"] . '</p>
+                    <p>' . htmlspecialchars($rating["rating"]) . '</p>
                 </div>
             </div>
             <div class="user-comment">
-                <p>' . $rating["comment"] . '</p>
+                <p>' . htmlspecialchars($rating["comment"]) . '</p>
             </div>
         </div>  
         ';
     }
+    $stmt->close();
 
-    $sql = "SELECT AVG(rating) AS avgRating, COUNT(rating) AS countRating
-        FROM rates WHERE rates.recipeID = $recipeID GROUP BY recipeID";
-    $average = $conn->query($sql)->fetch_assoc();
+    // fetch average rating
+    $stmt = $conn->prepare("
+        SELECT AVG(rating) AS avgRating, COUNT(rating) AS countRating
+        FROM rates WHERE recipeID = ?
+    ");
+    $stmt->bind_param("i", $recipeID);
+    $stmt->execute();
+    $average = $stmt->get_result()->fetch_assoc();
+    $avgRating = $average && $average["avgRating"] ? rtrim(rtrim(number_format($average["avgRating"], 1), '0'), '.') : 0;
+    $countRating = $average ? $average["countRating"] : 0;
+    $stmt->close();
 
-    if($average === null){
-        $average["avgRating"] = 0;
-        $average["countRating"] = 0;
-    }
-
-    $recipeContent =  '
+    $recipeContent = '
     <div class="display-post-feed">
         <div class="post-container"> 
             <div class="post-title">
                 <div class="post-title-row">
-                    <h2>' . $recipe["recipeTitle"] . '</h2>
+                    <h2>' . htmlspecialchars($recipe["recipeTitle"]) . '</h2>
                     <div id="poster-profile">
-                        <a href="profile.php">' . $owns["username"] . '</a>
+                        <a href="profile.php?id=' . htmlspecialchars($owns["username"]) . '">' . htmlspecialchars($owns["username"]) . '</a>
                         <div class="post-bookmark">
                             <button type="button" onclick="saveRecipe(' . $recipeID . ', this)">
-                                <i class="fa-regular fa-bookmark "></i>
+                                <i class="fa-regular fa-bookmark"></i>
                             </button>
                         </div>
                     </div>
@@ -109,22 +159,22 @@ if($recipes->num_rows == 1){
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
                     <i class="fa-regular fa-star"></i>
-                    <p>' . $average["avgRating"] . ' stars (' . $average["countRating"] . ' ratings)</p>
+                    <p>' . $avgRating . ' stars (' . $countRating . ' ratings)</p>
                 </div>
             </div>
             <div class="post-description">
-                <p>' . $recipe["recipeDescription"] . '</p>
+                <p>' . htmlspecialchars($recipe["recipeDescription"]) . '</p>
             </div>
             <div class="post-image">
-                <img src="' . $pictures["pictureLink"] . '" alt="recipe image">
+                <img src="' . htmlspecialchars($pictureLink) . '" alt="recipe image">
             </div>
             <div class="post-tags">
                 <p>Tags: </p>
-                <p>#' . implode(', #', $tags) . '</p>
+                <p>' . (!empty($tagTitles) ? '#' . implode(' #', array_map('htmlspecialchars', $tagTitles)) : 'No tags') . '</p>
             </div>
             <div class="servings-multiplier">
                 <button type="button" id="decrement-servings" class="servings-btn">-</button>
-                    <input type="number" id="servings-count" value="1" min="1" readonly>
+                <input type="number" id="servings-count" value="1" min="1" readonly>
                 <button type="button" id="increment-servings" class="servings-btn">+</button>
                 <p>Servings</p>
             </div>
@@ -148,38 +198,34 @@ if($recipes->num_rows == 1){
             <div class="post-ratings-container">
     ';
 
-    // Prepare the SQL statement
-    $sql = "SELECT * FROM comments WHERE userID = ? AND recipeID = ?";
-    $stmt = $conn->prepare($sql);
+    // checks if user has commented
+    $stmt = $conn->prepare("SELECT * FROM comments WHERE userID = ? AND recipeID = ?");
     $stmt->bind_param("ii", $userID, $recipeID);
     $stmt->execute();
-
-    // Get the result
     $result = $stmt->get_result();
-    // echo $result->fetch_assoc();
 
-    // Check if any rows returned
     if ($result->num_rows == 0) {
         $recipeContent .= '
-                    <div class="your-interactions">
-                        <form method="post" action="postRating.php">
-                            <input type"number" id="recipeID" name="recipeID" value="' . $recipeID . '" hidden>
-                            <div class="your-ratings">
-                                <p>Your rating:</p>
-                                <input type="number" id="rating-input" name="rating-input" min="0" max ="5" step=".5" value="0">
-                            </div>
-                            <div class="your-comment">
-                                <input type="text" id="comment-input" name="comment-input" placeholder="Leave a comment...">
-                                <button type="submit" id="comment-button">
-                                    <i class="fa-solid fa-paper-plane"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <hr>
-                    <br>
+                <div class="your-interactions">
+                    <form method="post" action="postRating.php">
+                        <input type="hidden" name="recipeID" value="' . $recipeID . '">
+                        <div class="your-ratings">
+                            <p>Your rating:</p>
+                            <input type="number" id="rating-input" name="rating-input" min="0" max="5" step=".5" value="0">
+                        </div>
+                        <div class="your-comment">
+                            <input type="text" id="comment-input" name="comment-input" placeholder="Leave a comment...">
+                            <button type="submit" id="comment-button">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <br>
         ';
     }
+    $stmt->close();
 
     $recipeContent .= '
                 <div class="post-comments-ratings">
@@ -189,41 +235,79 @@ if($recipes->num_rows == 1){
         </div>
     </div>
     ';
-}else{
-    echo "Invalid recipeID</br>" . $conn->error;
+} else {
+    $_SESSION['error'] = "Invalid recipe ID.";
+    header("Location: homepage.php");
+    exit();
 }
-
 
 $conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title> Post </title>
-        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
-        <link rel="stylesheet" href="style.css">
-        <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <div class="title-bar">
-            <img src="logo-white.png">
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for a user or a recipe..."  onkeypress="handleSearch(event)">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-            </div>    
+<head>
+    <meta charset="UTF-8">
+    <title><?php echo htmlspecialchars($recipe["recipeTitle"] ?? 'Post'); ?> - PlateMate</title>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/dbc4f87d4f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="title-bar">
+        <img src="logo-white.png">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for a user or a recipe..." onkeypress="handleSearch(event)">
+            <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <div class="left-panel">
-            <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i> Recipe Search</a>
-            <a href="cookbook.php"><i class="fa-solid fa-book"></i> Cookbook</a>
-            <a href="profile.php"><i class="fa-solid fa-user"></i> Profile</a>
-        </div>
+    </div>
+    <div class="left-panel">
+        <a href="homepage.php"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="deepsearch.php"><i class="fa-solid fa-magnifying-glass"></i> Recipe Search</a>
+        <a href="cookbook.php"><i class="fa-solid fa-book"></i> Cookbook</a>
+        <a href="profile.php"><i class="fa-solid fa-user"></i> Profile</a>
+    </div>
+    <?php if (isset($_SESSION['error'])): ?>
+        <p style="color: red;"><?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?></p>
+    <?php endif; ?>
+    <?php echo $recipeContent; ?>
+    <script src="searchHandler.js"></script>
+    <script>
+        function saveRecipe(recipeId, button) {
+            fetch('saveRecipe.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `recipe_id=${recipeId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    button.querySelector('i').classList.toggle('fa-regular');
+                    button.querySelector('i').classList.toggle('fa-solid');
+                    alert('Recipe saved/unsaved successfully!');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => alert('Error: ' + error.message));
+        }
 
-        <?php
-            echo $recipeContent;
-        ?>
-        <script src="searchHandler.js"></script>
-    </body>
+        const decrementBtn = document.getElementById('decrement-servings');
+        const incrementBtn = document.getElementById('increment-servings');
+        const servingsInput = document.getElementById('servings-count');
+
+        if (decrementBtn && incrementBtn && servingsInput) {
+            decrementBtn.addEventListener('click', () => {
+                let value = parseInt(servingsInput.value);
+                if (value > 1) {
+                    servingsInput.value = value - 1;
+                }
+            });
+
+            incrementBtn.addEventListener('click', () => {
+                let value = parseInt(servingsInput.value);
+                servingsInput.value = value + 1;
+            });
+        }
+    </script>
+</body>
 </html>

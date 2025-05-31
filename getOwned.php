@@ -1,60 +1,44 @@
 <?php
 session_start();
-header('Content-Type: application/json');
-
-if (!isset($_SESSION['userID']) && !isset($_GET["id"])) {
-    echo json_encode(['success' => false, 'message' => 'Not logged in or no user ID provided']);
-    exit();
-}
-
 $conn = new mysqli("localhost", "root", "", "platemate");
 if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'message' => 'Database connection failed']);
-    exit();
+    die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
 }
 
-$userID = isset($_GET["id"]) ? (int)$_GET["id"] : (int)$_SESSION['userID'];
+$profileID = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$sortMode = isset($_GET['sort']) ? $_GET['sort'] : 'id';
+$orderBy = ($sortMode === 'rating') ? 'avgRating DESC' : 'r.recipeID DESC';
 
-// Use prepared statement to prevent SQL injection
-$stmt = $conn->prepare("SELECT recipe.recipeID, owns.userID, user.username, recipe.recipeTitle, picture.pictureLink, 
-                        rating.avgRating, rating.countRating, recipe.recipeDescription, tag.tagTitle
-FROM ((((((recipe
-INNER JOIN owns ON recipe.recipeID = owns.recipeID)
-INNER JOIN user ON owns.userID = user.userID)
-INNER JOIN picture ON recipe.recipeID = picture.recipeID)
-LEFT JOIN (SELECT recipeID, AVG(rating) AS avgRating, COUNT(rating) AS countRating FROM rates GROUP BY recipeID)
-AS rating ON recipe.recipeID = rating.recipeID)
-LEFT JOIN tags ON recipe.recipeID = tags.recipeID)
-LEFT JOIN tag ON tags.tagID = tag.tagID)
-WHERE owns.userID = ?");
-$stmt->bind_param("i", $userID);
+$stmt = $conn->prepare("
+    SELECT r.recipeID, r.recipeTitle, r.recipeDescription, r.peoplePerServing,
+           o.userID,
+           GROUP_CONCAT(DISTINCT tag.tagTitle) AS tags,
+           GROUP_CONCAT(i.instructionDetails) AS instructions,
+           p.pictureLink,
+           AVG(rates.rating) AS avgRating,
+           COUNT(rates.rating) AS countRating
+    FROM recipe r
+    JOIN owns o ON r.recipeID = o.recipeID
+    LEFT JOIN tags t ON r.recipeID = t.recipeID
+    LEFT JOIN tag ON t.tagID = tag.tagID
+    LEFT JOIN instruction i ON r.recipeID = i.recipeID
+    LEFT JOIN picture p ON r.recipeID = p.recipeID AND p.pictureNumber = 1
+    LEFT JOIN rates ON r.recipeID = rates.recipeID
+    WHERE o.userID = ?
+    GROUP BY r.recipeID
+    ORDER BY $orderBy
+");
+$stmt->bind_param("i", $profileID);
 $stmt->execute();
-$result = $stmt->get_result();
+$recipes = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-$recipes = [];
-while ($row = $result->fetch_assoc()) {
-    $id = $row['recipeID'];
-    if (!isset($recipes[$id])) {
-        $recipes[$id] = [
-            "recipeID" => $row['recipeID'],
-            "userID" => $row['userID'],
-            "username" => $row['username'],
-            "recipeTitle" => $row['recipeTitle'],
-            "pictureLink" => $row['pictureLink'],
-            "avgRating" => $row['avgRating'],
-            "countRating" => $row['countRating'],
-            "recipeDescription" => $row['recipeDescription'],
-            "tags" => []
-        ];
-    }
-    if ($row['tagTitle']) {
-        $recipes[$id]['tags'][] = $row['tagTitle'];
-    }
+foreach ($recipes as &$recipe) {
+    $recipe['tags'] = $recipe['tags'] ? explode(',', $recipe['tags']) : [];
+    $recipe['instructions'] = $recipe['instructions'] ? explode(',', $recipe['instructions']) : [];
 }
-
-$output = array_values($recipes);
-echo json_encode($output);
-
 $stmt->close();
 $conn->close();
+
+header('Content-Type: application/json');
+echo json_encode($recipes);
 ?>

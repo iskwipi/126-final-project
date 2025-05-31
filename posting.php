@@ -75,14 +75,13 @@ session_start();
                 </div>
             </div>
             <div class="picture-field">
-                <p>Picture</p>
-                <input type="text" id="picture-link" name="picture-link" placeholder="Picture link" required>
+                <p>Upload image (optional):</p>
+                <input type="file" name="recipe-image" accept="image/*">
             </div>
             <div class="submit-cancel">
                 <button class="post-recipe-button" type="submit">Post Recipe</button>
                 <a href="profile.php">Back to profile</a>
             </div>
-
         </form>
         <script src="posting.js"></script>
     </body>

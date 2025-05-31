@@ -1,12 +1,13 @@
 <?php
-session_start(); 
+session_start();
 
 $servername = "localhost";
 $username = "root";
-$password = ""; 
+$password = "";
 $dbname = "platemate";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (
@@ -16,35 +17,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $desc = $_POST['recipe-description'];
         $serving = $_POST['recipe-serving'];
         $instructions = $_POST['recipe-instructions'];
-        $tags = $_POST['tag-Input']; 
+        $tags = $_POST['tag-Input'];
         $ingredients = $_POST['recipe-ingredients'];
         $measurements = $_POST['ingredient-measurement'];
-        $units = $_POST['unit-type']; 
-        $picture = $_POST['picture-link']; 
+        $units = $_POST['unit-type'];
         $userID = $_SESSION['userID'];
 
-        // insert to recipe table
+        // handle file upload
+        $uploadDir = 'uploads/';
+        $picture = ''; // default if no image has been uploaded
+
+        if (isset($_FILES['recipe-image']) && $_FILES['recipe-image']['error'] === UPLOAD_ERR_OK) {
+            $uploadedFile = $_FILES['recipe-image'];
+            $filename = basename($uploadedFile['name']);
+            // unique filename to avoid overwriting
+            $filename = time() . '_' . preg_replace('/[^A-Za-z0-9.\-_]/', '', $filename);
+            $targetFilePath = $uploadDir . $filename;
+
+            // checks if upload directory exists
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0755, true);
+            }
+
+            if (move_uploaded_file($uploadedFile['tmp_name'], $targetFilePath)) {
+                $picture = $targetFilePath;
+            }
+        }
+
+        // insert into recipe table
         $stmt = $conn->prepare("INSERT INTO recipe (recipeTitle, recipeDescription, peoplePerServing) VALUES (?, ?, ?)");
         $stmt->bind_param("ssi", $title, $desc, $serving);
 
         if ($stmt->execute()) {
             $recipeID = $conn->insert_id;
 
+            // insert ownership
             $stmt10 = $conn->prepare("INSERT INTO owns (userID, recipeID) VALUES (?, ?)");
             $stmt10->bind_param("ii", $userID, $recipeID);
             $stmt10->execute();
             $stmt10->close();
 
-            $picture = trim($picture);
-            $pictureNum = 1;
-            $stmt10 = $conn->prepare("INSERT INTO picture (recipeID, pictureLink) VALUES (?, ?)");
-            $stmt10->bind_param("is", $recipeID, $picture);
-            $stmt10->execute();
-            $stmt10->close();
+            if ($picture !== '') {
+                $stmt10 = $conn->prepare("INSERT INTO picture (recipeID, pictureLink) VALUES (?, ?)");
+                $stmt10->bind_param("is", $recipeID, $picture);
+                $stmt10->execute();
+                $stmt10->close();
+            }
 
-            // $steps = explode("\n", $instructions);
+            // insert instructions
             $stepNum = 1;
-            // steps separated through new lines 
             foreach ($instructions as $step) {
                 $step = trim($step);
                 if ($step !== "") {
@@ -56,14 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-            //inserting ingredients
+            // insert ingredients
             foreach ($ingredients as $i => $ingredientName) {
                 $ingredientName = trim($ingredientName);
                 $measurement = $measurements[$i];
                 $unitName = $units[$i];
                 if ($ingredientName === "") continue;
 
-                // Check if ingredient exists
+                // checks if ingredient exists
                 $stmt3 = $conn->prepare("SELECT ingredientID FROM ingredient WHERE ingredientName = ?");
                 $stmt3->bind_param("s", $ingredientName);
                 $stmt3->execute();
@@ -79,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt4->close();
                 }
 
-                // Check if unit exists
+                // checks if unit exists
                 $stmt3 = $conn->prepare("SELECT unitID FROM unit WHERE unitName = ?");
                 $stmt3->bind_param("s", $unitName);
                 $stmt3->execute();
@@ -95,22 +116,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt4->close();
                 }
 
-                // may unit id pa ba? 
+                // insert into contains
                 $stmt6 = $conn->prepare("INSERT INTO contains (recipeID, ingredientID, measurementValue, unitID) VALUES (?, ?, ?, ?)");
                 $stmt6->bind_param("iidi", $recipeID, $ingredientID, $measurement, $unitID);
                 $stmt6->execute();
                 $stmt6->close();
             }
 
-            // tag separated by commas 
-            // $tagArr = array_map('trim', explode(',', $tags));
-            // echo implode($tags);
-            // echo implode($ingredients);
+            // insert tags
             foreach ($tags as $tagTitle) {
                 $tagTitle = trim($tagTitle);
                 if ($tagTitle === "") continue;
 
-                // check if tag exists
+                // checks if tag exists
                 $stmt7 = $conn->prepare("SELECT tagID FROM tag WHERE tagTitle = ?");
                 $stmt7->bind_param("s", $tagTitle);
                 $stmt7->execute();
